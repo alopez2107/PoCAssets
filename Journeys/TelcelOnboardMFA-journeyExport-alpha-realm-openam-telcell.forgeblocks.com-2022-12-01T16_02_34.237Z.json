@@ -1,0 +1,707 @@
+{
+  "meta": {
+    "origin": "https://openam-telcell.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2022-12-01T16:02:34.237Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "TelcelOnboardMFA"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "TelcelOnboardMFA": {
+      "tree": {
+        "_id": "TelcelOnboardMFA",
+        "_rev": "-278350139",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "e4375561-de0b-4ad2-b387-bb3a2f22c129",
+        "nodes": {
+          "120b55c7-fd25-4cb6-a81a-58a8793895df": {
+            "connections": {
+              "false": "31385484-1456-4aa1-912d-0e7b00d678e7",
+              "true": "c994cc7e-40c4-4130-85e8-af2b16416028"
+            },
+            "displayName": "Error FingerPrint",
+            "nodeType": "MessageNode",
+            "x": 1933,
+            "y": 572.015625
+          },
+          "16124aeb-475d-49ed-bfa8-20d22911a31b": {
+            "connections": {
+              "Cuestionario de Seguridad": "d1edc994-e95f-422a-a598-7f899284ec96",
+              "Huella Digital": "c994cc7e-40c4-4130-85e8-af2b16416028",
+              "Llave de Seguridad (FIDO)": "c76f1cee-98fc-43de-81ec-ae1f6afa0c29",
+              "Reconocimiento Facial": "de545614-91d8-4d34-a46a-0b6ba81e10f7"
+            },
+            "displayName": "Configuration MFA",
+            "nodeType": "PageNode",
+            "x": 1077,
+            "y": 210.015625
+          },
+          "31385484-1456-4aa1-912d-0e7b00d678e7": {
+            "connections": {
+              "false": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "true": "16124aeb-475d-49ed-bfa8-20d22911a31b"
+            },
+            "displayName": "Configure Another Method Choice",
+            "nodeType": "MessageNode",
+            "x": 2152,
+            "y": 383.015625
+          },
+          "57f3229a-6b19-494b-add5-13dbbef6b8e1": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "d1f1c382-7891-4a75-8ff1-1df0f06848fc"
+            },
+            "displayName": "Identify Existing User",
+            "nodeType": "IdentifyExistingUserNode",
+            "x": 430,
+            "y": 254.015625
+          },
+          "5f9a7c6b-57cb-4164-a791-d188ec3419d7": {
+            "connections": {
+              "false": "daabedd4-6e1e-4ff5-86c2-57056573ddbb",
+              "true": "31385484-1456-4aa1-912d-0e7b00d678e7"
+            },
+            "displayName": "Capture Biometrics",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1699,
+            "y": 661.015625
+          },
+          "67058fa0-7636-457a-8bf0-35549967f589": {
+            "connections": {
+              "false": "120b55c7-fd25-4cb6-a81a-58a8793895df",
+              "true": "31385484-1456-4aa1-912d-0e7b00d678e7"
+            },
+            "displayName": "Register Fingerprint",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1658,
+            "y": 477.015625
+          },
+          "6bf493d1-0198-47bf-9343-ea3a11bd8a8a": {
+            "connections": {
+              "FAILURE": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "PATCHED": "31385484-1456-4aa1-912d-0e7b00d678e7"
+            },
+            "displayName": "Patch Object",
+            "nodeType": "PatchObjectNode",
+            "x": 1656,
+            "y": 304.015625
+          },
+          "c76f1cee-98fc-43de-81ec-ae1f6afa0c29": {
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "failure": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "success": "31385484-1456-4aa1-912d-0e7b00d678e7",
+              "unsupported": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "WebAuthn Registration Node",
+            "nodeType": "WebAuthnRegistrationNode",
+            "x": 1511,
+            "y": 33.015625
+          },
+          "c994cc7e-40c4-4130-85e8-af2b16416028": {
+            "connections": {
+              "false": "16124aeb-475d-49ed-bfa8-20d22911a31b",
+              "true": "67058fa0-7636-457a-8bf0-35549967f589"
+            },
+            "displayName": "Capture Finger Print",
+            "nodeType": "MessageNode",
+            "x": 1381,
+            "y": 520.015625
+          },
+          "d1edc994-e95f-422a-a598-7f899284ec96": {
+            "connections": {
+              "outcome": "6bf493d1-0198-47bf-9343-ea3a11bd8a8a"
+            },
+            "displayName": "Security Questionnaire",
+            "nodeType": "PageNode",
+            "x": 1412,
+            "y": 356.015625
+          },
+          "d1f1c382-7891-4a75-8ff1-1df0f06848fc": {
+            "connections": {
+              "No": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "Si": "16124aeb-475d-49ed-bfa8-20d22911a31b"
+            },
+            "displayName": "Configure MFA?",
+            "nodeType": "PageNode",
+            "x": 662,
+            "y": 97.015625
+          },
+          "daabedd4-6e1e-4ff5-86c2-57056573ddbb": {
+            "connections": {
+              "false": "31385484-1456-4aa1-912d-0e7b00d678e7",
+              "true": "de545614-91d8-4d34-a46a-0b6ba81e10f7"
+            },
+            "displayName": "Error Biometrics",
+            "nodeType": "MessageNode",
+            "x": 1993,
+            "y": 749.015625
+          },
+          "de545614-91d8-4d34-a46a-0b6ba81e10f7": {
+            "connections": {
+              "false": "16124aeb-475d-49ed-bfa8-20d22911a31b",
+              "true": "5f9a7c6b-57cb-4164-a791-d188ec3419d7"
+            },
+            "displayName": "Capture Face ID",
+            "nodeType": "MessageNode",
+            "x": 1401,
+            "y": 705.015625
+          },
+          "e4375561-de0b-4ad2-b387-bb3a2f22c129": {
+            "connections": {
+              "outcome": "57f3229a-6b19-494b-add5-13dbbef6b8e1"
+            },
+            "displayName": "Get Session Data",
+            "nodeType": "SessionDataNode",
+            "x": 189,
+            "y": 201.015625
+          }
+        },
+        "description": "On-Board MFA Methods - like Fingeprint, Face Recognition Biometric Factor, etc. Web Auth - Register the security FIDO Key, PUSH notifications, etc. Also configure KBA questions for authentication",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 2460,
+            "y": 250
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 2412,
+            "y": 94
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "120b55c7-fd25-4cb6-a81a-58a8793895df": {
+          "_id": "120b55c7-fd25-4cb6-a81a-58a8793895df",
+          "_rev": "-1161806119",
+          "messageYes": {
+            "es": "Reintentar"
+          },
+          "message": {
+            "es": "Su registro no pudo completarse exitosamente. ¿Reintentar o Cancelar?"
+          },
+          "messageNo": {
+            "es": "Cancelar"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "16124aeb-475d-49ed-bfa8-20d22911a31b": {
+          "_id": "16124aeb-475d-49ed-bfa8-20d22911a31b",
+          "_rev": "-455509799",
+          "nodes": [
+            {
+              "_id": "62dec793-aaa1-458a-834b-b961386b5487",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "pageDescription": {
+            "es": "Configure un método de autenticación multi-factor"
+          },
+          "stage": "{\"submitButtonText\":{\"es\":\"Continuar\"},\"ChoiceCallback\":[{\"id\":\"62dec793-aaa1-458a-834b-b961386b5487\",\"displayType\":\"radio\"}]}",
+          "pageHeader": {
+            "es": "Configuración de Multi-Factor de Autenticación"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Llave de Seguridad (FIDO)",
+              "displayName": "Llave de Seguridad (FIDO)"
+            },
+            {
+              "id": "Cuestionario de Seguridad",
+              "displayName": "Cuestionario de Seguridad"
+            },
+            {
+              "id": "Huella Digital",
+              "displayName": "Huella Digital"
+            },
+            {
+              "id": "Reconocimiento Facial",
+              "displayName": "Reconocimiento Facial"
+            }
+          ]
+        },
+        "31385484-1456-4aa1-912d-0e7b00d678e7": {
+          "_id": "31385484-1456-4aa1-912d-0e7b00d678e7",
+          "_rev": "-1288329156",
+          "messageYes": {
+            "es": "Si"
+          },
+          "message": {
+            "es": "¿Desea configurar otro método de autenticación multi-factor?"
+          },
+          "messageNo": {
+            "es": "No"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "57f3229a-6b19-494b-add5-13dbbef6b8e1": {
+          "_id": "57f3229a-6b19-494b-add5-13dbbef6b8e1",
+          "_rev": "-1789778447",
+          "identityAttribute": "userName",
+          "identifier": "_id",
+          "_type": {
+            "_id": "IdentifyExistingUserNode",
+            "name": "Identify Existing User",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "5f9a7c6b-57cb-4164-a791-d188ec3419d7": {
+          "_id": "5f9a7c6b-57cb-4164-a791-d188ec3419d7",
+          "_rev": "1504244099",
+          "script": "81a52c05-e490-4586-88f3-c119a3e1ad6a",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "67058fa0-7636-457a-8bf0-35549967f589": {
+          "_id": "67058fa0-7636-457a-8bf0-35549967f589",
+          "_rev": "-1361880659",
+          "script": "105e6bde-dfac-4522-82ed-8631c3a908c0",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "6bf493d1-0198-47bf-9343-ea3a11bd8a8a": {
+          "_id": "6bf493d1-0198-47bf-9343-ea3a11bd8a8a",
+          "_rev": "-1734377641",
+          "identityResource": "managed/alpha_user",
+          "patchAsObject": false,
+          "ignoredFields": [],
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "PatchObjectNode",
+            "name": "Patch Object",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "PATCHED",
+              "displayName": "Patched"
+            },
+            {
+              "id": "FAILURE",
+              "displayName": "Failed"
+            }
+          ]
+        },
+        "c76f1cee-98fc-43de-81ec-ae1f6afa0c29": {
+          "_id": "c76f1cee-98fc-43de-81ec-ae1f6afa0c29",
+          "_rev": "-456272743",
+          "trustStoreAlias": "trustalias",
+          "relyingPartyName": "ForgeRock",
+          "generateRecoveryCodes": true,
+          "storeAttestationDataInTransientState": false,
+          "origins": [],
+          "userVerificationRequirement": "PREFERRED",
+          "postponeDeviceProfileStorage": false,
+          "excludeCredentials": false,
+          "requiresResidentKey": false,
+          "authenticatorAttachment": "UNSPECIFIED",
+          "asScript": true,
+          "acceptedSigningAlgorithms": [
+            "ES256",
+            "RS256"
+          ],
+          "attestationPreference": "NONE",
+          "enforceRevocationCheck": false,
+          "timeout": 60,
+          "_type": {
+            "_id": "WebAuthnRegistrationNode",
+            "name": "WebAuthn Registration Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "unsupported",
+              "displayName": "Unsupported"
+            },
+            {
+              "id": "success",
+              "displayName": "Success"
+            },
+            {
+              "id": "failure",
+              "displayName": "Failure"
+            },
+            {
+              "id": "error",
+              "displayName": "Client Error"
+            }
+          ]
+        },
+        "c994cc7e-40c4-4130-85e8-af2b16416028": {
+          "_id": "c994cc7e-40c4-4130-85e8-af2b16416028",
+          "_rev": "658783157",
+          "messageYes": {
+            "es": "Continuar"
+          },
+          "message": {
+            "es": "Favor de posicionar su dedo en el lector y presionar 'Continuar'."
+          },
+          "messageNo": {
+            "es": "Cancelar"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "d1edc994-e95f-422a-a598-7f899284ec96": {
+          "_id": "d1edc994-e95f-422a-a598-7f899284ec96",
+          "_rev": "-308924546",
+          "nodes": [
+            {
+              "_id": "09b70ca0-e975-4cf3-b8ac-b680a9697fba",
+              "nodeType": "KbaCreateNode",
+              "displayName": "KBA Definition"
+            }
+          ],
+          "pageDescription": {
+            "es": "Configure 3 Preguntas de Seguridad para Autenticación de Trámites Telcel."
+          },
+          "stage": "{\"submitButtonText\":{\"es\":\"Confirmar\"}}",
+          "pageHeader": {
+            "es": "Cuestionario de Seguridad"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "d1f1c382-7891-4a75-8ff1-1df0f06848fc": {
+          "_id": "d1f1c382-7891-4a75-8ff1-1df0f06848fc",
+          "_rev": "-1527625634",
+          "nodes": [
+            {
+              "_id": "1955cca4-2cb4-49d4-96b1-4ea7a9f2318b",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "pageDescription": {},
+          "stage": "{\"ChoiceCallback\":[{\"id\":\"1955cca4-2cb4-49d4-96b1-4ea7a9f2318b\",\"displayType\":\"radio\"}]}",
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Si",
+              "displayName": "Si"
+            },
+            {
+              "id": "No",
+              "displayName": "No"
+            }
+          ]
+        },
+        "daabedd4-6e1e-4ff5-86c2-57056573ddbb": {
+          "_id": "daabedd4-6e1e-4ff5-86c2-57056573ddbb",
+          "_rev": "625914074",
+          "messageYes": {
+            "es": "Reintentar"
+          },
+          "message": {
+            "es": "Su captura de Biometría no fue exitosa. ¿Reintentar o Cancelar?"
+          },
+          "messageNo": {
+            "es": "Cancelar"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "de545614-91d8-4d34-a46a-0b6ba81e10f7": {
+          "_id": "de545614-91d8-4d34-a46a-0b6ba81e10f7",
+          "_rev": "-1246342713",
+          "messageYes": {
+            "es": "Capturar Foto"
+          },
+          "message": {
+            "es": "Favor de posicionarse frente a la cámara y seleccionar 'Capturar Foto'."
+          },
+          "messageNo": {
+            "es": "Cancelar"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "e4375561-de0b-4ad2-b387-bb3a2f22c129": {
+          "_id": "e4375561-de0b-4ad2-b387-bb3a2f22c129",
+          "_rev": "-1512962352",
+          "sessionDataKey": "UserToken",
+          "sharedStateKey": "userName",
+          "_type": {
+            "_id": "SessionDataNode",
+            "name": "Get Session Data",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "62dec793-aaa1-458a-834b-b961386b5487": {
+          "_id": "62dec793-aaa1-458a-834b-b961386b5487",
+          "_rev": "-422976699",
+          "defaultChoice": "Huella Digital",
+          "choices": [
+            "Llave de Seguridad (FIDO)",
+            "Cuestionario de Seguridad",
+            "Huella Digital",
+            "Reconocimiento Facial"
+          ],
+          "prompt": "Seleccione un Factor de Autenticación",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Llave de Seguridad (FIDO)",
+              "displayName": "Llave de Seguridad (FIDO)"
+            },
+            {
+              "id": "Cuestionario de Seguridad",
+              "displayName": "Cuestionario de Seguridad"
+            },
+            {
+              "id": "Huella Digital",
+              "displayName": "Huella Digital"
+            },
+            {
+              "id": "Reconocimiento Facial",
+              "displayName": "Reconocimiento Facial"
+            }
+          ]
+        },
+        "09b70ca0-e975-4cf3-b8ac-b680a9697fba": {
+          "_id": "09b70ca0-e975-4cf3-b8ac-b680a9697fba",
+          "_rev": "702283905",
+          "message": {
+            "es": "Selecciones sus 3 preguntas de Seguridad."
+          },
+          "allowUserDefinedQuestions": false,
+          "_type": {
+            "_id": "KbaCreateNode",
+            "name": "KBA Definition",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "1955cca4-2cb4-49d4-96b1-4ea7a9f2318b": {
+          "_id": "1955cca4-2cb4-49d4-96b1-4ea7a9f2318b",
+          "_rev": "979929303",
+          "defaultChoice": "Si",
+          "choices": [
+            "Si",
+            "No"
+          ],
+          "prompt": "¿Configurar MFA?",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Si",
+              "displayName": "Si"
+            },
+            {
+              "id": "No",
+              "displayName": "No"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "81a52c05-e490-4586-88f3-c119a3e1ad6a": {
+          "_id": "81a52c05-e490-4586-88f3-c119a3e1ad6a",
+          "name": "registerBiometrics",
+          "description": "Registers a Biometric Reading - like a Face ID or voice recording.",
+          "script": "\"(function() {\\n\\n  /*\\n    - Data made available by nodes that have already executed are available in the sharedState variable.\\n    - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n   */\\n  \\n  var userName = sharedState.get(\\\"_id\\\");\\n  logger.error(\\\"**** registerBiometrics - The ID of the user in sharedState is {}\\\", userName);\\n\\n  var givenName = idRepository.getAttribute(userName, \\\"givenName\\\").iterator().next();\\n  var paterno = idRepository.getAttribute(userName, \\\"sn\\\").iterator().next();\\n  var materno = idRepository.getAttribute(userName, \\\"fr-attr-str1\\\").iterator().next();\\n  var mail = idRepository.getAttribute(userName, \\\"mail\\\").iterator().next();\\n  \\n  var nombreCompleto = String(givenName) + \\\" \\\" + String(paterno) + \\\" \\\" + String(materno);\\n  logger.error(\\\"******* registerBiometrics - nombre completo - {}\\\", nombreCompleto);\\n  \\n  var restBody = {\\n    userId: String(mail),\\n    name: String(nombreCompleto)\\n  };\\n\\n  var request = new org.forgerock.http.protocol.Request();\\n  request.setMethod('POST');\\n  request.setUri('http://34.239.121.198:8081/users');\\n  request.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\n  request.getEntity().setString(JSON.stringify(restBody));\\n  var response = httpClient.send(request).get();\\n  var jsonResult = JSON.parse(response.getEntity().getString());\\n\\n  if (jsonResult.hasOwnProperty(\\\"error\\\") ) {\\n      outcome = \\\"false\\\";\\n  } else {\\n    outcome = \\\"true\\\";\\n  }\\n}());\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "105e6bde-dfac-4522-82ed-8631c3a908c0": {
+          "_id": "105e6bde-dfac-4522-82ed-8631c3a908c0",
+          "name": "registerFingerPrint",
+          "description": "Register FInger Print (Simulation) by executing an end-point for fingerprint reading registration.",
+          "script": "\"(function() {\\n\\n  /*\\n    - Data made available by nodes that have already executed are available in the sharedState variable.\\n    - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n   */\\n  \\n  var userName = sharedState.get(\\\"_id\\\");\\n  logger.error(\\\"**** registerFingerPrint - The ID of the user in sharedState is {}\\\", userName);\\n\\n  var givenName = idRepository.getAttribute(userName, \\\"givenName\\\").iterator().next();\\n  var paterno = idRepository.getAttribute(userName, \\\"sn\\\").iterator().next();\\n  var materno = idRepository.getAttribute(userName, \\\"fr-attr-str1\\\").iterator().next();\\n  var mail = idRepository.getAttribute(userName, \\\"mail\\\").iterator().next();\\n  \\n  var nombreCompleto = String(givenName) + \\\" \\\" + String(paterno) + \\\" \\\" + String(materno);\\n  logger.error(\\\"******* registerFingerPrint - nombre completo - {}\\\", nombreCompleto);\\n  logger.error(\\\"******* registerFingerPrint - email address - {}\\\", mail);\\n  \\n  var restBody = {\\n    userId: String(mail),\\n    name: String(nombreCompleto)\\n  };\\n\\n  var request = new org.forgerock.http.protocol.Request();\\n  request.setMethod('POST');\\n  request.setUri('http://34.239.121.198:8080/users');\\n  request.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\n  request.getEntity().setString(JSON.stringify(restBody));\\n  var response = httpClient.send(request).get();\\n  var jsonResult = JSON.parse(response.getEntity().getString());\\n\\n  if (jsonResult.hasOwnProperty(\\\"error\\\") ) {\\n      outcome = \\\"false\\\";\\n  } else {\\n    outcome = \\\"true\\\";\\n  }\\n}());\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

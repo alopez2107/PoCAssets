@@ -1,0 +1,740 @@
+{
+  "meta": {
+    "origin": "https://openam-avalpoc.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2023-09-11T16:23:45.491Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "LoginMDMConsent"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "LoginMDMConsent": {
+      "tree": {
+        "_id": "LoginMDMConsent",
+        "_rev": "2134997427",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[\"Integration\",\"MDM\"]"
+        },
+        "entryNodeId": "e9ce363e-839b-4ab1-88b7-4fc8e678c35c",
+        "nodes": {
+          "06ddcdd5-aaea-4937-89ca-73d0709310dc": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "1bae89d2-6f49-4f93-b172-e77f8cb26aac"
+            },
+            "displayName": "Identify Existing User",
+            "nodeType": "IdentifyExistingUserNode",
+            "x": 622,
+            "y": 346.015625
+          },
+          "0f8aa912-7ec7-4e55-bbe8-72c2e786f7f0": {
+            "connections": {
+              "false": "73716686-449a-45e4-8697-b360f29be3e8",
+              "true": "e9ce363e-839b-4ab1-88b7-4fc8e678c35c"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 1353,
+            "y": 479.015625
+          },
+          "1bae89d2-6f49-4f93-b172-e77f8cb26aac": {
+            "connections": {
+              "dataError": "74b187ad-d882-4f72-861f-03a93a59bf54",
+              "false": "940193a8-4cbd-4dc0-9493-e14a2b004903",
+              "requestError": "0f8aa912-7ec7-4e55-bbe8-72c2e786f7f0",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Search Consent by ID",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 809,
+            "y": 46.015625
+          },
+          "73716686-449a-45e4-8697-b360f29be3e8": {
+            "connections": {
+              "outcome": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "Failure URL",
+            "nodeType": "SetFailureUrlNode",
+            "x": 2018,
+            "y": 456.015625
+          },
+          "74b187ad-d882-4f72-861f-03a93a59bf54": {
+            "connections": {
+              "false": "73716686-449a-45e4-8697-b360f29be3e8",
+              "true": "e9ce363e-839b-4ab1-88b7-4fc8e678c35c"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 1641,
+            "y": 179.015625
+          },
+          "940193a8-4cbd-4dc0-9493-e14a2b004903": {
+            "connections": {
+              "Aceptar": "ba1cf6f7-d036-4cf6-bc17-b37c24afb933",
+              "Denegar": "73716686-449a-45e4-8697-b360f29be3e8"
+            },
+            "displayName": "Collect Consent Page",
+            "nodeType": "PageNode",
+            "x": 889,
+            "y": 611.015625
+          },
+          "ae0077a9-a903-4856-920d-7a0d87ddde06": {
+            "connections": {
+              "FAILURE": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "PATCHED": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Patch Object",
+            "nodeType": "PatchObjectNode",
+            "x": 1564,
+            "y": 15.015625
+          },
+          "b969693f-b9a9-44db-8133-19578939d683": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "06ddcdd5-aaea-4937-89ca-73d0709310dc"
+            },
+            "displayName": "Data Store Decision",
+            "nodeType": "DataStoreDecisionNode",
+            "x": 404,
+            "y": 414.015625
+          },
+          "ba1cf6f7-d036-4cf6-bc17-b37c24afb933": {
+            "connections": {
+              "dataError": "74b187ad-d882-4f72-861f-03a93a59bf54",
+              "requestError": "0f8aa912-7ec7-4e55-bbe8-72c2e786f7f0",
+              "true": "ae0077a9-a903-4856-920d-7a0d87ddde06"
+            },
+            "displayName": "Persist Consent",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1211,
+            "y": 220.015625
+          },
+          "e9ce363e-839b-4ab1-88b7-4fc8e678c35c": {
+            "connections": {
+              "outcome": "b969693f-b9a9-44db-8133-19578939d683"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 248,
+            "y": 35.015625
+          }
+        },
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 2255,
+            "y": 115
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 2358,
+            "y": 352
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "06ddcdd5-aaea-4937-89ca-73d0709310dc": {
+          "_id": "06ddcdd5-aaea-4937-89ca-73d0709310dc",
+          "_rev": "1135110569",
+          "identityAttribute": "userName",
+          "identifier": "_id",
+          "_type": {
+            "_id": "IdentifyExistingUserNode",
+            "name": "Identify Existing User",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "0f8aa912-7ec7-4e55-bbe8-72c2e786f7f0": {
+          "_id": "0f8aa912-7ec7-4e55-bbe8-72c2e786f7f0",
+          "_rev": "832843135",
+          "nodes": [
+            {
+              "_id": "a3f2c53c-2621-486c-88f8-4639fc78eb81",
+              "nodeType": "MessageNode",
+              "displayName": "Request Error Message"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "1bae89d2-6f49-4f93-b172-e77f8cb26aac": {
+          "_id": "1bae89d2-6f49-4f93-b172-e77f8cb26aac",
+          "_rev": "-26355574",
+          "script": "1b0480cf-7527-4b08-936c-5b80396b496a",
+          "outcomes": [
+            "dataError",
+            "requestError",
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "dataError",
+              "displayName": "dataError"
+            },
+            {
+              "id": "requestError",
+              "displayName": "requestError"
+            },
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "73716686-449a-45e4-8697-b360f29be3e8": {
+          "_id": "73716686-449a-45e4-8697-b360f29be3e8",
+          "_rev": "593403072",
+          "failureUrl": "https://tppdemo.encore.forgerock.org/",
+          "_type": {
+            "_id": "SetFailureUrlNode",
+            "name": "Failure URL",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "74b187ad-d882-4f72-861f-03a93a59bf54": {
+          "_id": "74b187ad-d882-4f72-861f-03a93a59bf54",
+          "_rev": "768150093",
+          "nodes": [
+            {
+              "_id": "b9b83002-ca0a-4c3c-a1c2-7a1d9299173d",
+              "nodeType": "MessageNode",
+              "displayName": "Data Error Message"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "940193a8-4cbd-4dc0-9493-e14a2b004903": {
+          "_id": "940193a8-4cbd-4dc0-9493-e14a2b004903",
+          "_rev": "-676152085",
+          "nodes": [
+            {
+              "_id": "1f8a0458-1842-4f3a-beb0-9edab99b4bbf",
+              "nodeType": "ScriptedDecisionNode",
+              "displayName": "Collect Consent UI"
+            },
+            {
+              "_id": "806aaefe-2f78-4d3d-9e87-b7b26cf8e7b3",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "pageDescription": {},
+          "stage": "{\"ChoiceCallback\":[{\"id\":\"806aaefe-2f78-4d3d-9e87-b7b26cf8e7b3\",\"displayType\":\"radio\"}]}",
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Aceptar",
+              "displayName": "Aceptar"
+            },
+            {
+              "id": "Denegar",
+              "displayName": "Denegar"
+            }
+          ]
+        },
+        "ae0077a9-a903-4856-920d-7a0d87ddde06": {
+          "_id": "ae0077a9-a903-4856-920d-7a0d87ddde06",
+          "_rev": "690440503",
+          "identityResource": "managed/alpha_user",
+          "patchAsObject": false,
+          "ignoredFields": [
+            "userName",
+            "_id",
+            "mail"
+          ],
+          "identityAttribute": "mail",
+          "_type": {
+            "_id": "PatchObjectNode",
+            "name": "Patch Object",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "PATCHED",
+              "displayName": "Patched"
+            },
+            {
+              "id": "FAILURE",
+              "displayName": "Failed"
+            }
+          ]
+        },
+        "b969693f-b9a9-44db-8133-19578939d683": {
+          "_id": "b969693f-b9a9-44db-8133-19578939d683",
+          "_rev": "-1511458349",
+          "_type": {
+            "_id": "DataStoreDecisionNode",
+            "name": "Data Store Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "ba1cf6f7-d036-4cf6-bc17-b37c24afb933": {
+          "_id": "ba1cf6f7-d036-4cf6-bc17-b37c24afb933",
+          "_rev": "-176424410",
+          "script": "72c81ef5-d76e-463a-8d90-357a12d5eecc",
+          "outcomes": [
+            "true",
+            "dataError",
+            "requestError"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "dataError",
+              "displayName": "dataError"
+            },
+            {
+              "id": "requestError",
+              "displayName": "requestError"
+            }
+          ]
+        },
+        "e9ce363e-839b-4ab1-88b7-4fc8e678c35c": {
+          "_id": "e9ce363e-839b-4ab1-88b7-4fc8e678c35c",
+          "_rev": "-1357612919",
+          "nodes": [
+            {
+              "_id": "095a253b-71ed-4f09-9c6c-876cf818980d",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "d64516d3-ca08-4177-ad07-c6daa193e0a8",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "a3f2c53c-2621-486c-88f8-4639fc78eb81": {
+          "_id": "a3f2c53c-2621-486c-88f8-4639fc78eb81",
+          "_rev": "-1490884369",
+          "messageYes": {
+            "en": "Retry",
+            "es": "Reintentar"
+          },
+          "message": {
+            "en-US": "A request error Occurred."
+          },
+          "messageNo": {
+            "en": "Exit",
+            "es": "Salida"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "b9b83002-ca0a-4c3c-a1c2-7a1d9299173d": {
+          "_id": "b9b83002-ca0a-4c3c-a1c2-7a1d9299173d",
+          "_rev": "-1232853512",
+          "messageYes": {
+            "en": "Retry",
+            "es": "Reintentar"
+          },
+          "message": {
+            "en-US": "A data Error Occurred."
+          },
+          "messageNo": {
+            "en": "Exit",
+            "es": "Salida"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "1f8a0458-1842-4f3a-beb0-9edab99b4bbf": {
+          "_id": "1f8a0458-1842-4f3a-beb0-9edab99b4bbf",
+          "_rev": "-1171312690",
+          "script": "f5c73463-6217-43df-8257-d5418e1ec063",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "806aaefe-2f78-4d3d-9e87-b7b26cf8e7b3": {
+          "_id": "806aaefe-2f78-4d3d-9e87-b7b26cf8e7b3",
+          "_rev": "-824078525",
+          "defaultChoice": "Denegar",
+          "choices": [
+            "Aceptar",
+            "Denegar"
+          ],
+          "prompt": "Otorga su consentimiento de acceso?",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Aceptar",
+              "displayName": "Aceptar"
+            },
+            {
+              "id": "Denegar",
+              "displayName": "Denegar"
+            }
+          ]
+        },
+        "095a253b-71ed-4f09-9c6c-876cf818980d": {
+          "_id": "095a253b-71ed-4f09-9c6c-876cf818980d",
+          "_rev": "-2091127948",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "d64516d3-ca08-4177-ad07-c6daa193e0a8": {
+          "_id": "d64516d3-ca08-4177-ad07-c6daa193e0a8",
+          "_rev": "-1913791430",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "1b0480cf-7527-4b08-936c-5b80396b496a": {
+          "_id": "1b0480cf-7527-4b08-936c-5b80396b496a",
+          "name": "callMDMConsentSearch",
+          "description": "Searches for a previously granted consent by Identification Number",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"false\\\";\\nvar tenantMDMServiceEndpoint = systemEnv.getProperty(\\\"esv.igmdmserviceurl\\\");\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar userName = objectAttributes.get(\\\"userName\\\");\\nvar id = sharedState.get(\\\"_id\\\");\\nvar grantedConsents = idRepository.getAttribute(id, \\\"fr-attr-istr1\\\").toArray()[0];\\nif (grantedConsents !== 'None') {\\n  var reqId = (grantedConsents === 'REQ_ERROR') ? \\\"\\\" : new Date().getMilliseconds();\\n  var identificationNumber = idRepository.getAttribute(id, \\\"fr-attr-istr5\\\").toArray()[0];\\n  logger.message(\\\"The User Identifier in SharedState is {}\\\", id);\\n  logger.message(\\\"The identification number {}\\\", identificationNumber);\\n  var restBody = {\\n      req_id: reqId,\\n      docNumber: parseInt(identificationNumber)\\n  };\\n  logger.message(\\\"The base IG Endpoint URL is {}\\\", tenantMDMServiceEndpoint);\\n\\n  var request = new org.forgerock.http.protocol.Request();\\n  request.setMethod('POST');\\n  request.setUri(tenantMDMServiceEndpoint + \\\"/search\\\");\\n  request.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\n  request.getEntity().setString(JSON.stringify(restBody));\\n  var response = httpClient.send(request).get();\\n  var jsonResult = JSON.parse(response.getEntity().getString());\\n\\n  logger.message(\\\"Return code from Service is {}\\\", jsonResult.mdmResponse);\\n  if (jsonResult.mdmResponse === 'SUCCESS') {\\n    logger.message(\\\"The response is SUCCESS\\\");\\n      sharedState.put(\\\"username\\\", userName);\\n      outcome = \\\"true\\\";\\n  }\\n  else {\\n      if (jsonResult.mdmResponse ==='FATAL') {\\n        outcome = \\\"dataError\\\";     \\n      }\\n      else {\\n        outcome = \\\"requestError\\\";\\n      }\\n  }\\n  sharedState.put(\\\"errorMessage\\\", jsonResult.detail);\\n}\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "72c81ef5-d76e-463a-8d90-357a12d5eecc": {
+          "_id": "72c81ef5-d76e-463a-8d90-357a12d5eecc",
+          "name": "callMDMConsentPersistence",
+          "description": "Saves the Consent Record in MDM",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"true\\\";\\nvar tenantMDMServiceEndpoint = systemEnv.getProperty(\\\"esv.igmdmserviceurl\\\");\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar userName = objectAttributes.get(\\\"userName\\\");\\nvar id = sharedState.get(\\\"_id\\\");\\nvar reqId = new Date().getMilliseconds();\\nvar identificationNumber = idRepository.getAttribute(id, \\\"fr-attr-istr5\\\").toArray()[0];\\nvar commentText = \\\"Activate User \\\".concat(userName);\\nvar restBody = {\\n    req_id: reqId,\\n    docNumber: parseInt(identificationNumber)\\n};\\n\\nvar request = new org.forgerock.http.protocol.Request();\\nrequest.setMethod('POST');\\nrequest.setUri(tenantMDMServiceEndpoint + \\\"/persist\\\");\\nrequest.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\nrequest.getEntity().setString(JSON.stringify(restBody));\\nvar response = httpClient.send(request).get();\\nvar jsonResult = JSON.parse(response.getEntity().getString());\\n\\nlogger.message(\\\"Return code from Service is {}\\\", jsonResult.mdmResponse);\\n  if (jsonResult.mdmResponse === 'SUCCESS') {\\n    logger.message(\\\"The response is {}\\\", response.getEntity().getString());\\n    var responseObject = {\\n      requestID: reqId,\\n      userName: userName,\\n      identificationNumber: identificationNumber\\n    };\\n    objectAttributes.put(\\\"frIndexedString1\\\", JSON.stringify(responseObject));\\n    sharedState.put(\\\"objectAttributes\\\", objectAttributes);\\n    sharedState.put(\\\"username\\\", userName);\\n    outcome = \\\"true\\\";\\n  }\\n  else {\\n      if (jsonResult.mdmResponse === 'FATAL') {\\n        outcome = \\\"dataError\\\";     \\n      }\\n      else {\\n        outcome = \\\"requestError\\\";\\n      }\\n  }\\n  sharedState.put(\\\"errorMessage\\\", jsonResult.detail);\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "f5c73463-6217-43df-8257-d5418e1ec063": {
+          "_id": "f5c73463-6217-43df-8257-d5418e1ec063",
+          "name": "displayConsentScreen",
+          "description": "Script that displays a Custom UI for Collecting Consent",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"true\\\";\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar email = objectAttributes.get(\\\"userName\\\");\\nvar tenantURL = systemEnv.getProperty(\\\"esv.ig.base.url\\\");\\nlogger.message(`TenantURL is ${tenantURL}`);\\n\\nvar restBody = {\\n  email: email\\n};\\n\\n// Retrieve the accounts for the customer\\nvar request = new org.forgerock.http.protocol.Request();\\nrequest.setMethod('POST');\\nrequest.setUri(`${tenantURL}/fapi/accounts`);\\nrequest.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\nrequest.getEntity().setString(JSON.stringify(restBody));\\nvar response = httpClient.send(request).get();\\nvar jsonResult = JSON.parse(response.getEntity().getString());\\nvar accounts = [];\\n\\nlogger.message(\\\"The response is {}\\\",  response.getEntity().getString());\\n\\nif (jsonResult.hasOwnProperty('result') && jsonResult.result.length > 0) {\\n    accounts = jsonResult.result.map((acct) => `<li>${acct.accountNumber}</li>`);\\n}\\nelse {\\n    accounts = [\\\"<div><h2>No accounts were found</h2></div>\\\"];\\n}\\n\\nfunction generateNumericToken(format) {\\n      return format.replace(/[x]/g, function (c) {\\n          var r = Math.random() * 10 | 0;\\n          var v = r;\\n          return v.toString(10);\\n      });\\n  }\\n\\n\\nfunction buildPageContent() {\\n  var html = \\\"\\\"; \\n  html += \\\"<div class=\\\\\\\"card border-xs-0 border-sm d-flex fr-stretch-card\\\\\\\">\\\";\\n  html += \\\"   <div lass=\\\\\\\"d-flex flex-fill flex-column justify-content-center\\\\\\\">\\\"; // class=\\\\\\\"d-flex flex-fill flex-column justify-content-center\\\\\\\">\\\\n\\\";\\n  html += \\\"     <h2>Consentimiento</h2>\\\";\\n  html += \\\"   </div>\\\";\\n  html += \\\"   <div class=\\\\\\\"d-flex flex-fill flex-column justify-content-center\\\\\\\">\\\"; // class=\\\\\\\"d-flex flex-fill flex-column justify-content-center\\\\\\\">\\\\n\\\";\\n  html += \\\"     <p>Encore TPP requiere su consentimiento para acceder a las cuentas listadas a continuación</p>\\\";\\n  html += \\\"     <ul>\\\";\\n  accounts.forEach((account) => {\\n    html += account;\\n  });\\n  html += \\\"     </ul>\\\";\\n  html += \\\"   </div>\\\";\\n  html += \\\"</div>\\\";\\n  \\n  return html;\\n}\\n\\n\\n\\nfunction displayMessage(message) {\\n      var anchor = \\\"anchor-\\\".concat(generateNumericToken('xxx'));\\n      var halign = \\\"center\\\";\\n      var script = \\\"Array.prototype.slice.call(\\\\n\\\".concat(\\n          \\\"document.getElementsByClassName('callback-component')).forEach(\\\\n\\\").concat(\\n              \\\"function (e) {\\\\n\\\").concat(\\n                  \\\"  var message = e.firstElementChild;\\\\n\\\").concat(\\n                      \\\"  if (message.firstChild && message.firstChild.nodeName == '#text' && message.firstChild.nodeValue.trim() == '\\\").concat(anchor).concat(\\\"') {\\\\n\\\").concat(\\n                          \\\"    message.className = \\\\\\\"\\\\\\\";\\\\n\\\").concat(\\n                              \\\"    message.style = \\\\\\\"\\\\\\\";\\\\n\\\").concat(\\n                                  \\\"    message.align = \\\\\\\"\\\").concat(halign).concat(\\\"\\\\\\\";\\\\n\\\").concat(\\n                                      \\\"    message.innerHTML = '\\\").concat(message).concat(\\\"';\\\\n\\\").concat(\\n                                          \\\"  }\\\\n\\\").concat(\\n                                              \\\"})\\\")\\n      var fr = JavaImporter(\\n          org.forgerock.openam.auth.node.api.Action,\\n          javax.security.auth.callback.TextOutputCallback,\\n          com.sun.identity.authentication.callbacks.ScriptTextOutputCallback\\n      )\\n      if (message.length && callbacks.isEmpty()) {\\n          action = fr.Action.send(\\n              new fr.TextOutputCallback(\\n                  fr.TextOutputCallback.INFORMATION,\\n                  anchor\\n              ),\\n              new fr.ScriptTextOutputCallback(script)\\n          ).build()\\n      }\\n      else {\\n          action = fr.Action.goTo(outcome).build();\\n      }\\n  }\\n\\n  /*\\n   * Generate a token in the desired format. All 'x' characters will be replaced with a random number 0-9.\\n   * This is needed to have a unique div(anchor-x) on the html callback that we can populate data\\n   * Example:\\n   * 'xxxxx' produces '28535'\\n   * 'xxx-xxx' produces '432-521'\\n   */\\n  function generateNumericToken(format) {\\n      return format.replace(/[x]/g, function (c) {\\n          var r = Math.random() * 10 | 0;\\n          var v = r;\\n          return v.toString(10);\\n      });\\n  }\\n\\n  // get a singleValue from a HashSet\\n  function singleValue(x)\\n  {\\n    if(x.size()>0)\\n      {\\n        return x.iterator().next();\\n      }\\n      \\n    return \\\"\\\";\\n    \\n  }\\n\\n\\nvar output = buildPageContent();\\n\\ndisplayMessage(output);\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [
+        {
+          "_id": "61dba046-73ee-4593-9cdd-ae52c9831c14",
+          "accountCardBackgroundColor": "#ffffff",
+          "accountCardHeaderColor": "#23282e",
+          "accountCardInnerBorderColor": "#e7eef4",
+          "accountCardInputBackgroundColor": "#ffffff",
+          "accountCardInputBorderColor": "#c0c9d5",
+          "accountCardInputLabelColor": "#5e6d82",
+          "accountCardInputSelectColor": "#e4f4fd",
+          "accountCardInputTextColor": "#23282e",
+          "accountCardOuterBorderColor": "#e7eef4",
+          "accountCardShadow": 3,
+          "accountCardTabActiveBorderColor": "#109cf1",
+          "accountCardTabActiveColor": "#e4f4fd",
+          "accountCardTextColor": "#5e6d82",
+          "accountFooter": "<footer class=\"w-100\">\n            <div class=\"d-flex flex-column flex-md-row justify-content-center align-items-center py-4\">\n              <div class=\"container w-100\">\n                <div class=\"mt-5 py-4 border-top border-darkened\">\n                  <div class=\"row\" style=\"color: #23282e;\">\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                      <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">Company</h5>\n                      <ul class=\"nav mb-4 flex-column\">\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">About Us</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Contact Us</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a></li>\n                      </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                      <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">Support</h5>\n                      <ul class=\"nav mb-4 flex-column\">\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Help Center</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Docs</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a></li>\n                      </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                      <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">Community</h5>\n                      <ul class=\"nav mb-4 flex-column\">\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Facebook</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Twitter</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Forum</a></li>\n                      </ul>\n                    </div>\n                    <div class=\"col-12 col-lg-6\">\n                      <div class=\"d-flex align-items-center justify-content-lg-end py-4 py-lg-0\">\n                        <span class=\"pr-1\">&copy; 2021</span>\n                        <a href=\"#\" class=\"text-decoration-none\" target=\"_self\">Rob Roy Markets, Inc</a>\n                      </div>\n                    </div>\n                  </div>\n                </div> \n              </div>\n            </div>\n          </footer>\n",
+          "accountFooterEnabled": true,
+          "accountNavigationBackgroundColor": "#ffffff",
+          "accountNavigationTextColor": "#455469",
+          "accountNavigationToggleBorderColor": "#e7eef4",
+          "accountPageSections": {
+            "accountControls": {
+              "enabled": false
+            },
+            "accountSecurity": {
+              "enabled": true,
+              "subsections": {
+                "password": {
+                  "enabled": true
+                },
+                "securityQuestions": {
+                  "enabled": false
+                },
+                "twoStepVerification": {
+                  "enabled": true
+                },
+                "username": {
+                  "enabled": true
+                }
+              }
+            },
+            "consent": {
+              "enabled": false
+            },
+            "oauthApplications": {
+              "enabled": false
+            },
+            "personalInformation": {
+              "enabled": true
+            },
+            "preferences": {
+              "enabled": false
+            },
+            "social": {
+              "enabled": false
+            },
+            "trustedDevices": {
+              "enabled": true
+            }
+          },
+          "accountTableRowHoverColor": "#f6f8fa",
+          "backgroundColor": "#FFFFFF",
+          "backgroundImage": "",
+          "bodyText": "#5E6D82",
+          "boldLinks": false,
+          "buttonRounded": "50",
+          "dangerColor": "#f7685b",
+          "favicon": "",
+          "fontFamily": "Open Sans",
+          "isDefault": false,
+          "journeyCardBackgroundColor": "#ffffff",
+          "journeyCardBorderRadius": 4,
+          "journeyCardHeaderBackgroundColor": "#ffffff",
+          "journeyCardShadow": 3,
+          "journeyCardTextColor": "#5e6d82",
+          "journeyCardTitleColor": "#23282e",
+          "journeyFloatingLabels": true,
+          "journeyFooter": "<footer class=\"w-100\">\n  <div class=\"\n                d-flex\n                flex-column flex-md-row\n                justify-content-center\n                align-items-center\n                py-4\n              \">\n    <div class=\"container w-100\">\n      <div class=\"mt-5 py-4 border-top border-darkened\">\n        <div class=\"row\" style=\"color:#23282e\">\n          <div class=\"col-4 col-md-3 col-lg-2\">\n            <h5 style=\"font-weight:600;font-size:0.9375rem\">\n                        Company\n                      </h5>\n            <ul class=\"nav mb-4 flex-column\">\n              <li class=\"nav-item\">\n                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">About Us</a>\n              </li>\n              <li class=\"nav-item\">\n                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Contact Us</a>\n              </li>\n              <li class=\"nav-item\">\n                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a>\n              </li>\n            </ul>\n          </div>\n          <div class=\"col-4 col-md-3 col-lg-2\">\n            <h5 style=\"font-weight:600;font-size:0.9375rem\">\n                        Support\n                      </h5>\n            <ul class=\"nav mb-4 flex-column\">\n              <li class=\"nav-item\">\n                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Help Center</a>\n              </li>\n              <li class=\"nav-item\">\n                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Docs</a>\n              </li>\n              <li class=\"nav-item\">\n                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a>\n              </li>\n            </ul>\n          </div>\n          <div class=\"col-4 col-md-3 col-lg-2\">\n            <h5 style=\"font-weight:600;font-size:0.9375rem\">\n                        Community\n                      </h5>\n            <ul class=\"nav mb-4 flex-column\">\n              <li class=\"nav-item\">\n                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Facebook</a>\n              </li>\n              <li class=\"nav-item\">\n                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Twitter</a>\n              </li>\n              <li class=\"nav-item\">\n                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Forum</a>\n              </li>\n            </ul>\n          </div>\n          <div class=\"col-12 col-lg-6\">\n            <div class=\"\n                          d-flex\n                          align-items-center\n                          justify-content-lg-end\n                          py-4 py-lg-0\n                        \">\n              <span class=\"pr-1\">© 2023</span>\n              <a href=\"#\" class=\"text-decoration-none\" target=\"_self\">Banco de Occidente</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</footer>\n",
+          "journeyFooterEnabled": true,
+          "journeyHeader": "<header>\n  <nav class=\"navbar shadow-lg navbar-light bg-white navbar-expand-lg\">\n    <a href=\"#\" target=\"_self\" class=\"navbar-brand\">\n      <img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banco_de_Occidente_logo.svg/1200px-Banco_de_Occidente_logo.svg.png\" alt=\"Logo\" style=\"height:68px\" />\n    </a>\n    <div class=\"navbar-collapse d-none d-lg-flex\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"https://openam-avalpoc.forgeblocks.com/am/XUI/?realm=alpha&amp;authIndexType=service&amp;authIndexValue=Registration\">Registration</a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</header>\n",
+          "journeyHeaderEnabled": true,
+          "journeyInputBackgroundColor": "#ffffff",
+          "journeyInputBorderColor": "#c0c9d5",
+          "journeyInputLabelColor": "#5e6d82",
+          "journeyInputSelectColor": "#e4f4fd",
+          "journeyInputTextColor": "#23282e",
+          "journeyJustifiedContent": "<div class=\"d-none d-md-flex justify-content-center align-items-start p-5\" style=\"height:60vh;width:30vw;background-image:url(https://d31dn7nfpuwjnm.cloudfront.net/images/valoraciones/0056/8685/tarjetas-banco-occidente.jpg?1692010679);background-size:cover\"></div>\n",
+          "journeyJustifiedContentEnabled": true,
+          "journeyLayout": "justified-right",
+          "journeySignInButtonPosition": "flex-column",
+          "journeyTheaterMode": false,
+          "linkActiveColor": "#1766BB",
+          "linkColor": "#003F83",
+          "linkedTrees": [
+            "LoginMDMConsent"
+          ],
+          "logo": "https://www.laestacioncentrocomercial.co/wp-content/uploads/2022/06/Logo-banco-occidente-1.png",
+          "logoAltText": "BANCO DE OCCIDENTE - UN BANCO DE GRUPO AVAL",
+          "logoEnabled": true,
+          "logoHeight": "100",
+          "logoProfile": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banco_de_Occidente_logo.svg/2560px-Banco_de_Occidente_logo.svg.png",
+          "logoProfileAltText": "Banco de Occidente - Una institución de Grupo Aval",
+          "logoProfileCollapsed": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banco_de_Occidente_logo.svg/2560px-Banco_de_Occidente_logo.svg.png",
+          "logoProfileCollapsedAltText": "Banco de Occidente - Una institución de Grupo Aval",
+          "logoProfileCollapsedHeight": "28",
+          "logoProfileHeight": "40",
+          "name": "Robroy",
+          "pageTitle": "#23282e",
+          "primaryColor": "#00D4FE",
+          "primaryOffColor": "#03ECFF",
+          "profileBackgroundColor": "#FFFFFF",
+          "profileMenuHighlightColor": "#FFFFFF",
+          "profileMenuHoverColor": "#FFFFFF",
+          "profileMenuHoverTextColor": "#455469",
+          "profileMenuTextHighlightColor": "#003F83",
+          "secondaryColor": "#69788b",
+          "successColor": "#2ed47a",
+          "switchBackgroundColor": "#c0c9d5",
+          "textColor": "#ffffff",
+          "topBarBackgroundColor": "#ffffff",
+          "topBarBorderColor": "#e7eef4",
+          "topBarHeaderColor": "#23282e",
+          "topBarTextColor": "#69788b"
+        }
+      ],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

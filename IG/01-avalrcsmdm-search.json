@@ -1,0 +1,195 @@
+{
+  "name": "01-avalrcsmdm-search",
+  "baseURI": "https://avalpoc.rcs.encore.forgerock.com",
+  "condition": "${matches(request.uri.path, '^/avalrcsmdm/search')}",
+  "handler": "Chain-1",
+  "properties": {
+    "mdmEndpointURL": "https://qn4kwolnfe.execute-api.us-east-2.amazonaws.com/dev/searchGrupoAvalConsent",
+    "mdmAPIKey": "SqNKJ4iupCaA9pWk3oTD781AJMFWAOqLbWLAOdsd"
+  },
+  "heap": [
+    {
+      "type": "BaseUriDecorator",
+      "name": "baseUri"
+    },
+    {
+      "type": "TimerDecorator",
+      "name": "timer",
+      "config": {
+        "timeUnit": "ms"
+      }
+    },
+    {
+      "type": "CaptureDecorator",
+      "name": "capture",
+      "config": {
+        "captureEntity": false,
+        "captureContext": false,
+        "maxEntityLength": 524288
+      }
+    },
+    {
+      "name": "Chain-1",
+      "type": "Chain",
+      "config": {
+        "handler": "StaticResponseHandler-1",
+        "filters": [
+          "Call MDM Service"
+        ]
+      }
+    },
+    {
+      "type": "StaticResponseHandler",
+      "name": "StaticResponseHandler-1",
+      "config": {
+        "status": 200,
+        "reason": "OK",
+        "entity": "{\n  \"mdmResponse\": \"${contexts.attributes.attributes.mdmResponseCode}\",\n  \"detail\": \"${contexts.attributes.attributes.detail}\"\n}",
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      }
+    },
+    {
+      "type": "ScriptableFilter",
+      "name": "Call MDM Service",
+      "config": {
+        "type": "application/x-groovy",
+        "source": [
+          "import groovy.xml.StreamingMarkupBuilder",
+          "import groovy.xml.XmlSlurper",
+          "import groovy.xml.XmlUtil",
+          "",
+          "def String requestId = request.getEntity().getJson().get(\"req_id\")",
+          "def String externalCorrelationId = requestId",
+          "def String rqStartTime = new java.text.SimpleDateFormat(\"dd-MM-yyyy HH:mm:ss\").format(new Date());",
+          "def int identificationNumber = request.getEntity().getJson().get(\"docNumber\")",
+          "",
+          "def nameSpacesMap = [",
+          "  soapenv: 'http://schemas.xmlsoap.org/soap/envelope/'",
+          "]",
+          "def builder = new StreamingMarkupBuilder()",
+          "builder.encoding ='utf-8'",
+          "def soapRequest = builder.bind { inBuilder ->",
+          "  namespaces << nameSpacesMap",
+          "  soapenv.Envelope {",
+          "    soapenv.Header{}",
+          "    soapenv.Body {",
+          "      buildTCRMService inBuilder, requestId, externalCorrelationId, identificationNumber, rqStartTime",
+          "    }",
+          "  }",
+          "}",
+          "",
+          "def buildTCRMService(builder, requestId, externalCorrelationId, identificationNumber, rqStartTime) {",
+          "  builder.TCRMService(xmlns:\"http://www.ibm.com/mdm/schema\", \"xmlns:xsi\":\"http://www.w3.org/2001/XMLSchema-instance\", \"xsi:schemaLocation\":\"http://www.ibm.com/mdm/schema MDMDomains.xsd\") { inBuilder ->",
+          "    buildRequestControl inBuilder, requestId, rqStartTime, externalCorrelationId",
+          "    buildTCRMInquiry inBuilder, identificationNumber",
+          "  }",
+          "}",
+          "",
+          "def buildRequestControl(builder, requestId, rqStartTime, externalCorrelationId) {",
+          "  builder.RequestControl { inBuilder ->",
+          "    requestID(requestId)",
+          "    buildDWLControl inBuilder, rqStartTime, externalCorrelationId",
+          "  }",
+          "}",
+          "",
+          "def buildDWLControl(builder, rqStartTime, correlationId) {",
+          "  builder.DWLControl {",
+          "    requesterName(\"GeneralBatch\")",
+          "    requesterLanguage(300)",
+          "    requestTime(rqStartTime)",
+          "    clientTransactionName(\"MaintainServices\")",
+          "    clientSystemName(\"MDM-GA\")",
+          "    externalCorrelationId(correlationId)",
+          "    userRole(\"BOCC_353_D_GeneralBatch\")",
+          "  }",
+          "}",
+          "",
+          "def buildTCRMInquiry(builder, identificationNumber) {",
+          "  builder.TCRMInquiry { inBuilder ->",
+          "    InquiryType(\"searchGrupoAvalConsentByIdentifier\")",
+          "    buildInquiryParam inBuilder, identificationNumber",
+          "  }",
+          "}",
+          "",
+          "def buildInquiryParam(builder, identificationNumber) {",
+          "  builder.InquiryParam {",
+          "    tcrmParam(name:\"IdentificationType\", 1000003)",
+          "    tcrmParam(name:\"IdentificationNumber\", identificationNumber)",
+          "    tcrmParam(name:\"Filter\", 1)",
+          "  }",
+          "}",
+          "",
+          "def String svcRequest = XmlUtil.serialize(soapRequest)",
+          "println \"Service request \" + svcRequest",
+          "def connection = new URL(mdmEndpoint)",
+          "def status",
+          "def result = connection.openConnection().with {",
+          "  setRequestMethod(\"POST\")",
+          "  doOutput = true",
+          "  setRequestProperty(\"Content-Type\", \"application/soap+xml\")",
+          "  setRequestProperty(\"x-api-key\", apiKey)",
+          "  outputStream.withWriter {writer ->",
+          "    writer << svcRequest",
+          "  }",
+          "  println \"Status code is ${responseCode}\"",
+          "  status = responseCode",
+          "  if (responseCode != 200) {",
+          "    errorStream.withCloseable { inStream ->",
+          "      new XmlSlurper().parse(inStream as InputStream)",
+          "    }",
+          "  }",
+          "  else {",
+          "    inputStream.withCloseable { inStream ->",
+          "      new XmlSlurper().parse(inStream as InputStream)",
+          "    }",
+          "  }",
+          "}",
+          "",
+          "if (status == 200) {",
+          "  String statusCode = result.'**'.find{it.name() == 'ResultCode'}",
+          "  println \"Status code is ${statusCode}\"",
+          "  contexts.attributes.attributes.mdmResponseCode = statusCode",
+          "  if (statusCode == \"FATAL\") {",
+          "    String detail = result.'**'.find{it.name() == 'ErrorMessage'}",
+          "    contexts.attributes.attributes.detail = detail",
+          "  }",
+          "  else {",
+          "    contexts.attributes.attributes.detail = \"The request was successful\"",
+          "  }",
+          "  return next.handle(context, request)",
+          "}",
+          "else {",
+          "  String statusCode = result.'**'.find{it.name() == 'faultcode'}",
+          "  contexts.attributes.attributes.mdmResponseCode = statusCode",
+          "  contexts.attributes.attributes.detail = result.'**'.find{it.name() == 'message'}",
+          "  errorHandler.handle(context, request)",
+          "}",
+          ""
+        ],
+        "args": {
+          "errorHandler": "${heap['errorResponse']}",
+          "mdmEndpoint": "${mdmEndpointURL}",
+          "apiKey": "${mdmAPIKey}"
+        }
+      }
+    },
+    {
+      "type": "StaticResponseHandler",
+      "name": "errorResponse",
+      "config": {
+        "status": 400,
+        "reason": "Bad Request",
+        "entity": "{\n  \"mdmResponseCode\": \"${contexts.attributes.attributes.mdmResponseCode}\",\n  \"message\": \"${contexts.attributes.attributes.detail}\"\n}",
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,785 @@
+{
+  "meta": {
+    "origin": "https://openam-telcell.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2022-12-01T16:04:56.584Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "Telcell-CIAM"
+    ],
+    "innerTreesIncluded": [
+      "doCibaAuthnPUSH"
+    ]
+  },
+  "trees": {
+    "doCibaAuthnPUSH": {
+      "tree": {
+        "_id": "doCibaAuthnPUSH",
+        "_rev": "711630627",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "feac6a69-8f46-4299-aa3b-b755d772178a",
+        "nodes": {
+          "40ff4510-de20-4f90-98df-f3131db87f32": {
+            "connections": {
+              "done": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "failure": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "waiting": "a933447b-d530-4da9-88c3-5cacbb89bb99"
+            },
+            "displayName": "Poll CIBA Request",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 821,
+            "y": 0
+          },
+          "4bdeb523-dd9e-4f87-a0bf-a4b829855ba7": {
+            "connections": {
+              "DONE": "40ff4510-de20-4f90-98df-f3131db87f32"
+            },
+            "displayName": "Polling Wait Node",
+            "nodeType": "PollingWaitNode",
+            "x": 577,
+            "y": 68.015625
+          },
+          "a933447b-d530-4da9-88c3-5cacbb89bb99": {
+            "connections": {
+              "DONE": "40ff4510-de20-4f90-98df-f3131db87f32"
+            },
+            "displayName": "Polling Wait Node",
+            "nodeType": "PollingWaitNode",
+            "x": 830,
+            "y": 288.015625
+          },
+          "bfa7d97c-05dd-4b63-92f7-cad4e6a23af9": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "4bdeb523-dd9e-4f87-a0bf-a4b829855ba7"
+            },
+            "displayName": "Send CIBA Request",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 377,
+            "y": 281.015625
+          },
+          "feac6a69-8f46-4299-aa3b-b755d772178a": {
+            "connections": {
+              "outcome": "bfa7d97c-05dd-4b63-92f7-cad4e6a23af9"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 187,
+            "y": 70.015625
+          }
+        },
+        "description": "Sends a CIBA request via IG to send a PUSH Notification to the customer's registered device.",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1155,
+            "y": 20
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1181,
+            "y": 420
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "40ff4510-de20-4f90-98df-f3131db87f32": {
+          "_id": "40ff4510-de20-4f90-98df-f3131db87f32",
+          "_rev": "-1477248239",
+          "script": "ed4bb12c-482f-4771-b89c-35540bc11eea",
+          "outcomes": [
+            "false",
+            "waiting",
+            "done",
+            "failure"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "false",
+              "displayName": "false"
+            },
+            {
+              "id": "waiting",
+              "displayName": "waiting"
+            },
+            {
+              "id": "done",
+              "displayName": "done"
+            },
+            {
+              "id": "failure",
+              "displayName": "failure"
+            }
+          ]
+        },
+        "4bdeb523-dd9e-4f87-a0bf-a4b829855ba7": {
+          "_id": "4bdeb523-dd9e-4f87-a0bf-a4b829855ba7",
+          "_rev": "-1362027980",
+          "spamDetectionTolerance": 3,
+          "spamDetectionEnabled": false,
+          "exitMessage": {},
+          "waitingMessage": {
+            "en": "Authenticating Customer - Sending Request for Approval."
+          },
+          "secondsToWait": 10,
+          "exitable": false,
+          "_type": {
+            "_id": "PollingWaitNode",
+            "name": "Polling Wait Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "DONE",
+              "displayName": "Done"
+            }
+          ]
+        },
+        "a933447b-d530-4da9-88c3-5cacbb89bb99": {
+          "_id": "a933447b-d530-4da9-88c3-5cacbb89bb99",
+          "_rev": "366498103",
+          "spamDetectionTolerance": 3,
+          "spamDetectionEnabled": false,
+          "exitMessage": {},
+          "waitingMessage": {
+            "en": "Waiting for Customer Approval"
+          },
+          "secondsToWait": 15,
+          "exitable": false,
+          "_type": {
+            "_id": "PollingWaitNode",
+            "name": "Polling Wait Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "DONE",
+              "displayName": "Done"
+            }
+          ]
+        },
+        "bfa7d97c-05dd-4b63-92f7-cad4e6a23af9": {
+          "_id": "bfa7d97c-05dd-4b63-92f7-cad4e6a23af9",
+          "_rev": "501945300",
+          "script": "66f49ed0-7d65-4ef9-89ab-5185f847a4dc",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "feac6a69-8f46-4299-aa3b-b755d772178a": {
+          "_id": "feac6a69-8f46-4299-aa3b-b755d772178a",
+          "_rev": "-1809860038",
+          "nodes": [
+            {
+              "_id": "df3549f2-6789-4d70-bd7e-ec291fe30add",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Collect E-Mail"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "df3549f2-6789-4d70-bd7e-ec291fe30add": {
+          "_id": "df3549f2-6789-4d70-bd7e-ec291fe30add",
+          "_rev": "-575491262",
+          "attributesToCollect": [
+            "mail"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": true,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "ed4bb12c-482f-4771-b89c-35540bc11eea": {
+          "_id": "ed4bb12c-482f-4771-b89c-35540bc11eea",
+          "name": "pollCIBARequest",
+          "description": "Polls the CIBA End-Point to get an Access Token once the Customer Successfully approves the PUSH Notification",
+          "script": "\"outcome = \\\"true\\\";\\nvar authz_header = \\\"dGVsY2VsLWNpYmE6NEUxS3lWT0hnUVZZcG5RcWZQNjc3MFVi\\\";\\nvar approvalStatus = JSON.parse(sharedState.get('approvalStatus'));\\nlogger.error(\\\"Approval Status:  Done: {} Request ID: {}\\\",approvalStatus.req1Done, approvalStatus.req1Id);\\n\\nif (!approvalStatus.req1Done && approvalStatus.req1Id != null) {\\n    var data = \\\"grant_type=urn:openid:params:grant-type:ciba&auth_req_id=\\\".concat(approvalStatus.req1Id);\\n    var uri = \\\"https://openam-telcell.forgeblocks.com/am/oauth2/realms/root/realms/alpha/access_token\\\";\\n    logger.error(\\\"The request payload is {} \\\", data);\\n    logger.error(\\\"The request URL is {}\\\", uri);\\n    var request = new org.forgerock.http.protocol.Request();\\n    request.setMethod('POST');\\n    request.setUri(uri);\\n    request.getHeaders().add(\\\"Content-Type\\\",\\\"application/x-www-form-urlencoded\\\");\\n    request.getHeaders().add(\\\"Authorization\\\",\\\"Basic \\\".concat(authz_header));\\n    request.getEntity().setString(data);\\n\\n    var response = httpClient.send(request).get();\\n    var jsonResult = JSON.parse(response.getEntity().getString());\\n    if (jsonResult.hasOwnProperty('access_token')) {\\n        approvalStatus.req1Done = true;\\n        approvalStatus.req1Approved = true;\\n    }\\n    else {\\n        logger.error(\\\"An error response was received: {}\\\", JSON.stringify(jsonResult));\\n        if (jsonResult.hasOwnProperty(\\\"error\\\")) {\\n            if (jsonResult.error !== \\\"authorization_pending\\\" && jsonResult.error !== \\\"slow_down\\\") {\\n                approvalStatus.req1Done = true;\\n                approvalStatus.req1Approved = false;\\n                outcome = \\\"false\\\";\\n            }\\n        }\\n    }\\n}\\n\\n\\nif (!approvalStatus.req1Done) {\\n    outcome = \\\"waiting\\\";\\n}\\nelse {\\n    if (approvalStatus.req1Approved) {\\n        outcome = \\\"done\\\";\\n    }\\n    else {\\n        outcome = \\\"failure\\\";\\n    }\\n}\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "66f49ed0-7d65-4ef9-89ab-5185f847a4dc": {
+          "_id": "66f49ed0-7d65-4ef9-89ab-5185f847a4dc",
+          "name": "sendCIBARequest",
+          "description": "Sends a CIBA request to the Cloud via an API published by IG.",
+          "script": "\"outcome = \\\"true\\\";\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\n\\nvar loginHintCust = objectAttributes.get(\\\"mail\\\");\\n\\nlogger.error(\\\"Login Hint value is \\\" + loginHintCust);\\nvar req1 = {\\n    login_hint: loginHintCust\\n};\\n\\nlogger.error(\\\"Request Payload \\\" + JSON.stringify(req1));\\nvar approvalStatus = {\\n    req1Id: null,\\n    req1Done: false,\\n    req1Approved: false\\n};\\n\\nvar request1 = new org.forgerock.http.protocol.Request();\\nrequest1.setMethod('POST');\\nrequest1.setUri('https://telcell-bl.catalyst.forgerock.org/ciba-request');\\nrequest1.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\nrequest1.getEntity().setString(JSON.stringify(req1));\\nvar response1 = httpClient.send(request1).get();\\nvar jsonResult1 = JSON.parse(response1.getEntity().getString());\\nif (jsonResult1.hasOwnProperty('auth_req_id')) {\\n  logger.error(\\\"Request ID: {}\\\", jsonResult1.auth_req_id);\\n    approvalStatus.req1Id = jsonResult1.auth_req_id;\\n}\\nelse {\\n    outcome = \\\"false\\\";\\n}\\n\\nsharedState.put(\\\"approvalStatus\\\", JSON.stringify(approvalStatus));\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    },
+    "Telcell-CIAM": {
+      "tree": {
+        "_id": "Telcell-CIAM",
+        "_rev": "-1587601230",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "e0b6772a-34ad-431b-aaae-693a98462829",
+        "nodes": {
+          "b0fd5206-9e8d-4d5e-8693-063dfc850586": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "ce431a99-b4ba-453d-9a2e-55ae8c9bff39"
+            },
+            "displayName": "Data Store Decision",
+            "nodeType": "DataStoreDecisionNode",
+            "x": 433,
+            "y": 190.015625
+          },
+          "b5f3ab9b-5f22-4298-ab5b-34500df60e8c": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Confirmation Message",
+            "nodeType": "MessageNode",
+            "x": 1610,
+            "y": 32.015625
+          },
+          "baf46ca1-ad04-4093-969b-bc1c5d219317": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Fingerprint Selected",
+            "nodeType": "MessageNode",
+            "x": 1429,
+            "y": 407.015625
+          },
+          "be84881e-d678-4741-9930-89708a870739": {
+            "connections": {
+              "fido": "d672a5f2-5e89-4764-8b63-3f1c1d06bd97",
+              "fingerprint": "baf46ca1-ad04-4093-969b-bc1c5d219317",
+              "push": "d2378dc8-92d5-4a59-b447-f7d7f7e8339f",
+              "storeman": "c5e7e835-526f-4fab-9de2-e46fec78c5b5"
+            },
+            "displayName": "Check Selection",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1189,
+            "y": 45.015625
+          },
+          "c5e7e835-526f-4fab-9de2-e46fec78c5b5": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Store Manager Selected",
+            "nodeType": "MessageNode",
+            "x": 1415,
+            "y": 281.015625
+          },
+          "ce431a99-b4ba-453d-9a2e-55ae8c9bff39": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "f051dbb3-ce91-4764-9bfd-a509b74b22ab"
+            },
+            "displayName": "Identify Existing User",
+            "nodeType": "IdentifyExistingUserNode",
+            "x": 687,
+            "y": 28.015625
+          },
+          "d2378dc8-92d5-4a59-b447-f7d7f7e8339f": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "b5f3ab9b-5f22-4298-ab5b-34500df60e8c"
+            },
+            "displayName": "Do PUSH via CIBA",
+            "nodeType": "InnerTreeEvaluatorNode",
+            "x": 1408,
+            "y": 35.015625
+          },
+          "d672a5f2-5e89-4764-8b63-3f1c1d06bd97": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "FIDO Selected",
+            "nodeType": "MessageNode",
+            "x": 1413,
+            "y": 157.015625
+          },
+          "e0b6772a-34ad-431b-aaae-693a98462829": {
+            "connections": {
+              "outcome": "b0fd5206-9e8d-4d5e-8693-063dfc850586"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 185,
+            "y": 87.015625
+          },
+          "f051dbb3-ce91-4764-9bfd-a509b74b22ab": {
+            "connections": {
+              "true": "be84881e-d678-4741-9930-89708a870739"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 936,
+            "y": 34.015625
+          }
+        },
+        "description": "Telcell CIAM Journey to authenticate customers based on what methods are available for the given store where the process takes place.",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1941,
+            "y": 62
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1706,
+            "y": 369
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "b0fd5206-9e8d-4d5e-8693-063dfc850586": {
+          "_id": "b0fd5206-9e8d-4d5e-8693-063dfc850586",
+          "_rev": "-1789842786",
+          "_type": {
+            "_id": "DataStoreDecisionNode",
+            "name": "Data Store Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "b5f3ab9b-5f22-4298-ab5b-34500df60e8c": {
+          "_id": "b5f3ab9b-5f22-4298-ab5b-34500df60e8c",
+          "_rev": "51596847",
+          "messageYes": {
+            "en": "Continue"
+          },
+          "message": {
+            "en": "Telcel customer has given consent to proceed."
+          },
+          "messageNo": {
+            "en": "Exit"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "baf46ca1-ad04-4093-969b-bc1c5d219317": {
+          "_id": "baf46ca1-ad04-4093-969b-bc1c5d219317",
+          "_rev": "-1485269054",
+          "messageYes": {
+            "en": "Continue"
+          },
+          "message": {
+            "en": "Fingerprint Reading was Selected."
+          },
+          "messageNo": {
+            "en": "Exit"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "be84881e-d678-4741-9930-89708a870739": {
+          "_id": "be84881e-d678-4741-9930-89708a870739",
+          "_rev": "-174430734",
+          "script": "74012306-e85c-43da-a89d-13853bb3d89b",
+          "outcomes": [
+            "push",
+            "fido",
+            "storeman",
+            "fingerprint"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "push",
+              "displayName": "push"
+            },
+            {
+              "id": "fido",
+              "displayName": "fido"
+            },
+            {
+              "id": "storeman",
+              "displayName": "storeman"
+            },
+            {
+              "id": "fingerprint",
+              "displayName": "fingerprint"
+            }
+          ]
+        },
+        "c5e7e835-526f-4fab-9de2-e46fec78c5b5": {
+          "_id": "c5e7e835-526f-4fab-9de2-e46fec78c5b5",
+          "_rev": "-1810223291",
+          "messageYes": {
+            "en": "Continue"
+          },
+          "message": {
+            "en": "Store Manager Selected"
+          },
+          "messageNo": {
+            "en": "Exit"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "ce431a99-b4ba-453d-9a2e-55ae8c9bff39": {
+          "_id": "ce431a99-b4ba-453d-9a2e-55ae8c9bff39",
+          "_rev": "-2012370349",
+          "identityAttribute": "userName",
+          "identifier": "_id",
+          "_type": {
+            "_id": "IdentifyExistingUserNode",
+            "name": "Identify Existing User",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "d2378dc8-92d5-4a59-b447-f7d7f7e8339f": {
+          "_id": "d2378dc8-92d5-4a59-b447-f7d7f7e8339f",
+          "_rev": "-95302807",
+          "tree": "doCibaAuthnPUSH",
+          "_type": {
+            "_id": "InnerTreeEvaluatorNode",
+            "name": "Inner Tree Evaluator",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "d672a5f2-5e89-4764-8b63-3f1c1d06bd97": {
+          "_id": "d672a5f2-5e89-4764-8b63-3f1c1d06bd97",
+          "_rev": "-2079556365",
+          "messageYes": {
+            "en": "Continue"
+          },
+          "message": {
+            "en": "FIDO was Selected"
+          },
+          "messageNo": {},
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "e0b6772a-34ad-431b-aaae-693a98462829": {
+          "_id": "e0b6772a-34ad-431b-aaae-693a98462829",
+          "_rev": "2058795786",
+          "nodes": [
+            {
+              "_id": "1dc7e994-1bc6-471a-849b-d0b6f42cfc8e",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "eedac1e1-f2c6-41a7-8e04-56ddd44bd870",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "f051dbb3-ce91-4764-9bfd-a509b74b22ab": {
+          "_id": "f051dbb3-ce91-4764-9bfd-a509b74b22ab",
+          "_rev": "1007934794",
+          "nodes": [
+            {
+              "_id": "faca28d1-08a5-4547-8c1c-b903a29eb70f",
+              "nodeType": "ScriptedDecisionNode",
+              "displayName": "Build MFA List"
+            }
+          ],
+          "pageDescription": {
+            "en": "Select the method to use to authenticate Telcell Customer"
+          },
+          "pageHeader": {
+            "en": "Select MFA for Customer"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "1dc7e994-1bc6-471a-849b-d0b6f42cfc8e": {
+          "_id": "1dc7e994-1bc6-471a-849b-d0b6f42cfc8e",
+          "_rev": "-601047337",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "eedac1e1-f2c6-41a7-8e04-56ddd44bd870": {
+          "_id": "eedac1e1-f2c6-41a7-8e04-56ddd44bd870",
+          "_rev": "154206764",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "faca28d1-08a5-4547-8c1c-b903a29eb70f": {
+          "_id": "faca28d1-08a5-4547-8c1c-b903a29eb70f",
+          "_rev": "902247591",
+          "script": "02430f15-8ab0-40cb-9621-92aeb491bd6a",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "74012306-e85c-43da-a89d-13853bb3d89b": {
+          "_id": "74012306-e85c-43da-a89d-13853bb3d89b",
+          "name": "checkSelection",
+          "description": "Check the selection from the shared state",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\nvar selection = sharedState.get(\\\"mfa-selection\\\").toString();\\n\\nif (selection === \\\"PUSH Notification\\\") {\\n  outcome = \\\"push\\\";\\n}\\n\\nif (selection === \\\"WebAuthn FIDO 2.0\\\") {\\n  outcome = \\\"fido\\\";\\n}\\n\\nif (selection === \\\"Fingerprint Reading\\\") {\\n  outcome = \\\"fingerprint\\\";\\n}\\n\\nif (selection === \\\"Store Manager\\\") {\\n  outcome = \\\"storeman\\\";\\n}\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "02430f15-8ab0-40cb-9621-92aeb491bd6a": {
+          "_id": "02430f15-8ab0-40cb-9621-92aeb491bd6a",
+          "name": "getSelectionsForEmployee",
+          "description": "Gets the proper methods for authentication associated to the Employee account logging in to the PoS.",
+          "script": "\"var fr = JavaImporter(\\n  org.forgerock.openam.auth.node.api,\\n  javax.security.auth.callback.ChoiceCallback,\\n  \\n)\\noutcome = \\\"true\\\";\\n\\n\\nvar userName = sharedState.get(\\\"_id\\\");\\nlogger.error(\\\"User name is \\\" + userName);\\n\\nvar selections = idRepository.getAttribute(userName, \\\"fr-attr-multi1\\\");\\nlogger.error(\\\"Selections available \\\" + selections.toString());\\nlogger.error(\\\"Number of Selections \\\" + selections.size());\\nvar choices = [];\\nvar i=0;\\nfor (; i < selections.size(); i++) {\\n  logger.error(\\\"Selection Option found \\\" + String(selections.toArray()[i]));\\n  choices[i] = String(selections.toArray()[i]);\\n}\\n\\nwith (fr) {\\n  if (callbacks.isEmpty()) {\\n    action = Action.send(new ChoiceCallback(\\\"Seleccione su método de autenticación\\\", choices, 0, false)).build()\\n  } else {\\n    var mfaSelected = selections.toArray()[callbacks.get(0).getSelectedIndexes()[0]];\\n    nodeState.putShared(\\\"mfa-selection\\\", mfaSelected);\\n    action = Action.goTo(\\\"true\\\").build()\\n  }\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

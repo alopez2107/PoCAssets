@@ -1,0 +1,163 @@
+{
+    "name": "01-api-action-apply-v2",
+    "baseURI": "http://baseline-demo:8082",
+    "condition": "${matches(request.uri.path, '^/demo/api/action/apply')}",
+    "handler": "Chain",
+    "properties": {
+      "amUsername": "${agent.username}",
+      "amPassword": "${agent.password}"
+    },
+    "heap": [
+      {
+        "name": "Chain",
+        "type": "Chain",
+        "config": {
+          "handler": "ReverseProxyHandler",
+          "filters": [
+            "CORS",
+            "Determine Route from Product ID",
+            "PolicyEnforcementFilter-1"
+          ]
+        }
+      },
+      {
+        "type": "TokenIntrospectionAccessTokenResolver",
+        "name": "TokenIntrospectionAccessTokenResolver",
+        "config": {
+          "amService": "AmService"
+        }
+      },
+      {
+        "name": "ReverseProxyHandler",
+        "type": "ReverseProxyHandler"
+      },
+      {
+        "name": "AmService",
+        "type": "AmService",
+        "config": {
+          "url": "${am}",
+          "realm": "/${realm}",
+          "agent": {
+            "username": "${agent.username}",
+            "password": "${agent.password}"
+          },
+          "sessionCache": {
+            "enabled": false
+          }
+        }
+      },
+      {
+        "type": "BaseUriDecorator",
+        "name": "baseUri"
+      },
+      {
+        "type": "TimerDecorator",
+        "name": "timer",
+        "config": {
+          "timeUnit": "ms"
+        }
+      },
+      {
+        "type": "CaptureDecorator",
+        "name": "capture",
+        "config": {
+          "captureEntity": false,
+          "captureContext": false,
+          "maxEntityLength": 524288
+        }
+      },
+      {
+        "type": "ScriptableFilter",
+        "name": "Determine Route from Product ID",
+        "config": {
+          "type": "application/x-groovy",
+          "source": [
+            "def prodID = request.getEntity().getJson().get(\"id\")",
+            "println \"Product ID : ${prodID} was requested.\"",
+            "if (prodID == \"offer1\" || prodID == \"offer3\" || prodID == \"offer4\") {\t\t\tcontexts.attributes.attributes.pathToVendor = \"http://baseline-demo:8082/apply/samsung\"",
+            "   println \"THe Path to resource is /apply/samsung\"",
+            "                  ",
+            "}",
+            "else {",
+            "  contexts.attributes.attributes.pathToVendor = \"http://baseline-demo:8082/apply/apple\"",
+            "  println \"THe Path to resource is /apply/apple\"",
+            "}",
+            "",
+            "return next.handle(context, request)"
+          ]
+        }
+      },
+      {
+        "name": "CORS",
+        "type": "CorsFilter",
+        "config": {
+          "policies": [
+            {
+              "origins": "*",
+              "acceptedMethods": "*",
+              "acceptedHeaders": "*",
+              "allowCredentials": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "AmService-1",
+        "type": "AmService",
+        "config": {
+          "url": "https://openam-ixcomdemo.forgeblocks.com/am",
+          "realm": "/alpha",
+          "ssoTokenHeader": "cb898830100a291",
+          "version": "7.1.0",
+          "agent": {
+            "username": "ixcomig",
+            "password": "Il0hCBe!2!4"
+          },
+          "sessionCache": {
+            "enabled": false
+          }
+        }
+      },
+      {
+        "name": "PolicyEnforcementFilter-1",
+        "type": "PolicyEnforcementFilter",
+        "config": {
+          "amService": "AmService-1",
+          "ssoTokenSubject": "${request.cookies.tokenId[0].value}",
+          "cache": {
+            "enabled": false
+          },
+          "application": "data",
+          "environment": {
+            "TxId": [
+              "${request.headers.TxId[0]}"
+            ]
+          },
+          "failureHandler": "Respond with Advices",
+          "resourceUriProvider": {
+            "type": "ScriptableResourceUriProvider",
+            "config": {
+                "type": "application/x-groovy",
+                "source": [
+                "return contexts.attributes.attributes.pathToVendor"
+                ]
+            }
+          }
+        }
+      },
+      {
+        "type": "StaticResponseHandler",
+        "name": "Respond with Advices",
+        "config": {
+          "status": 300,
+          "reason": "Multiple Choices",
+          "entity": "{ \"advices\":${contexts.policyDecision.jsonAdvices}\n}",
+          "headers": {
+            "Content-Type": [
+              "application/json"
+            ]
+          }
+        }
+      }
+    ]
+  }

@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "origin": "https://openam-telcell.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2022-12-01T16:06:56.007Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "validateFingerPrintJourney"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "validateFingerPrintJourney": {
+      "tree": {
+        "_id": "validateFingerPrintJourney",
+        "_rev": "-822615006",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "47de725b-7186-4f53-9dd1-1a6e231e7cc4",
+        "nodes": {
+          "47de725b-7186-4f53-9dd1-1a6e231e7cc4": {
+            "connections": {
+              "outcome": "6fcbc060-5cd9-458c-95fa-1f2eb1d44228"
+            },
+            "displayName": "Capture Fingerprint",
+            "nodeType": "PageNode",
+            "x": 190,
+            "y": 134.015625
+          },
+          "6fcbc060-5cd9-458c-95fa-1f2eb1d44228": {
+            "connections": {
+              "invalid": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "system_error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "valid": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Validate Fingerprint",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 440,
+            "y": 146.015625
+          }
+        },
+        "description": "Authentication via Fingerprint Reader (Simulation)",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 901,
+            "y": 50
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 720,
+            "y": 432
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "47de725b-7186-4f53-9dd1-1a6e231e7cc4": {
+          "_id": "47de725b-7186-4f53-9dd1-1a6e231e7cc4",
+          "_rev": "-1305229172",
+          "nodes": [
+            {
+              "_id": "8cc237f2-e2d6-485c-a093-6d36f87ca07c",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Attribute Collector"
+            }
+          ],
+          "pageDescription": {
+            "en": "Favor de proveer su huella digital en el lector. Siga las indicaciones de su asesor."
+          },
+          "pageHeader": {
+            "en": "Huella Digital"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "6fcbc060-5cd9-458c-95fa-1f2eb1d44228": {
+          "_id": "6fcbc060-5cd9-458c-95fa-1f2eb1d44228",
+          "_rev": "1205312164",
+          "script": "b68a71b1-1384-48b8-97ad-86a71df668ef",
+          "outcomes": [
+            "valid",
+            "invalid",
+            "system_error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "valid",
+              "displayName": "valid"
+            },
+            {
+              "id": "invalid",
+              "displayName": "invalid"
+            },
+            {
+              "id": "system_error",
+              "displayName": "system_error"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "8cc237f2-e2d6-485c-a093-6d36f87ca07c": {
+          "_id": "8cc237f2-e2d6-485c-a093-6d36f87ca07c",
+          "_rev": "-1272817859",
+          "attributesToCollect": [
+            "frIndexedString3"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": true,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "b68a71b1-1384-48b8-97ad-86a71df668ef": {
+          "_id": "b68a71b1-1384-48b8-97ad-86a71df668ef",
+          "name": "validateFingerPrint",
+          "description": "Simulate Fingerprint  Validation against Biometric Service.",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n// Call the 34.239.121.198:8080/users/telcel/<Num Cliente> endpoint GET\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar credential = objectAttributes.get(\\\"frIndexedString3\\\");\\nvar userID = sharedState.get(\\\"_id\\\");\\nvar email = idRepository.getAttribute(userID, \\\"mail\\\").iterator().next();\\n\\nvar restBody = {\\n  userId: email,\\n  credential: credential\\n};\\n\\nvar request = new org.forgerock.http.protocol.Request();\\nrequest.setMethod('POST');\\nrequest.setUri('http://34.239.121.198:8080/users/credential/verify');\\nrequest.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\nrequest.getEntity().setString(JSON.stringify(restBody));\\nvar response = httpClient.send(request).get();\\nvar jsonResult = JSON.parse(response.getEntity().getString());\\n\\nif (jsonResult.hasOwnProperty(\\\"error\\\") ) {\\n\\tif ( jsonResult.error === 'Expectation Failed') {\\n      outcome = \\\"invalid\\\";\\n    }\\n    else {\\n      outcome = \\\"system_error\\\";\\n    }\\n} else {\\n  outcome = \\\"valid\\\";\\n}\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

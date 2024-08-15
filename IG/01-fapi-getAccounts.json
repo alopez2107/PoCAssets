@@ -1,0 +1,182 @@
+{
+  "name": "01-fapi-getAccounts",
+  "baseURI": "https://avalpoc.encore.forgerock.com",
+  "condition": "${matches(request.uri.path, '^/fapi/accounts')}",
+  "handler": "Chain-1",
+  "properties": {
+    "idmAdminAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MzViM2YyNi00MjE4LTQxNmUtYjhlMC1jYjZiNWE0ZGIyZDciLCJjdHMiOiJPQVVUSDJfU1RBVEVMRVNTX0dSQU5UIiwiYXVkaXRUcmFja2luZ0lkIjoiZTM2NWM4ZWEtOTBhNC00OGQyLWI2MTgtZjIxODFlNjY2MmFmLTE5Mjg4NjUiLCJzdWJuYW1lIjoiNDM1YjNmMjYtNDIxOC00MTZlLWI4ZTAtY2I2YjVhNGRiMmQ3IiwiaXNzIjoiaHR0cHM6Ly9vcGVuYW0tYXZhbHBvYy5mb3JnZWJsb2Nrcy5jb206NDQzL2FtL29hdXRoMi9yZWFsbXMvcm9vdC9yZWFsbXMvYWxwaGEiLCJ0b2tlbk5hbWUiOiJhY2Nlc3NfdG9rZW4iLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiYXV0aEdyYW50SWQiOiIxNXRwZUw1WEhtazZ6Q0Q5MUVMNkpQX0MxNTgiLCJhdWQiOiI0MzViM2YyNi00MjE4LTQxNmUtYjhlMC1jYjZiNWE0ZGIyZDciLCJuYmYiOjE2OTIzNzEyNzgsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJzY29wZSI6WyJmcjppZG06KiJdLCJhdXRoX3RpbWUiOjE2OTIzNzEyNzgsInJlYWxtIjoiL2FscGhhIiwiZXhwIjoyMDA3NzMxMjc4LCJpYXQiOjE2OTIzNzEyNzgsImV4cGlyZXNfaW4iOjMxNTM2MDAwMCwianRpIjoiLV9sSGN1Si12bURlUklpTzN0ZVRRTlNYZDJNIn0.pXxoiCzr-gOjOlJCT-0njPd2cE4mvLL2HeE5ssHQjNc",
+    "fidcTenantURL": "https://openam-avalpoc.forgeblocks.com"
+  },
+  "heap": [
+    {
+      "type": "BaseUriDecorator",
+      "name": "baseUri"
+    },
+    {
+      "type": "TimerDecorator",
+      "name": "timer",
+      "config": {
+        "timeUnit": "ms"
+      }
+    },
+    {
+      "type": "CaptureDecorator",
+      "name": "capture",
+      "config": {
+        "captureEntity": false,
+        "captureContext": false,
+        "maxEntityLength": 524288
+      }
+    },
+    {
+      "name": "Chain-1",
+      "type": "Chain",
+      "config": {
+        "handler": "SuccessResponseScriptableHandler",
+        "filters": [
+          "CORS",
+          "Get Identification Number",
+          "GetAccountsForCustomer"
+        ]
+      }
+    },
+    {
+      "type": "ScriptableFilter",
+      "name": "GetAccountsForCustomer",
+      "config": {
+        "type": "application/x-groovy",
+        "source": [
+          "import org.forgerock.http.protocol.Request",
+          "import org.forgerock.util.AsyncFunction",
+          "import org.forgerock.util.promise.Promise",
+          "",
+          "String userIdentificationNumber = contexts.attributes.attributes.identificationNumber",
+          "String oauthAdminAccessToken = adminAccessToken",
+          "String _queryFilter = \"associatedCustomerID eq \\\"${userIdentificationNumber}\\\"\"",
+          "String idmAuthzHeader = \"Bearer \" + oauthAdminAccessToken",
+          "Request idmRequest = new Request()",
+          ".setUri(new URI(\"${amURL}/openidm/managed/Account?_queryFilter=${URLEncoder.encode(_queryFilter, \"UTF-8\")}&_fields=*\"))",
+          ".setMethod(\"GET\")",
+          "idmRequest.getHeaders().add('Authorization', idmAuthzHeader)",
+          "",
+          "return http.send(idmRequest).thenAsync( new AsyncFunction() {",
+          "  Promise apply (response) {",
+          "    if (response.status == Status.OK) {",
+          "      println response.entity.json",
+          "      contexts.attributes.attributes.result = [\"result\": response.entity.json.result]",
+          "      return next.handle(context, request)",
+          "    } else {",
+          "      contexts.attributes.attributes.status = response.status",
+          "      contexts.attributes.attributes.errorMessage = response.entity.json.message",
+          "      return errorResponse.handle(context, request)",
+          "    }",
+          "  }",
+          "})"
+        ],
+        "args": {
+          "adminAccessToken": "${idmAdminAccessToken}",
+          "errorResponse": "${heap['errorResponse']}",
+          "amURL": "${fidcTenantURL}"
+        }
+      }
+    },
+    {
+      "type": "StaticResponseHandler",
+      "name": "errorResponse",
+      "config": {
+        "status": 400,
+        "reason": "Bad Request",
+        "entity": "{\n  \"status\": \"${contexts.attributes.attributes.status}\",\n  \"message\": \"${contexts.attributes.attributes.errorMessage}\"\n}",
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      }
+    },
+    {
+      "name": "SuccessResponseScriptableHandler",
+      "type": "ScriptableHandler",
+      "config": {
+        "type": "application/x-groovy",
+        "source": [
+          "Response response = new Response(Status.OK)",
+          "response.getHeaders().add(\"Content-Type\", \"application/json\")",
+          "response.setEntity(contexts.attributes.attributes.result)",
+          "return response"
+        ]
+      }
+    },
+    {
+      "type": "ScriptableFilter",
+      "name": "Get Identification Number",
+      "config": {
+        "type": "application/x-groovy",
+        "source": [
+          "import org.forgerock.http.protocol.Request",
+          "import org.forgerock.util.AsyncFunction",
+          "import org.forgerock.util.promise.Promise",
+          "",
+          "String userName = request.getEntity().getJson().get(\"email\")",
+          "",
+          "println \"The email retieved is ${userName}\" ",
+          "String oauthAdminAccessToken = adminAccessToken",
+          "String _queryFilter = \"userName eq \\\"${userName}\\\"\"",
+          "",
+          "println \"Query filter is ${_queryFilter}\"",
+          "",
+          "String idmAuthzHeader = \"Bearer \" + oauthAdminAccessToken",
+          "Request idmRequest = new Request()",
+          ".setUri(new URI(\"${tenantURL}/openidm/managed/alpha_user?_queryFilter=${URLEncoder.encode(_queryFilter, \"UTF-8\")}&_fields=*\"))",
+          ".setMethod(\"GET\")",
+          "idmRequest.getHeaders().add('Authorization', idmAuthzHeader)",
+          "",
+          "return http.send(idmRequest).thenAsync( new AsyncFunction() {",
+          "  Promise apply (response) {",
+          "    if (response.status == Status.OK) {",
+          "      println response.entity.json",
+          "      if (response.entity.json.resultCount > 0) {      \t\tcontexts.attributes.attributes.identificationNumber = response.entity.json.result[0].frIndexedString5",
+          "                                                 println \"Identification Number \" + response.entity.json.result[0].frIndexedString5                                          }",
+          "      return next.handle(context, request)",
+          "    } else {",
+          "      contexts.attributes.attributes.status = response.status",
+          "      contexts.attributes.attributes.errorMessage = response.entity.json.message",
+          "      return errorResponse.handle(context, request)",
+          "    }",
+          "  }",
+          "})"
+        ],
+        "args": {
+          "tenantURL": "${fidcTenantURL}",
+          "errorResponse": "${heap['errorResponse']}",
+          "adminAccessToken": "${idmAdminAccessToken}"
+        }
+      }
+    },
+    {
+      "name": "CORS",
+      "type": "CorsFilter",
+      "config": {
+        "policies": [
+          {
+            "acceptedOrigins": "*",
+            "acceptedMethods": [
+              "GET",
+              "POST",
+              "PUT",
+              "OPTIONS",
+              "DELETE"
+            ],
+            "acceptedHeaders": [
+              "Accept-API-Version",
+              "authorization",
+              "content-type",
+              "x-requested-with"
+            ],
+            "allowCredentials": true
+          }
+        ]
+      }
+    }
+  ]
+}

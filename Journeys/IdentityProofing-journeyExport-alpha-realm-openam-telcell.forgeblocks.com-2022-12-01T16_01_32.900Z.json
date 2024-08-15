@@ -1,0 +1,597 @@
+{
+  "meta": {
+    "origin": "https://openam-telcell.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2022-12-01T16:01:32.900Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "IdentityProofing"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "IdentityProofing": {
+      "tree": {
+        "_id": "IdentityProofing",
+        "_rev": "18081853",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "61dd9a94-dfe6-4efe-b73a-16d66430f979",
+        "nodes": {
+          "0478adf2-4302-481c-8d51-a2a5e14a154e": {
+            "connections": {
+              "outcome": "61dd9a94-dfe6-4efe-b73a-16d66430f979"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 238,
+            "y": 427
+          },
+          "15d1cd26-8664-43de-b9e8-3a79d5546968": {
+            "connections": {
+              "false": "885754b6-129d-4573-9227-6646c940ebbe",
+              "true": "885754b6-129d-4573-9227-6646c940ebbe"
+            },
+            "displayName": "Onfido-CheckApplicant",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 803,
+            "y": 10
+          },
+          "2a9d6d2a-6a77-4757-a93c-bc0662d5ea6d": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Create F1 User",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1560,
+            "y": 213.015625
+          },
+          "5d140ac7-ad74-40e4-96bf-3de3b75ccb68": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "61dd9a94-dfe6-4efe-b73a-16d66430f979"
+            },
+            "displayName": "Verification Error Dialog",
+            "nodeType": "PageNode",
+            "x": 1907,
+            "y": 574.7666625976562
+          },
+          "61dd9a94-dfe6-4efe-b73a-16d66430f979": {
+            "connections": {
+              "known": "d9a826b5-657a-4092-95eb-645049076fde",
+              "unknown": "0478adf2-4302-481c-8d51-a2a5e14a154e"
+            },
+            "displayName": "Check Username",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 232,
+            "y": 221
+          },
+          "63f6402d-9452-43b5-a6c3-28878003bbf5": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "d339126b-f100-45db-b307-64232de7db5c"
+            },
+            "displayName": "Onfido-CreateApplicant",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 518,
+            "y": 328
+          },
+          "885754b6-129d-4573-9227-6646c940ebbe": {
+            "connections": {
+              "DONE": "e4dbe00b-18fa-4ccf-a0f2-92b798340b5f"
+            },
+            "displayName": "Polling Wait Node",
+            "nodeType": "PollingWaitNode",
+            "x": 1052,
+            "y": 121.5
+          },
+          "d339126b-f100-45db-b307-64232de7db5c": {
+            "connections": {
+              "true": "15d1cd26-8664-43de-b9e8-3a79d5546968"
+            },
+            "displayName": "Onfido-CaptureEvidence",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 655,
+            "y": 204
+          },
+          "d9a826b5-657a-4092-95eb-645049076fde": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "63f6402d-9452-43b5-a6c3-28878003bbf5"
+            },
+            "displayName": "Identify Existing User",
+            "nodeType": "IdentifyExistingUserNode",
+            "x": 384,
+            "y": 48
+          },
+          "e4dbe00b-18fa-4ccf-a0f2-92b798340b5f": {
+            "connections": {
+              "clear": "2a9d6d2a-6a77-4757-a93c-bc0662d5ea6d",
+              "consider": "5d140ac7-ad74-40e4-96bf-3de3b75ccb68",
+              "error": "5d140ac7-ad74-40e4-96bf-3de3b75ccb68",
+              "pending": "fb530016-9ed1-4541-a150-e55711f58b38",
+              "wronguser": "5d140ac7-ad74-40e4-96bf-3de3b75ccb68"
+            },
+            "displayName": "Onfido-CheckStatus",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1188,
+            "y": 308
+          },
+          "fb530016-9ed1-4541-a150-e55711f58b38": {
+            "connections": {
+              "Reject": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "Retry": "885754b6-129d-4573-9227-6646c940ebbe"
+            },
+            "displayName": "Retry Limit Decision",
+            "nodeType": "RetryLimitDecisionNode",
+            "x": 1413,
+            "y": 22
+          }
+        },
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 2160,
+            "y": 162
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 2167,
+            "y": 344
+          },
+          "startNode": {
+            "x": 70,
+            "y": 200
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "0478adf2-4302-481c-8d51-a2a5e14a154e": {
+          "_id": "0478adf2-4302-481c-8d51-a2a5e14a154e",
+          "_rev": "-1809946462",
+          "nodes": [
+            {
+              "_id": "e10b0ec2-f156-4a79-a13f-3bed45563cff",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Username"
+            }
+          ],
+          "pageDescription": {},
+          "stage": "{\"themeId\":\"5bc0e730-53e4-41af-9d1e-edf0265c660c\"}",
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "15d1cd26-8664-43de-b9e8-3a79d5546968": {
+          "_id": "15d1cd26-8664-43de-b9e8-3a79d5546968",
+          "_rev": "1385079086",
+          "script": "d2a41d85-d33a-42d9-a7dd-50dfbc9fa7c0",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "2a9d6d2a-6a77-4757-a93c-bc0662d5ea6d": {
+          "_id": "2a9d6d2a-6a77-4757-a93c-bc0662d5ea6d",
+          "_rev": "1263265603",
+          "script": "be6ae73b-69e3-44d7-a4ea-db72305a2a63",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "5d140ac7-ad74-40e4-96bf-3de3b75ccb68": {
+          "_id": "5d140ac7-ad74-40e4-96bf-3de3b75ccb68",
+          "_rev": "-196117267",
+          "nodes": [
+            {
+              "_id": "cddeb3ed-fb5e-4024-84f0-cefe71f151c2",
+              "nodeType": "MessageNode",
+              "displayName": "Error"
+            }
+          ],
+          "pageDescription": {
+            "en": "There was an error verifying your identity. Please try again or contact us by email at help@kemper.com or call us at +1-234-5678."
+          },
+          "pageHeader": {
+            "en": "Unable to verify your identity!"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "61dd9a94-dfe6-4efe-b73a-16d66430f979": {
+          "_id": "61dd9a94-dfe6-4efe-b73a-16d66430f979",
+          "_rev": "-876700098",
+          "script": "739bdc48-fd24-4c52-b353-88706d75558a",
+          "outcomes": [
+            "known",
+            "unknown"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "known",
+              "displayName": "known"
+            },
+            {
+              "id": "unknown",
+              "displayName": "unknown"
+            }
+          ]
+        },
+        "63f6402d-9452-43b5-a6c3-28878003bbf5": {
+          "_id": "63f6402d-9452-43b5-a6c3-28878003bbf5",
+          "_rev": "-106831992",
+          "script": "25d8a628-3556-4219-aaf5-2384e2e5f19a",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "885754b6-129d-4573-9227-6646c940ebbe": {
+          "_id": "885754b6-129d-4573-9227-6646c940ebbe",
+          "_rev": "455035730",
+          "spamDetectionTolerance": 3,
+          "spamDetectionEnabled": false,
+          "exitMessage": {},
+          "waitingMessage": {},
+          "secondsToWait": 8,
+          "exitable": false,
+          "_type": {
+            "_id": "PollingWaitNode",
+            "name": "Polling Wait Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "DONE",
+              "displayName": "Done"
+            }
+          ]
+        },
+        "d339126b-f100-45db-b307-64232de7db5c": {
+          "_id": "d339126b-f100-45db-b307-64232de7db5c",
+          "_rev": "2093665693",
+          "script": "71545db5-ce01-46b1-b79f-d41af36bd548",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "d9a826b5-657a-4092-95eb-645049076fde": {
+          "_id": "d9a826b5-657a-4092-95eb-645049076fde",
+          "_rev": "-1498866042",
+          "identityAttribute": "userName",
+          "identifier": "userName",
+          "_type": {
+            "_id": "IdentifyExistingUserNode",
+            "name": "Identify Existing User",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "e4dbe00b-18fa-4ccf-a0f2-92b798340b5f": {
+          "_id": "e4dbe00b-18fa-4ccf-a0f2-92b798340b5f",
+          "_rev": "-1213008087",
+          "script": "0c189425-e5ea-4062-ae2e-53ea14320bf4",
+          "outcomes": [
+            "pending",
+            "clear",
+            "consider",
+            "error",
+            "wronguser"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "pending",
+              "displayName": "pending"
+            },
+            {
+              "id": "clear",
+              "displayName": "clear"
+            },
+            {
+              "id": "consider",
+              "displayName": "consider"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            },
+            {
+              "id": "wronguser",
+              "displayName": "wronguser"
+            }
+          ]
+        },
+        "fb530016-9ed1-4541-a150-e55711f58b38": {
+          "_id": "fb530016-9ed1-4541-a150-e55711f58b38",
+          "_rev": "78997379",
+          "incrementUserAttributeOnFailure": true,
+          "retryLimit": 12,
+          "_type": {
+            "_id": "RetryLimitDecisionNode",
+            "name": "Retry Limit Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Retry",
+              "displayName": "Retry"
+            },
+            {
+              "id": "Reject",
+              "displayName": "Reject"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "e10b0ec2-f156-4a79-a13f-3bed45563cff": {
+          "_id": "e10b0ec2-f156-4a79-a13f-3bed45563cff",
+          "_rev": "-44380228",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "cddeb3ed-fb5e-4024-84f0-cefe71f151c2": {
+          "_id": "cddeb3ed-fb5e-4024-84f0-cefe71f151c2",
+          "_rev": "1877640319",
+          "messageYes": {
+            "en": "Try again"
+          },
+          "message": {
+            "en": "Would you like to try again?"
+          },
+          "messageNo": {
+            "en": "Abort"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "d2a41d85-d33a-42d9-a7dd-50dfbc9fa7c0": {
+          "_id": "d2a41d85-d33a-42d9-a7dd-50dfbc9fa7c0",
+          "name": "Onfido-CheckApplicant",
+          "description": "Check Applicant",
+          "script": "\"logger.error(\\\"Onfido-CheckApplicant: Start\\\");\\n\\n/*\\n * !!! Extend your authentication session time so your identity proofing flows don't time out !!!\\n *\\n * Authentication > Settings > Trees > Max Duration (Minutes)\\n *\\n * Set to 15 minutes.\\n *\\n */\\n\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n *\\n * REPLACE WITH YOUR OWN ONFIDO API TOKEN\\n */\\n//var ONFIDO_API_TOKEN = \\\"api_live.StUdfxdiCFb.YrzbadxB_R2-qG5lFUc3lWg6JAc3Cnq-\\\"\\nvar ONFIDO_API_TOKEN = \\\"api_live.H5ysRusAomY.nbbkimoWc91cDZAWJZkJt0Tkqdjm1Rjr\\\";\\n/*\\n * END SCRIPT CONFIGURATION\\n */\\n\\nvar requestBodyJson = {\\n    \\\"applicant_id\\\": String(sharedState.get(\\\"onfidoApplicantID\\\")),\\n    \\\"report_names\\\": [\\\"document\\\", \\\"facial_similarity_photo\\\"]\\n}\\n// var requestBodyJson = {\\n//     \\\"applicant_id\\\": String(sharedState.get(\\\"onfidoApplicantID\\\")),\\n//     \\\"report_names\\\": [\\\"document\\\"]\\n// }\\n\\nvar failure = true\\n\\nvar fr = JavaImporter(\\n    org.forgerock.http.protocol.Request\\n)\\n\\nvar request = new fr.Request()\\nrequest.setUri(\\\"https://api.onfido.com/v3/checks\\\")\\nrequest.setMethod(\\\"POST\\\")\\nrequest.getHeaders().add(\\\"Content-Type\\\", \\\"application/json; charset=UTF-8\\\")\\nrequest.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN)\\nrequest.getEntity().setString(JSON.stringify(requestBodyJson))\\n\\nvar response = httpClient.send(request).get()\\nlogger.error(\\\"Onfido-CheckApplicant: Initiate checks response: \\\".concat(response.getEntity().getString()));\\n\\nif (response.getStatus().getCode() === 200) {\\n    var id = JSON.parse(response.getEntity().getString()).id\\n    failure = !id\\n    if (!failure) sharedState.put(\\\"onfidoAuthToken\\\", id);\\n} else {\\n    failure = true\\n}\\n\\noutcome = failure ? \\\"false\\\" : \\\"true\\\";\\nlogger.error(\\\"Onfido-CheckApplicant: End (outcome=\\\".concat(outcome).concat(\\\")\\\"));\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "be6ae73b-69e3-44d7-a4ea-db72305a2a63": {
+          "_id": "be6ae73b-69e3-44d7-a4ea-db72305a2a63",
+          "name": "createF1Customer",
+          "description": "Creates a Customer on F1 Repository",
+          "script": "\"(function() {\\n\\n  /*\\n    - Data made available by nodes that have already executed are available in the sharedState variable.\\n    - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n   */\\n  var objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\n  var userID = sharedState.get(\\\"_id\\\");\\n  logger.error(\\\"**** Create F1 Customer - User ID is {}\\\", String(userID));\\n  var apellidoPaterno;\\n  var apellidoMaterno;\\n  if (sharedState.get(\\\"onFidoOutcome\\\") && String(sharedState.get(\\\"onFidoOutcome\\\")) === \\\"clear\\\") { // Format Last Name and Second Last name\\n    var lastName = String(objectAttributes.get(\\\"sn\\\")).split(\\\" \\\");\\n    if (lastName.length > 1) {\\n      apellidoMaterno = String(lastName[1]);\\n      if (lastName.length > 2) {\\n        apellidoMaterno = apellidoMaterno + \\\"-\\\" + lastName[2];\\n      }\\n      logger.error(\\\"**** Create F1 Customer - Second Last Name is {}\\\", apellidoMaterno);\\n      apellidoPaterno =  String(lastName[0]);\\n    }\\n    logger.error(\\\"**** Create F1 Customer - Last Name  {}\\\", lastName[0]);\\n  }\\n  else {\\n    apellidoPaterno = String(objectAttributes.get(\\\"sn\\\"));\\n    apellidoMaterno = String(objectAttributes.get(\\\"frUnindexedString1\\\"));\\n  }\\n\\n  const postalAddress = String(objectAttributes.get(\\\"postalAddress\\\"));\\n  const city = String(objectAttributes.get(\\\"city\\\"));\\n  const stateProvince = String(objectAttributes.get(\\\"stateProvince\\\"));\\n  const postalCode = String(objectAttributes.get(\\\"postalCode\\\"));\\n  const formattedAddress = String(postalAddress) + \\\", \\\" + String(city) + \\\", \\\" + String(stateProvince) + \\\", \\\" + String(postalCode);\\n  logger.error(\\\"**** Create F1 Customer - Formatted Address  {}\\\", formattedAddress);\\n\\n  var restBody = {\\n    telephoneNumber: String(objectAttributes.get(\\\"telephoneNumber\\\")),\\n    userId: String(objectAttributes.get(\\\"mail\\\")),\\n    userType: String(objectAttributes.get(\\\"description\\\")),\\n    address: String(formattedAddress),\\n    rfc: String(objectAttributes.get(\\\"frIndexedString4\\\")),\\n    nombre: String(objectAttributes.get(\\\"givenName\\\")),\\n    apellidoPaterno: String(apellidoPaterno),\\n    apellidoMaterno: String(apellidoMaterno),\\n    email: String(objectAttributes.get(\\\"mail\\\")),\\n  };\\n\\n  if (String(objectAttributes.get(\\\"description\\\")) === \\\"Usuario\\\") {\\n    restBody.titularUserId = String(objectAttributes.get(\\\"frIndexedString5\\\"));\\n  }\\n\\n  var request = new org.forgerock.http.protocol.Request();\\n  request.setMethod('POST');\\n  request.setUri('http://34.239.121.198:9090/customers');\\n  request.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\n  request.getEntity().setString(JSON.stringify(restBody));\\n  var response = httpClient.send(request).get();\\n  var jsonResult = JSON.parse(response.getEntity().getString());\\n\\n  if (jsonResult.hasOwnProperty(\\\"error\\\") ) {\\n      outcome = \\\"false\\\";\\n  } else {\\n    objectAttributes.put(\\\"givenName\\\", jsonResult.nombre);\\n    objectAttributes.put(\\\"userName\\\", jsonResult.email);\\n    objectAttributes.put(\\\"sn\\\", jsonResult.apellidoPaterno);\\n    objectAttributes.put(\\\"frUnindexedString1\\\", jsonResult.apellidoMaterno);\\n    objectAttributes.put(\\\"mail\\\", jsonResult.email);\\n    objectAttributes.put(\\\"frIndexedString4\\\", jsonResult.rfc);\\n    objectAttributes.put(\\\"description\\\", jsonResult.userType);\\n    objectAttributes.put(\\\"telephoneNumber\\\", jsonResult.telephoneNumber);\\n    if (jsonResult.userType === \\\"Usuario\\\") {\\n      objectAttributes.put(\\\"frIndexedString5\\\", jsonResult.titularUserId);\\n    }\\n    sharedState.put(\\\"objectAttributes\\\", objectAttributes);\\n    sharedState.put(\\\"username\\\", jsonResult.email);\\n    sharedState.put(\\\"savedUserName\\\", jsonResult.email);\\n    outcome = \\\"true\\\";\\n  }\\n}());\\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "739bdc48-fd24-4c52-b353-88706d75558a": {
+          "_id": "739bdc48-fd24-4c52-b353-88706d75558a",
+          "name": "Check Username",
+          "description": "Check if username has already been collected.",
+          "script": "\"/* Check Username\\n *\\n * Author: volker.scheuber@forgerock.com\\n * \\n * Check if username has already been collected.\\n * Return \\\"known\\\" if yes, \\\"unknown\\\" otherwise.\\n * \\n * This script does not need to be parametrized. It will work properly as is.\\n * \\n * The Scripted Decision Node needs the following outcomes defined:\\n * - known\\n * - unknown\\n */\\n(function () {\\n    if (null != sharedState.get(\\\"username\\\")) {\\n        outcome = \\\"known\\\";\\n    }\\n    else {\\n        outcome = \\\"unknown\\\";\\n    }\\n}());\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "25d8a628-3556-4219-aaf5-2384e2e5f19a": {
+          "_id": "25d8a628-3556-4219-aaf5-2384e2e5f19a",
+          "name": "Onfido-CreateApplicant",
+          "description": "Create Applicant",
+          "script": "\"logger.error(\\\"Onfido-CreateApplicant: Start\\\");\\n\\n/*\\n * !!! Extend your authentication session time so your identity proofing flows don't time out !!!\\n *\\n * Authentication > Settings > Trees > Max Duration (Minutes)\\n *\\n * Set to 15 minutes.\\n *\\n */\\n\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n *\\n * REPLACE WITH YOUR OWN ONFIDO API TOKEN\\n */\\nvar ONFIDO_API_TOKEN = \\\"api_live.StUdfxdiCFb.YrzbadxB_R2-qG5lFUc3lWg6JAc3Cnq-\\\";\\n/*\\n * END SCRIPT CONFIGURATION\\n */\\n\\n// Requires Identify Existing User auth node to retrieve real user ID from IDM\\nvar username = sharedState.get(\\\"_id\\\");\\n\\n// Retrieve user profile attributes for comparison with document verification\\n// var requestBodyJson = {\\n//     \\\"first_name\\\": String(idRepository.getAttribute(username, \\\"givenName\\\").iterator().next().toString()),\\n//     \\\"last_name\\\": String(idRepository.getAttribute(username, \\\"sn\\\").iterator().next().toString()),\\n//     \\\"dob\\\": String(idRepository.getAttribute(username, \\\"fr-attr-istr1\\\").iterator().next().toString())\\n// }\\nvar requestBodyJson = {\\n    \\\"first_name\\\": String(idRepository.getAttribute(username, \\\"givenName\\\").iterator().next().toString()),\\n    \\\"last_name\\\": String(idRepository.getAttribute(username, \\\"sn\\\").iterator().next().toString())\\n}\\n\\nvar failure = true\\n\\nvar fr = JavaImporter(\\n    org.forgerock.http.protocol.Request\\n)\\n\\nvar request = new fr.Request();\\nrequest.setUri(\\\"https://api.onfido.com/v3/applicants/\\\");\\nrequest.setMethod(\\\"POST\\\");\\nrequest.getHeaders().add(\\\"Content-Type\\\", \\\"application/json; charset=UTF-8\\\");\\nrequest.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN);\\nrequest.getEntity().setString(JSON.stringify(requestBodyJson));\\n\\nvar response = httpClient.send(request).get();\\nlogger.error(\\\"Onfido-CreateApplicant: Create applicant ID response: \\\".concat(response.getEntity().getString()));\\n\\nif (response.getStatus().getCode() === 201) {\\n    var applicantID = JSON.parse(response.getEntity().getString()).id;\\n    failure = !applicantID;\\n    if (!failure) sharedState.put(\\\"onfidoApplicantID\\\", applicantID);\\n}\\nelse {\\n    failure = true;\\n}\\n\\n// Get Onfido client JWT token required by client SDK\\nif (!failure) {\\n\\t// get the referer\\n\\tvar referer = parseUrl(requestHeaders.get(\\\"referer\\\").get(0));\\n    var requestBodyJson = {\\n        \\\"applicant_id\\\": String(sharedState.get(\\\"onfidoApplicantID\\\")),\\n        \\\"referrer\\\": referer.origin.concat(\\\"/\\\")\\n    }\\n\\n    failure = true;\\n\\n    request = new fr.Request();\\n    request.setUri(\\\"https://api.onfido.com/v3/sdk_token\\\");\\n    request.setMethod(\\\"POST\\\");\\n    request.getHeaders().add(\\\"Content-Type\\\", \\\"application/json; charset=UTF-8\\\");\\n    request.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN);\\n    request.getEntity().setString(JSON.stringify(requestBodyJson));\\n\\n    response = httpClient.send(request).get();\\n    logger.error(\\\"Onfido-CreateApplicant: Get sdk token response: \\\".concat(response.getEntity().getString()));\\n\\n    if (response.getStatus().getCode() === 200) {\\n        var token = JSON.parse(response.getEntity().getString()).token\\n        failure = !token;\\n        if (!failure) sharedState.put(\\\"onfidoAuthToken\\\", token);\\n    }\\n    else {\\n        failure = true;\\n    }\\n}\\n\\noutcome = failure ? \\\"false\\\" : \\\"true\\\";\\nlogger.error(\\\"Onfido-CreateApplicant: End (outcome=\\\".concat(outcome).concat(\\\")\\\"));\\n\\n/*\\n * Parse a URL into its components and make them easily accessible by name\\n * \\n * e.g.: https://openam-volker-dev.forgeblocks.com/am/XUI/?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim#/\\n * {\\n *     hash: '#/',\\n *     host: 'openam-volker-dev.forgeblocks.com',\\n *     hostname: 'openam-volker-dev.forgeblocks.com',\\n *     href: 'https://openam-volker-dev.forgeblocks.com/am/XUI/?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim#/',\\n *     origin: 'https://openam-volker-dev.forgeblocks.com',\\n *     pathname: '/am/XUI/',\\n *     port: '',\\n *     protocol: 'https',\\n *     search: '?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim',\\n *     username: '',\\n *     password: '',\\n *     searchParam: {\\n *         realm: '/bravo',\\n *         authIndexType: 'service',\\n *         authIndexValue: 'InitiateOwnerClaim'\\n *     }\\n * }\\n */\\nfunction parseUrl(href) {\\n    var m = href.match(/^(([^:\\\\/?#]+):?(?:\\\\/\\\\/((?:([^\\\\/?#:]*):([^\\\\/?#:]*)@)?([^\\\\/?#:]*)(?::([^\\\\/?#:]*))?)))?([^?#]*)(\\\\?[^#]*)?(#.*)?$/),\\n    r = {\\n        hash: m[10] || \\\"\\\",                      // #/\\n        host: m[3] || \\\"\\\",                       // openam-volker-dev.forgeblocks.com\\n        hostname: m[6] || \\\"\\\",                   // openam-volker-dev.forgeblocks.com\\n        href: m[0] || \\\"\\\",                       // https://openam-volker-dev.forgeblocks.com/am/XUI/?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim#/\\n        origin: m[1] || \\\"\\\",                     // https://openam-volker-dev.forgeblocks.com\\n        pathname: m[8] || (m[1] ? \\\"/\\\" : \\\"\\\"),    // /am/XUI/\\n        port: m[7] || \\\"\\\",                       // \\n        protocol: m[2] || \\\"\\\",                   // https\\n        search: m[9] || \\\"\\\",                     // ?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim\\n        username: m[4] || \\\"\\\",                   // \\n        password: m[5] || \\\"\\\",                   // \\n        searchParam: {}                         // { realm: '/bravo',\\n                                                //   authIndexType: 'service',\\n                                                //   authIndexValue: 'InitiateOwnerClaim' }\\n    };\\n    if (r.protocol.length == 2) {\\n        r.protocol = \\\"file:///\\\" + r.protocol.toUpperCase();\\n        r.origin = r.protocol + \\\"//\\\" + r.host;\\n    }\\n    if (r.search.length > 2) {\\n        var query = (r.search.indexOf('?') === 0) ? r.search.substr(1) : r.search;\\n        var vars = query.split('&');\\n        for (var i = 0; i < vars.length; i++) {\\n        var pair = vars[i].split('=');\\n        r.searchParam[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);\\n        }\\n    }\\n    r.href = r.origin + r.pathname + r.search + r.hash;\\n    return r;\\n};\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "71545db5-ce01-46b1-b79f-d41af36bd548": {
+          "_id": "71545db5-ce01-46b1-b79f-d41af36bd548",
+          "name": "Onfido-CaptureEvidence",
+          "description": "Capture Evidence",
+          "script": "\"logger.error(\\\"Onfido-CaptureEvidence: Start\\\");\\n/*\\n * !!! Extend your authentication session time so your identity proofing flows don't time out !!!\\n *\\n * Authentication > Settings > Trees > Max Duration (Minutes)\\n *\\n * Set to 15 minutes.\\n *\\n */\\n\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n */\\nvar onfido_auth_token = String(sharedState.get(\\\"onfidoAuthToken\\\"));\\nvar onfido_dialog_title = \\\"Join the Expanse family!\\\";\\nvar onfido_dialog_msg1 = \\\"To open an Expanse account, we will need to verify your identity.\\\";\\nvar onfido_dialog_msg2 = \\\"It will only take a couple of minutes.\\\";\\nvar onfido_country_code = \\\"US\\\";\\n/*\\n * END SCRIPT CONFIGURATION\\n */\\n\\nvar mobile = idRepository.getAttribute(sharedState.get(\\\"_id\\\"), \\\"telephoneNumber\\\");\\nvar smsNumber = \\\"\\\";\\nif (mobile && mobile.iterator().hasNext()) {\\n    smsNumber = String(mobile.iterator().next().toString());\\n}\\n\\n// Inject Onfido SDK into login page\\nonfidoScript = String(\\\"var body=document.body;\\\\n\\\" +\\n    \\\"var script = document.createElement('script');\\\\n\\\" +\\n    \\\"document.getElementById('callbacksPanel').style.display = 'none';\\\\n\\\" +\\n    \\\"var onfido_div = document.createElement(\\\\\\\"div\\\\\\\");\\\\n\\\" +\\n    \\\"onfido_div.id=\\\\\\\"onfido-mount\\\\\\\";\\\\n\\\" +\\n    \\\"script.src = 'https://assets.onfido.com/web-sdk-releases/5.2.1/onfido.min.js';\\\\n\\\" +\\n    \\\"var head = document.head; \\\\n \\\" +\\n    \\\"var link = document.createElement(\\\\\\\"link\\\\\\\");  \\\\n\\\" +\\n    \\\"     link.type = \\\\\\\"text/css\\\\\\\"; \\\\n \\\" +\\n    \\\"     link.rel = \\\\\\\"stylesheet\\\\\\\"; \\\\n \\\" +\\n    \\\"     link.href = 'https://assets.onfido.com/web-sdk-releases/5.2.1/style.css'; \\\\n \\\" +\\n    \\\"    head.appendChild(link); \\\\n \\\" +\\n    \\\";\\\\n\\\" +\\n    \\\"var onfido = {};\\\\n\\\" +\\n    \\\"script.onload=function() {\\\\n\\\" +\\n    \\\"\\tonfido=Onfido.init({\\\\n\\\" +\\n    \\\"       token: '\\\" + onfido_auth_token + \\\"', \\\\n\\\" +\\n    \\\"       useModal: true, \\\\n\\\" +\\n    \\\"       isModalOpen: true, \\\\n\\\" +\\n    \\\"       smsNumberCountryCode: '\\\" + onfido_country_code + \\\"', \\\\n\\\" +\\n    \\\"       userDetails: { \\\\n\\\" +\\n    \\\"           smsNumber: '\\\" + smsNumber + \\\"' \\\\n\\\" +\\n    \\\"       }, \\\\n\\\" +\\n    \\\"       steps: [\\\\n\\\" +\\n    \\\"           {\\\\n\\\" +\\n    \\\"               type:'welcome',\\\\n\\\" +\\n    \\\"               options:{\\\\n\\\" +\\n    \\\"                   title:'\\\" + onfido_dialog_title + \\\"',\\\\n\\\" +\\n    \\\"                   descriptions:[\\\\n\\\" +\\n    \\\"                       '\\\" + onfido_dialog_msg1 + \\\"',\\\\n\\\" +\\n    \\\"                       '\\\" + onfido_dialog_msg2 + \\\"',\\\\n\\\" +\\n    \\\"                   ]\\\\n\\\" +\\n    \\\"               }\\\\n\\\" +\\n    \\\"          },\\\\n\\\" +\\n    \\\"          'document',\\\\n\\\" +\\n    \\\"          'face',\\\\n\\\" +\\n    \\\"          'complete',\\\\n\\\" +\\n    \\\"       ],\\\\n\\\" +\\n    \\\"       onComplete: function(data){ console.log('DONE'); onfido.setOptions({ isModalOpen:false }); document.getElementById('loginButton_0').click(); } \\\\n\\\" +\\n    \\\"    })\\\\n\\\" +\\n    \\\"};\\\\n\\\" +\\n    \\\"document.body.appendChild(script);\\\\n\\\");\\n\\nvar fr = JavaImporter(\\n    org.forgerock.openam.auth.node.api,\\n    javax.security.auth.callback.NameCallback,\\n    com.sun.identity.authentication.callbacks.ScriptTextOutputCallback\\n);\\n\\nwith (fr) {\\n    if (callbacks.isEmpty()) {\\n        logger.error(\\\"Onfido-CaptureEvidence: Sending callbacks\\\");\\n        action = Action.send(new ScriptTextOutputCallback(onfidoScript)).build();\\n    } else {\\n        logger.error(\\\"Onfido-CaptureEvidence: End (outcome=true)\\\");\\n        action = Action.goTo(\\\"true\\\").build();\\n    }\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "0c189425-e5ea-4062-ae2e-53ea14320bf4": {
+          "_id": "0c189425-e5ea-4062-ae2e-53ea14320bf4",
+          "name": "Onfido-CheckStatus",
+          "description": "Check Status",
+          "script": "\"logger.error(\\\"Onfido-CheckStatus: Start\\\");\\n\\n/*\\n * !!! Extend your authentication session time so your identity proofing flows don't time out !!!\\n *\\n * Authentication > Settings > Trees > Max Duration (Minutes)\\n *\\n * Set to 15 minutes.\\n *\\n */\\n\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n *\\n * REPLACE WITH YOUR OWN ONFIDO API TOKEN\\n */\\n//var ONFIDO_API_TOKEN = \\\"api_live.StUdfxdiCFb.YrzbadxB_R2-qG5lFUc3lWg6JAc3Cnq-\\\"\\nvar ONFIDO_API_TOKEN = \\\"api_live.H5ysRusAomY.nbbkimoWc91cDZAWJZkJt0Tkqdjm1Rjr\\\";\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n */\\n\\nvar fr = JavaImporter(\\n    org.forgerock.http.protocol.Request\\n)\\n\\nvar request = new fr.Request()\\nrequest.setUri(\\\"https://api.onfido.com/v3/checks?applicant_id=\\\" + String(sharedState.get(\\\"onfidoApplicantID\\\")));\\nrequest.setMethod(\\\"GET\\\")\\nrequest.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN)\\nvar response = httpClient.send(request).get()\\nlogger.error(\\\"Onfido-CheckStatus: status check response: \\\".concat(response.getEntity().getString()));\\n\\noutcome = \\\"pending\\\";\\n\\nif (response.getStatus().getCode() === 200) {\\n    var json = JSON.parse(response.getEntity().getString());\\n    if (json.checks.length > 0) {\\n        if (json.checks[0].status == \\\"complete\\\") {\\n            outcome = json.checks[0].result;\\n\\n            for (i = 0; i < json.checks[0].report_ids.length; i++) {\\n\\n                var request = new fr.Request()\\n                request.setUri(\\\"https://api.onfido.com/v3/reports/\\\" + String(json.checks[0].report_ids[i]));\\n                request.setMethod(\\\"GET\\\")\\n                request.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN)\\n                response = httpClient.send(request).get()\\n                logger.error(\\\"Onfido-CheckStatus: get report response: \\\".concat(response.getEntity().getString()));\\n\\n                var report = JSON.parse(response.getEntity().getString());\\n                if (report.name == \\\"document\\\") {\\n                    if (report.properties.hasOwnProperty(\\\"first_name\\\")) setSharedObjectAttribute(\\\"givenName\\\", titleCase(report.properties.first_name));\\n                    if (report.properties.hasOwnProperty(\\\"last_name\\\")) setSharedObjectAttribute(\\\"sn\\\", titleCase(report.properties.last_name));\\n                    if (report.properties.barcode[0].hasOwnProperty(\\\"address_line_1\\\")) setSharedObjectAttribute(\\\"postalAddress\\\", titleCase(report.properties.barcode[0].address_line_1));\\n                    if (report.properties.barcode[0].hasOwnProperty(\\\"address_line_3\\\")) setSharedObjectAttribute(\\\"city\\\", titleCase(report.properties.barcode[0].address_line_3));\\n                    if (report.properties.barcode[0].hasOwnProperty(\\\"address_line_5\\\")) setSharedObjectAttribute(\\\"stateProvince\\\", report.properties.barcode[0].address_line_5);\\n                    if (report.properties.barcode[0].hasOwnProperty(\\\"address_line_4\\\")) setSharedObjectAttribute(\\\"postalCode\\\", formatOnfidoZipCode(report.properties.barcode[0].address_line_4));\\n                    if (report.properties.hasOwnProperty(\\\"issuing_country\\\")) setSharedObjectAttribute(\\\"country\\\", report.properties.issuing_country);\\n                }\\n            }\\n        }\\n    }\\n  \\n} else outcome = \\\"error\\\";\\n\\nsharedState.put(\\\"onFidoOutcome\\\", outcome);\\nlogger.error(\\\"Onfido-CheckStatus: End (outcome=\\\".concat(outcome).concat(\\\")\\\"));\\n\\n/*\\n * Output str in title case\\n * \\n * e.g.: 'ALL UPPERCASE AND all lowercase' = 'All Uppercase And All Lowercase'\\n */\\nfunction titleCase(input) {\\n    var str = input.toString();\\n    var splitStr = str.toLowerCase().split(' ');\\n    for (var i = 0; i < splitStr.length; i++) {\\n        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].slice(1)\\n    }\\n    return splitStr.join(' '); \\n}\\n\\n/*\\n * Format ZIP code from Onfido identity proofing output\\n * \\n * e.g.: 786260000 = 78626\\n *       786261234 = 78626-1234\\n */\\nfunction formatOnfidoZipCode(str) {\\n  if (str.substring(5) == \\\"0000\\\") {\\n    return str.substring(0,5)\\n  }\\n  else {\\n    return str.substring(0,5) + \\\"-\\\" + str.substring(5);\\n  }\\n}\\n\\n/*\\n * Store attributes in shared state for use with the Create/Patch Object nodes.\\n */\\nfunction setSharedObjectAttribute(name, value) {\\n  logger.error(\\\"**** FR Attribute Name {} : OnFIDO Attr value: {}\\\", name, value);\\n  //sharedState.put(name, value);\\n  var storage = sharedState.get(\\\"objectAttributes\\\");\\n  if (storage && value) {\\n    if (storage.put) {\\n      storage.put(name, value);\\n    }\\n    else {\\n      storage[name] = value;\\n    }\\n  }\\n  else if (value) {\\n    sharedState.put(\\\"objectAttributes\\\", JSON.parse(\\\"{\\\\\\\"\\\"+name+\\\"\\\\\\\":\\\\\\\"\\\"+value+\\\"\\\\\\\"}\\\"));\\n  }\\n  sharedState.put(\\\"objectAttributes\\\", storage);\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

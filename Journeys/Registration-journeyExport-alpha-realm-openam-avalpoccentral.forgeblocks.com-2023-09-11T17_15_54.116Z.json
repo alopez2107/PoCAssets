@@ -1,0 +1,585 @@
+{
+  "meta": {
+    "origin": "https://openam-avalpoccentral.forgeblocks.com/platform/?realm=alpha#/journeys/Registration",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2023-09-11T17:15:54.116Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "Registration"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "Registration": {
+      "tree": {
+        "_id": "Registration",
+        "_rev": "-162679408",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[\"Registration\"]"
+        },
+        "entryNodeId": "0c091c49-f3af-48fb-ac6f-07fba0499dd6",
+        "nodes": {
+          "017a0bb7-941e-44e5-aac7-2609146e9db1": {
+            "connections": {
+              "true": "6eac2bd8-3ac5-4912-bdb5-a9ee2865ff69"
+            },
+            "displayName": "Set E-Mail as User Name",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 452,
+            "y": 203.015625
+          },
+          "0c091c49-f3af-48fb-ac6f-07fba0499dd6": {
+            "connections": {
+              "outcome": "017a0bb7-941e-44e5-aac7-2609146e9db1"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 182,
+            "y": 147
+          },
+          "53b5c15b-9810-4ea1-8dfb-1a3b21f43848": {
+            "connections": {
+              "true": "ddb57cef-c32c-4e81-97d8-01ce3f6360d6"
+            },
+            "displayName": "Set Org to Both",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1070,
+            "y": 313.015625
+          },
+          "5e629e6a-8cd7-4278-a6ce-aa2a4d549318": {
+            "connections": {
+              "true": "97a15eb2-a015-4b6d-81a0-be78c3aa1a3b"
+            },
+            "displayName": "Identify Existing User",
+            "nodeType": "IdentifyExistingUserNode",
+            "x": 2287,
+            "y": 30.015625
+          },
+          "6dc67e93-21e4-46a1-b18d-f9f3acf3535f": {
+            "connections": {
+              "true": "ddb57cef-c32c-4e81-97d8-01ce3f6360d6"
+            },
+            "displayName": "Set Org to Banco de Occidente",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1056,
+            "y": 103.015625
+          },
+          "6eac2bd8-3ac5-4912-bdb5-a9ee2865ff69": {
+            "connections": {
+              "Banco de Bogotá": "d72b5a1d-d662-4010-bb47-2c72fa16037f",
+              "Banco de Occidente": "6dc67e93-21e4-46a1-b18d-f9f3acf3535f",
+              "Both": "53b5c15b-9810-4ea1-8dfb-1a3b21f43848"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 743,
+            "y": 108.015625
+          },
+          "7baa8063-6efd-4edb-9317-276441669e55": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "ad5dcbb3-7335-49b7-b3e7-7d850bb88237"
+            },
+            "displayName": "Create Users on Tenants",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1708,
+            "y": 158.015625
+          },
+          "97a15eb2-a015-4b6d-81a0-be78c3aa1a3b": {
+            "connections": {
+              "outcome": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Increment Login Count",
+            "nodeType": "IncrementLoginCountNode",
+            "x": 2580,
+            "y": 57
+          },
+          "ad5dcbb3-7335-49b7-b3e7-7d850bb88237": {
+            "connections": {
+              "CREATED": "5e629e6a-8cd7-4278-a6ce-aa2a4d549318",
+              "FAILURE": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "Create Object",
+            "nodeType": "CreateObjectNode",
+            "x": 1998,
+            "y": 28
+          },
+          "d72b5a1d-d662-4010-bb47-2c72fa16037f": {
+            "connections": {
+              "true": "ddb57cef-c32c-4e81-97d8-01ce3f6360d6"
+            },
+            "displayName": "Set Org to Banco de Bogota",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1057,
+            "y": 198.015625
+          },
+          "ddb57cef-c32c-4e81-97d8-01ce3f6360d6": {
+            "connections": {
+              "true": "7baa8063-6efd-4edb-9317-276441669e55"
+            },
+            "displayName": "Set Org end-point",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1438,
+            "y": 184.015625
+          }
+        },
+        "description": "Platform Registration Tree",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 2991,
+            "y": 43
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 3013,
+            "y": 515
+          },
+          "startNode": {
+            "x": 50,
+            "y": 25
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "017a0bb7-941e-44e5-aac7-2609146e9db1": {
+          "_id": "017a0bb7-941e-44e5-aac7-2609146e9db1",
+          "_rev": "1142307100",
+          "script": "727195ca-fefb-4d78-99f6-3cf3cd7ecb70",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "0c091c49-f3af-48fb-ac6f-07fba0499dd6": {
+          "_id": "0c091c49-f3af-48fb-ac6f-07fba0499dd6",
+          "_rev": "413630642",
+          "nodes": [
+            {
+              "_id": "d3ce2036-1523-4ce8-b1a2-895a2a036667",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Attribute Collector"
+            },
+            {
+              "_id": "3d8709a1-f09f-4d1f-8094-2850e472c1db",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {
+            "en": "Signing up is fast and easy.<br>Already have an account? <a href='#/service/Login'>Sign In</a>"
+          },
+          "pageHeader": {
+            "en": "Sign Up"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "53b5c15b-9810-4ea1-8dfb-1a3b21f43848": {
+          "_id": "53b5c15b-9810-4ea1-8dfb-1a3b21f43848",
+          "_rev": "-803540473",
+          "script": "46462a1e-e25f-4a8a-bc58-d675ae0d105e",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "5e629e6a-8cd7-4278-a6ce-aa2a4d549318": {
+          "_id": "5e629e6a-8cd7-4278-a6ce-aa2a4d549318",
+          "_rev": "491112839",
+          "identityAttribute": "mail",
+          "identifier": "userName",
+          "_type": {
+            "_id": "IdentifyExistingUserNode",
+            "name": "Identify Existing User",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "6dc67e93-21e4-46a1-b18d-f9f3acf3535f": {
+          "_id": "6dc67e93-21e4-46a1-b18d-f9f3acf3535f",
+          "_rev": "698893621",
+          "script": "27b49099-a15e-4879-8b20-b0667bae1af5",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "6eac2bd8-3ac5-4912-bdb5-a9ee2865ff69": {
+          "_id": "6eac2bd8-3ac5-4912-bdb5-a9ee2865ff69",
+          "_rev": "306437021",
+          "nodes": [
+            {
+              "_id": "5fe112fd-603b-4f23-a9b5-2c4c22ed50c5",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "stage": "{\"ChoiceCallback\":[{\"id\":\"5fe112fd-603b-4f23-a9b5-2c4c22ed50c5\",\"displayType\":\"radio\"}]}",
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Banco de Occidente",
+              "displayName": "Banco de Occidente"
+            },
+            {
+              "id": "Banco de Bogotá",
+              "displayName": "Banco de Bogotá"
+            },
+            {
+              "id": "Both",
+              "displayName": "Both"
+            }
+          ]
+        },
+        "7baa8063-6efd-4edb-9317-276441669e55": {
+          "_id": "7baa8063-6efd-4edb-9317-276441669e55",
+          "_rev": "205716136",
+          "script": "c1498476-6460-42ab-9f1e-dc7c9f0dc0a6",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "97a15eb2-a015-4b6d-81a0-be78c3aa1a3b": {
+          "_id": "97a15eb2-a015-4b6d-81a0-be78c3aa1a3b",
+          "_rev": "-841385771",
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "IncrementLoginCountNode",
+            "name": "Increment Login Count",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "ad5dcbb3-7335-49b7-b3e7-7d850bb88237": {
+          "_id": "ad5dcbb3-7335-49b7-b3e7-7d850bb88237",
+          "_rev": "-612221945",
+          "identityResource": "managed/alpha_user",
+          "_type": {
+            "_id": "CreateObjectNode",
+            "name": "Create Object",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "CREATED",
+              "displayName": "Created"
+            },
+            {
+              "id": "FAILURE",
+              "displayName": "Failed"
+            }
+          ]
+        },
+        "d72b5a1d-d662-4010-bb47-2c72fa16037f": {
+          "_id": "d72b5a1d-d662-4010-bb47-2c72fa16037f",
+          "_rev": "594173123",
+          "script": "71edd000-340a-4149-ab49-15c07e5f3730",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "ddb57cef-c32c-4e81-97d8-01ce3f6360d6": {
+          "_id": "ddb57cef-c32c-4e81-97d8-01ce3f6360d6",
+          "_rev": "-648245639",
+          "script": "9fab93cd-59c1-421b-99e9-a5a28f3ba8be",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "d3ce2036-1523-4ce8-b1a2-895a2a036667": {
+          "_id": "d3ce2036-1523-4ce8-b1a2-895a2a036667",
+          "_rev": "191391596",
+          "attributesToCollect": [
+            "mail",
+            "givenName",
+            "sn",
+            "telephoneNumber"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": true,
+          "required": true,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "3d8709a1-f09f-4d1f-8094-2850e472c1db": {
+          "_id": "3d8709a1-f09f-4d1f-8094-2850e472c1db",
+          "_rev": "-1470058997",
+          "passwordAttribute": "password",
+          "validateInput": true,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "5fe112fd-603b-4f23-a9b5-2c4c22ed50c5": {
+          "_id": "5fe112fd-603b-4f23-a9b5-2c4c22ed50c5",
+          "_rev": "-21808950",
+          "defaultChoice": "Banco de Occidente",
+          "choices": [
+            "Banco de Occidente",
+            "Banco de Bogotá",
+            "Both"
+          ],
+          "prompt": "Select your Organization",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Banco de Occidente",
+              "displayName": "Banco de Occidente"
+            },
+            {
+              "id": "Banco de Bogotá",
+              "displayName": "Banco de Bogotá"
+            },
+            {
+              "id": "Both",
+              "displayName": "Both"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "727195ca-fefb-4d78-99f6-3cf3cd7ecb70": {
+          "_id": "727195ca-fefb-4d78-99f6-3cf3cd7ecb70",
+          "name": "EmailAsUsername",
+          "description": null,
+          "script": "\"objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nuserName = objectAttributes.get(\\\"userName\\\");\\n\\nif(userName){\\n  //Form Fill\\n  objectAttributes.put(\\\"mail\\\", userName);\\n} else {\\n  //Social\\n  objectAttributes.put(\\\"userName\\\", objectAttributes.get(\\\"mail\\\"));\\n}\\nvar password = transientState.get(\\\"password\\\");\\nobjectAttributes.put(\\\"password\\\", password);\\nsharedState.put(\\\"objectAttributes\\\", objectAttributes);\\n//sharedState.put(\\\"username\\\", mail)\\n\\noutcome = \\\"true\\\";\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "46462a1e-e25f-4a8a-bc58-d675ae0d105e": {
+          "_id": "46462a1e-e25f-4a8a-bc58-d675ae0d105e",
+          "name": "setEmployeeOrgBoth",
+          "description": null,
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"true\\\";\\n\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\n\\nobjectAttributes.put(\\\"frIndexedString2\\\",\\\"Grupo Aval\\\");\\nsharedState.put(\\\"empOrg\\\", \\\"Both\\\");\\nsharedState.put(\\\"objectAttributes\\\", objectAttributes);\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "27b49099-a15e-4879-8b20-b0667bae1af5": {
+          "_id": "27b49099-a15e-4879-8b20-b0667bae1af5",
+          "name": "setEmployeeOrgBDEOCC",
+          "description": null,
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"true\\\";\\n\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\n\\nobjectAttributes.put(\\\"frIndexedString2\\\",\\\"Banco de Occidente\\\");\\nsharedState.put(\\\"empOrg\\\", \\\"Banco de Occidente\\\");\\nsharedState.put(\\\"objectAttributes\\\", objectAttributes);\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "c1498476-6460-42ab-9f1e-dc7c9f0dc0a6": {
+          "_id": "c1498476-6460-42ab-9f1e-dc7c9f0dc0a6",
+          "name": "createUserOnTenants",
+          "description": null,
+          "script": "\"var request = new org.forgerock.http.protocol.Request();\\nvar password = transientState.get(\\\"password\\\");\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nobjectAttributes.put(\\\"password\\\", password);\\nvar empOrg = sharedState.get(\\\"empOrg\\\");\\n\\nfunction provisionToTenant(provisioningEndpoint) {\\n  var request = new org.forgerock.http.protocol.Request();\\n  request.setMethod('POST');\\n  request.setUri(provisioningEndpoint);\\n  request.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\n  request.getEntity().setString(JSON.stringify(objectAttributes));\\n  var response = httpClient.send(request).get();\\n  var jsonResult = JSON.parse(response.getEntity().getString());\\n  if ( jsonResult.hasOwnProperty(\\\"newUser\\\") ) {\\n      return \\\"true\\\";\\n  }\\n  else {\\n      return \\\"false\\\";\\n  }  \\n}\\n\\n\\nif (empOrg === \\\"Both\\\") {\\n  var endpointList = sharedState.get(\\\"endpointList\\\");\\n  for (i=0; i<endpointList.length; i++) {\\n    outcome = provisionToTenant(endpointList[i]);\\n    if (outcome === \\\"false\\\") {\\n      break;\\n    }\\n  } \\n}\\nelse {\\n\\tvar provisioningEndpoint = sharedState.get(\\\"orgEndpoint\\\");\\n\\toutcome = provisionToTenant(provisioningEndpoint);\\n}\\n\\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "71edd000-340a-4149-ab49-15c07e5f3730": {
+          "_id": "71edd000-340a-4149-ab49-15c07e5f3730",
+          "name": "setEmployeeOrgBDEBOG",
+          "description": null,
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"true\\\";\\n\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\n\\nobjectAttributes.put(\\\"frIndexedString2\\\",\\\"Banco de Bogota\\\");\\nsharedState.put(\\\"empOrg\\\", \\\"Banco de Bogota\\\");\\nsharedState.put(\\\"objectAttributes\\\", objectAttributes);\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "9fab93cd-59c1-421b-99e9-a5a28f3ba8be": {
+          "_id": "9fab93cd-59c1-421b-99e9-a5a28f3ba8be",
+          "name": "setTenantEndpoint",
+          "description": null,
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"true\\\";\\n\\nvar empOrg = sharedState.get(\\\"empOrg\\\");\\n\\nif (empOrg === 'Banco de Occidente') {\\n  sharedState.put(\\\"orgEndpoint\\\", \\\"https://avalpoc.encore.forgerock.com/aval/emp/create\\\");\\n}\\nelse {\\n  if (empOrg === 'Both') {\\n    sharedState.put(\\\"endpointList\\\", [\\\"https://avalpoc.encore.forgerock.com/aval/emp/create\\\", \\\"https://avalpoc2.encore.forgerock.com/aval/emp/create\\\"]);\\n  }\\n  else {\\n    sharedState.put(\\\"orgEndpoint\\\", \\\"https://avalpoc2.encore.forgerock.com/aval/emp/create\\\");\\n  }\\n}\\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

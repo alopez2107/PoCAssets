@@ -1,0 +1,14 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: tpp-backendconfig
+spec:
+  healthCheck:
+    checkIntervalSec: 60
+    port: 3000
+    type: HTTP
+    requestPath: /
+  logging:
+    enable: true
+  securityPolicy:
+    name: encore-security-policy

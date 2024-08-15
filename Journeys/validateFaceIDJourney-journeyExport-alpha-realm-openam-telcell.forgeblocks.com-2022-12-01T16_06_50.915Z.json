@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "origin": "https://openam-telcell.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2022-12-01T16:06:50.915Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "validateFaceIDJourney"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "validateFaceIDJourney": {
+      "tree": {
+        "_id": "validateFaceIDJourney",
+        "_rev": "1600410142",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "a1e4fc39-3f5d-4e24-93f8-9a9074420462",
+        "nodes": {
+          "a1e4fc39-3f5d-4e24-93f8-9a9074420462": {
+            "connections": {
+              "outcome": "c236d6a0-79cb-4b20-a0e9-116fd2c9fbde"
+            },
+            "displayName": "Capture Fingerprint",
+            "nodeType": "PageNode",
+            "x": 190,
+            "y": 134.015625
+          },
+          "c236d6a0-79cb-4b20-a0e9-116fd2c9fbde": {
+            "connections": {
+              "invalid": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "system_error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "valid": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Validate Facial Capture",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 440,
+            "y": 146.015625
+          }
+        },
+        "description": "Authentication via Face Recognition Biometrics (Simulation)",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 901,
+            "y": 50
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 720,
+            "y": 432
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "a1e4fc39-3f5d-4e24-93f8-9a9074420462": {
+          "_id": "a1e4fc39-3f5d-4e24-93f8-9a9074420462",
+          "_rev": "-2129642042",
+          "nodes": [
+            {
+              "_id": "9e3d4f28-1741-41d9-b84c-3d4efe0ece25",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Attribute Collector"
+            }
+          ],
+          "pageDescription": {
+            "en": "Favor de realizar su Captura Facial. Siga las indicaciones de su asesor."
+          },
+          "pageHeader": {
+            "en": "Captura Facial"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "c236d6a0-79cb-4b20-a0e9-116fd2c9fbde": {
+          "_id": "c236d6a0-79cb-4b20-a0e9-116fd2c9fbde",
+          "_rev": "1351950425",
+          "script": "65014083-6711-484a-a7e3-f478c676343a",
+          "outcomes": [
+            "valid",
+            "invalid",
+            "system_error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "valid",
+              "displayName": "valid"
+            },
+            {
+              "id": "invalid",
+              "displayName": "invalid"
+            },
+            {
+              "id": "system_error",
+              "displayName": "system_error"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "9e3d4f28-1741-41d9-b84c-3d4efe0ece25": {
+          "_id": "9e3d4f28-1741-41d9-b84c-3d4efe0ece25",
+          "_rev": "-1272200167",
+          "attributesToCollect": [
+            "frIndexedString3"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": true,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "65014083-6711-484a-a7e3-f478c676343a": {
+          "_id": "65014083-6711-484a-a7e3-f478c676343a",
+          "name": "validateFaceID",
+          "description": "Simulate Face Recognition  Validation against Biometric Service.",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n// Call the 34.239.121.198:8080/users/telcel/<Num Cliente> endpoint GET\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar credential = objectAttributes.get(\\\"frIndexedString3\\\");\\nvar userID = sharedState.get(\\\"_id\\\");\\nvar email = idRepository.getAttribute(userID, \\\"mail\\\").iterator().next();\\n\\nvar restBody = {\\n  userId: email,\\n  credential: credential\\n};\\n\\nvar request = new org.forgerock.http.protocol.Request();\\nrequest.setMethod('POST');\\nrequest.setUri('http://34.239.121.198:8081/users/credential/verify');\\nrequest.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\nrequest.getEntity().setString(JSON.stringify(restBody));\\nvar response = httpClient.send(request).get();\\nvar jsonResult = JSON.parse(response.getEntity().getString());\\n\\nif (jsonResult.hasOwnProperty(\\\"error\\\") ) {\\n\\tif ( jsonResult.error === 'Expectation Failed') {\\n      outcome = \\\"invalid\\\";\\n    }\\n    else {\\n      outcome = \\\"system_error\\\";\\n    }\\n} else {\\n  outcome = \\\"valid\\\";\\n}\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

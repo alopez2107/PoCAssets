@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tpp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tpp
+  template:
+    metadata:
+      labels:
+        app: tpp
+    spec:
+      tolerations:
+        - effect: NoSchedule
+          key: demo
+          value: "true"
+      nodeSelector:
+        demo: "true"
+      containers:
+      - name: tpp
+        image: eu.gcr.io/encore-prod/misc/tppdemoapp:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000   
+        resources:
+          requests:
+            cpu: 200m
+            memory: 512Mi

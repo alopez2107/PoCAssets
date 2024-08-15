@@ -1,0 +1,927 @@
+{
+  "meta": {
+    "origin": "https://openam-avalpoc.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2023-09-11T16:24:13.213Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "tppdev-onboarding"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "tppdev-onboarding": {
+      "tree": {
+        "_id": "tppdev-onboarding",
+        "_rev": "-985785906",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[\"TPP\",\"Developers\"]"
+        },
+        "entryNodeId": "b83cf16b-0392-4864-9c70-0f40424ff1a6",
+        "nodes": {
+          "15ed32e0-3576-4235-85e9-5af212c416d2": {
+            "connections": {
+              "EXPIRED": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "FALSE": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "TRUE": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "WAITING": "7fbe2862-968d-4a6c-a121-d810b9477466"
+            },
+            "displayName": "Push Result Verifier Node",
+            "nodeType": "PushResultVerifierNode",
+            "x": 2455,
+            "y": 21.015625
+          },
+          "2ef83f92-c54d-4964-a873-0dcc07f18988": {
+            "connections": {
+              "failureOutcome": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "successOutcome": "8b9da56e-5992-4cce-ba87-55d587d40929",
+              "timeoutOutcome": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "Push Registration",
+            "nodeType": "PushRegistrationNode",
+            "x": 2189,
+            "y": 350.015625
+          },
+          "35da4883-ac90-4390-b0ee-b83e506ab015": {
+            "connections": {
+              "true": "cd7a1928-7191-4020-a625-152f159dd10d"
+            },
+            "displayName": "Set TPP Demo Both",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 635,
+            "y": 394.015625
+          },
+          "3ee35331-b964-49d5-9d91-40d02e8fe719": {
+            "connections": {
+              "outcome": "4be2f81e-c193-4bf8-9fe0-a95da56beca9"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 1167,
+            "y": 113
+          },
+          "4be2f81e-c193-4bf8-9fe0-a95da56beca9": {
+            "connections": {
+              "CREATED": "c2c1e138-b9fe-40fd-8cc1-e522e8c47a84",
+              "FAILURE": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "Create Object",
+            "nodeType": "CreateObjectNode",
+            "x": 1424,
+            "y": 151.015625
+          },
+          "772e5e13-228d-4047-a5c6-e08350964405": {
+            "connections": {
+              "outcome": "8b9da56e-5992-4cce-ba87-55d587d40929"
+            },
+            "displayName": "Get Authenticator App",
+            "nodeType": "GetAuthenticatorAppNode",
+            "x": 1903,
+            "y": 41.015625
+          },
+          "7fbe2862-968d-4a6c-a121-d810b9477466": {
+            "connections": {
+              "DONE": "15ed32e0-3576-4235-85e9-5af212c416d2",
+              "EXITED": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "Push Wait Node",
+            "nodeType": "PushWaitNode",
+            "x": 2449,
+            "y": 403.015625
+          },
+          "8b9da56e-5992-4cce-ba87-55d587d40929": {
+            "connections": {
+              "NOT_REGISTERED": "2ef83f92-c54d-4964-a873-0dcc07f18988",
+              "SENT": "15ed32e0-3576-4235-85e9-5af212c416d2"
+            },
+            "displayName": "Push Sender",
+            "nodeType": "PushAuthenticationSenderNode",
+            "x": 2171,
+            "y": 20.015625
+          },
+          "b25d3fc5-daa9-4c52-a10d-46fb343a3c10": {
+            "connections": {
+              "Both": "35da4883-ac90-4390-b0ee-b83e506ab015",
+              "TPP Demo One": "bf20c58e-b63d-47d3-bfc3-58bd5cbc2338",
+              "TPP Demo Two": "eaa52c8c-d014-4b9a-ab85-3cebe3fd1f4e"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 370,
+            "y": 163.015625
+          },
+          "b83cf16b-0392-4864-9c70-0f40424ff1a6": {
+            "connections": {
+              "outcome": "b25d3fc5-daa9-4c52-a10d-46fb343a3c10"
+            },
+            "displayName": "Collect TPP Developer Info",
+            "nodeType": "PageNode",
+            "x": 153,
+            "y": 65.015625
+          },
+          "bf20c58e-b63d-47d3-bfc3-58bd5cbc2338": {
+            "connections": {
+              "true": "cd7a1928-7191-4020-a625-152f159dd10d"
+            },
+            "displayName": "Set TPP Demo One",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 631,
+            "y": 173.015625
+          },
+          "c2c1e138-b9fe-40fd-8cc1-e522e8c47a84": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "d51b74ab-88a8-4e5c-b867-a7405ea5bc3d"
+            },
+            "displayName": "Identify Existing User",
+            "nodeType": "IdentifyExistingUserNode",
+            "x": 1652,
+            "y": 20
+          },
+          "c9b7d22e-c9ba-436d-8525-5e82a4aa04f9": {
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "failure": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "success": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "unsupported": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "WebAuthn Registration Node",
+            "nodeType": "WebAuthnRegistrationNode",
+            "x": 2048.25,
+            "y": 606.76953125
+          },
+          "cd7a1928-7191-4020-a625-152f159dd10d": {
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "3ee35331-b964-49d5-9d91-40d02e8fe719"
+            },
+            "displayName": "EMail as UserName",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 928,
+            "y": 248.015625
+          },
+          "d51b74ab-88a8-4e5c-b867-a7405ea5bc3d": {
+            "connections": {
+              "PUSH": "772e5e13-228d-4047-a5c6-e08350964405",
+              "WebAuth": "c9b7d22e-c9ba-436d-8525-5e82a4aa04f9"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 1716.75,
+            "y": 418.51953125
+          },
+          "eaa52c8c-d014-4b9a-ab85-3cebe3fd1f4e": {
+            "connections": {
+              "true": "cd7a1928-7191-4020-a625-152f159dd10d"
+            },
+            "displayName": "Set TPP Demo Two",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 637,
+            "y": 275.015625
+          }
+        },
+        "description": "On-Boarding Journey for TPP Developers",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 3035,
+            "y": 99
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 3036,
+            "y": 260
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "15ed32e0-3576-4235-85e9-5af212c416d2": {
+          "_id": "15ed32e0-3576-4235-85e9-5af212c416d2",
+          "_rev": "221841657",
+          "_type": {
+            "_id": "PushResultVerifierNode",
+            "name": "Push Result Verifier Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "TRUE",
+              "displayName": "Success"
+            },
+            {
+              "id": "FALSE",
+              "displayName": "Failure"
+            },
+            {
+              "id": "EXPIRED",
+              "displayName": "Expired"
+            },
+            {
+              "id": "WAITING",
+              "displayName": "Waiting"
+            }
+          ]
+        },
+        "2ef83f92-c54d-4964-a873-0dcc07f18988": {
+          "_id": "2ef83f92-c54d-4964-a873-0dcc07f18988",
+          "_rev": "1749483571",
+          "bgColor": "032b75",
+          "generateRecoveryCodes": true,
+          "scanQRCodeMessage": {},
+          "accountName": "USERNAME",
+          "issuer": "ForgeRock",
+          "timeout": 60,
+          "_type": {
+            "_id": "PushRegistrationNode",
+            "name": "Push Registration",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "successOutcome",
+              "displayName": "Success"
+            },
+            {
+              "id": "failureOutcome",
+              "displayName": "Failure"
+            },
+            {
+              "id": "timeoutOutcome",
+              "displayName": "Time Out"
+            }
+          ]
+        },
+        "35da4883-ac90-4390-b0ee-b83e506ab015": {
+          "_id": "35da4883-ac90-4390-b0ee-b83e506ab015",
+          "_rev": "-1069615406",
+          "script": "1591cb10-a927-41d9-871b-34e170e96e4d",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "3ee35331-b964-49d5-9d91-40d02e8fe719": {
+          "_id": "3ee35331-b964-49d5-9d91-40d02e8fe719",
+          "_rev": "-656910482",
+          "nodes": [
+            {
+              "_id": "9cc53cae-88ce-4d8d-aebe-b310870c3b71",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {
+            "en": "Please set a password that is compliant with the Password policy described below."
+          },
+          "stage": "{\"ValidatedCreatePasswordCallback\":[{\"id\":\"9cc53cae-88ce-4d8d-aebe-b310870c3b71\",\"confirmPassword\":true,\"policyDisplayCheckmark\":true}],\"submitButtonText\":{\"en\":\"Set Password\"}}",
+          "pageHeader": {
+            "en": "Choose a Password"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "4be2f81e-c193-4bf8-9fe0-a95da56beca9": {
+          "_id": "4be2f81e-c193-4bf8-9fe0-a95da56beca9",
+          "_rev": "-995513062",
+          "identityResource": "managed/alpha_user",
+          "_type": {
+            "_id": "CreateObjectNode",
+            "name": "Create Object",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "CREATED",
+              "displayName": "Created"
+            },
+            {
+              "id": "FAILURE",
+              "displayName": "Failed"
+            }
+          ]
+        },
+        "772e5e13-228d-4047-a5c6-e08350964405": {
+          "_id": "772e5e13-228d-4047-a5c6-e08350964405",
+          "_rev": "-1718205756",
+          "continueLabel": {},
+          "message": {
+            "en": "if you don't have the ForgeRock Authenticator app, you can get it from: <a target='_blank' href='{{appleLink}}'>{{appleLabel}}</a> or on: <a target='_blank' href='{{googleLink}}'>{{googleLabel}}</a>"
+          },
+          "googleLink": "https://play.google.com/store/apps/details?id=com.forgerock.authenticator",
+          "appleLink": "https://itunes.apple.com/app/forgerock-authenticator/id1038442926",
+          "_type": {
+            "_id": "GetAuthenticatorAppNode",
+            "name": "Get Authenticator App",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "7fbe2862-968d-4a6c-a121-d810b9477466": {
+          "_id": "7fbe2862-968d-4a6c-a121-d810b9477466",
+          "_rev": "-825958464",
+          "challengeMessage": {},
+          "exitMessage": {},
+          "waitingMessage": {
+            "en": "Waiting for Response..."
+          },
+          "secondsToWait": 10,
+          "_type": {
+            "_id": "PushWaitNode",
+            "name": "Push Wait Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "DONE",
+              "displayName": "Done"
+            },
+            {
+              "id": "EXITED",
+              "displayName": "Exit"
+            }
+          ]
+        },
+        "8b9da56e-5992-4cce-ba87-55d587d40929": {
+          "_id": "8b9da56e-5992-4cce-ba87-55d587d40929",
+          "_rev": "725733750",
+          "contextInfo": false,
+          "userMessage": {
+            "en": "Accept this notification to complete your Registration."
+          },
+          "pushType": "BIOMETRIC",
+          "customPayload": [],
+          "mandatory": true,
+          "messageTimeout": 120000,
+          "_type": {
+            "_id": "PushAuthenticationSenderNode",
+            "name": "Push Sender",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "SENT",
+              "displayName": "Sent"
+            },
+            {
+              "id": "NOT_REGISTERED",
+              "displayName": "Not Registered"
+            }
+          ]
+        },
+        "b25d3fc5-daa9-4c52-a10d-46fb343a3c10": {
+          "_id": "b25d3fc5-daa9-4c52-a10d-46fb343a3c10",
+          "_rev": "1779448474",
+          "nodes": [
+            {
+              "_id": "aef19dde-cc07-429a-8262-c9e29a97a8ed",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "stage": "{\"ChoiceCallback\":[{\"id\":\"aef19dde-cc07-429a-8262-c9e29a97a8ed\",\"displayType\":\"radio\"}]}",
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "TPP Demo One",
+              "displayName": "TPP Demo One"
+            },
+            {
+              "id": "TPP Demo Two",
+              "displayName": "TPP Demo Two"
+            },
+            {
+              "id": "Both",
+              "displayName": "Both"
+            }
+          ]
+        },
+        "b83cf16b-0392-4864-9c70-0f40424ff1a6": {
+          "_id": "b83cf16b-0392-4864-9c70-0f40424ff1a6",
+          "_rev": "-1924198256",
+          "nodes": [
+            {
+              "_id": "75fc7b74-e6a1-441b-a6b0-b447dc429f6f",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Attribute Collector"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {
+            "en-us": "Provide your TPP Developer Information"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "bf20c58e-b63d-47d3-bfc3-58bd5cbc2338": {
+          "_id": "bf20c58e-b63d-47d3-bfc3-58bd5cbc2338",
+          "_rev": "-1107787950",
+          "script": "1466b087-1787-4b0c-ab73-b5cee229c0d6",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "c2c1e138-b9fe-40fd-8cc1-e522e8c47a84": {
+          "_id": "c2c1e138-b9fe-40fd-8cc1-e522e8c47a84",
+          "_rev": "-1060456742",
+          "identityAttribute": "mail",
+          "identifier": "userName",
+          "_type": {
+            "_id": "IdentifyExistingUserNode",
+            "name": "Identify Existing User",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "c9b7d22e-c9ba-436d-8525-5e82a4aa04f9": {
+          "_id": "c9b7d22e-c9ba-436d-8525-5e82a4aa04f9",
+          "_rev": "1809932975",
+          "trustStoreAlias": "trustalias",
+          "relyingPartyName": "ForgeRock",
+          "maxSavedDevices": 0,
+          "generateRecoveryCodes": true,
+          "storeAttestationDataInTransientState": false,
+          "origins": [],
+          "userVerificationRequirement": "PREFERRED",
+          "postponeDeviceProfileStorage": false,
+          "excludeCredentials": false,
+          "requiresResidentKey": false,
+          "authenticatorAttachment": "UNSPECIFIED",
+          "asScript": true,
+          "acceptedSigningAlgorithms": [
+            "ES256",
+            "RS256"
+          ],
+          "attestationPreference": "NONE",
+          "enforceRevocationCheck": false,
+          "timeout": 60,
+          "_type": {
+            "_id": "WebAuthnRegistrationNode",
+            "name": "WebAuthn Registration Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "unsupported",
+              "displayName": "Unsupported"
+            },
+            {
+              "id": "success",
+              "displayName": "Success"
+            },
+            {
+              "id": "failure",
+              "displayName": "Failure"
+            },
+            {
+              "id": "error",
+              "displayName": "Client Error"
+            }
+          ]
+        },
+        "cd7a1928-7191-4020-a625-152f159dd10d": {
+          "_id": "cd7a1928-7191-4020-a625-152f159dd10d",
+          "_rev": "782722658",
+          "script": "e5c302c8-f838-4698-87cc-d7225fc82454",
+          "outcomes": [
+            "true",
+            "error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            }
+          ]
+        },
+        "d51b74ab-88a8-4e5c-b867-a7405ea5bc3d": {
+          "_id": "d51b74ab-88a8-4e5c-b867-a7405ea5bc3d",
+          "_rev": "922721275",
+          "nodes": [
+            {
+              "_id": "dca460d5-d739-4749-a68a-9434cd7bcead",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "stage": "{\"ChoiceCallback\":[{\"id\":\"dca460d5-d739-4749-a68a-9434cd7bcead\",\"displayType\":\"select\"}]}",
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "PUSH",
+              "displayName": "PUSH"
+            },
+            {
+              "id": "WebAuth",
+              "displayName": "WebAuth"
+            }
+          ]
+        },
+        "eaa52c8c-d014-4b9a-ab85-3cebe3fd1f4e": {
+          "_id": "eaa52c8c-d014-4b9a-ab85-3cebe3fd1f4e",
+          "_rev": "1779209812",
+          "script": "e2e295db-7677-40ef-9a9f-f6bd11ed3659",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "9cc53cae-88ce-4d8d-aebe-b310870c3b71": {
+          "_id": "9cc53cae-88ce-4d8d-aebe-b310870c3b71",
+          "_rev": "660192286",
+          "passwordAttribute": "password",
+          "validateInput": true,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "aef19dde-cc07-429a-8262-c9e29a97a8ed": {
+          "_id": "aef19dde-cc07-429a-8262-c9e29a97a8ed",
+          "_rev": "-928437224",
+          "defaultChoice": "TPP Demo One",
+          "choices": [
+            "TPP Demo One",
+            "TPP Demo Two",
+            "Both"
+          ],
+          "prompt": "Select the Entity you are allowed to Manage",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "TPP Demo One",
+              "displayName": "TPP Demo One"
+            },
+            {
+              "id": "TPP Demo Two",
+              "displayName": "TPP Demo Two"
+            },
+            {
+              "id": "Both",
+              "displayName": "Both"
+            }
+          ]
+        },
+        "75fc7b74-e6a1-441b-a6b0-b447dc429f6f": {
+          "_id": "75fc7b74-e6a1-441b-a6b0-b447dc429f6f",
+          "_rev": "1667079638",
+          "attributesToCollect": [
+            "mail",
+            "givenName",
+            "sn",
+            "telephoneNumber"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": true,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "dca460d5-d739-4749-a68a-9434cd7bcead": {
+          "_id": "dca460d5-d739-4749-a68a-9434cd7bcead",
+          "_rev": "976030680",
+          "defaultChoice": "PUSH",
+          "choices": [
+            "PUSH",
+            "WebAuth"
+          ],
+          "prompt": "Seleccione su metodo de MFA",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "PUSH",
+              "displayName": "PUSH"
+            },
+            {
+              "id": "WebAuth",
+              "displayName": "WebAuth"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "1591cb10-a927-41d9-871b-34e170e96e4d": {
+          "_id": "1591cb10-a927-41d9-871b-34e170e96e4d",
+          "name": "setTPPDemoBoth",
+          "description": "Sets the value of the Organization Assignment attribute to Both values",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"true\\\";\\n\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar mail = objectAttributes.get(\\\"mail\\\");\\nobjectAttributes.put(\\\"userName\\\", mail);\\nobjectAttributes.put(\\\"frIndexedString2\\\", \\\"Both\\\");\\nsharedState.put(\\\"selectedOrg\\\", \\\"Both\\\");\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "1466b087-1787-4b0c-ab73-b5cee229c0d6": {
+          "_id": "1466b087-1787-4b0c-ab73-b5cee229c0d6",
+          "name": "setTPPDemoOne",
+          "description": "Set's the Organization Assignment Attribute to 'TPP Demo One'",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"true\\\";\\n\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\n\\nobjectAttributes.put(\\\"frIndexedString2\\\", \\\"TPP Demo One\\\");\\nobjectAttributes.put(\\\"frIndexedString5\\\", \\\"1092174804\\\");\\nobjectAttributes.put(\\\"frIndexedString1\\\", \\\"TPPDEV\\\");\\nsharedState.put(\\\"selectedOrg\\\", \\\"TPP Demo One\\\");\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "e5c302c8-f838-4698-87cc-d7225fc82454": {
+          "_id": "e5c302c8-f838-4698-87cc-d7225fc82454",
+          "name": "EmailAsUsername",
+          "description": "null",
+          "script": "\"objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nuserName = objectAttributes.get(\\\"userName\\\");\\n\\nif(userName){\\n  //Form Fill\\n  objectAttributes.put(\\\"mail\\\", userName);\\n} else {\\n  //Social\\n  objectAttributes.put(\\\"userName\\\", objectAttributes.get(\\\"mail\\\"));\\n}\\n\\nobjectAttributes.put(\\\"frIndexedString1\\\", \\\"None\\\");\\n\\n\\nsharedState.put(\\\"objectAttributes\\\", objectAttributes);\\n//sharedState.put(\\\"username\\\", mail)\\n\\noutcome = \\\"true\\\";\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "e2e295db-7677-40ef-9a9f-f6bd11ed3659": {
+          "_id": "e2e295db-7677-40ef-9a9f-f6bd11ed3659",
+          "name": "setTPPDemoTwo",
+          "description": "Set Organization Assignment attribute to 'TPP Demo Two'",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\noutcome = \\\"true\\\";\\n\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar mail = objectAttributes.get(\\\"mail\\\");\\nobjectAttributes.put(\\\"userName\\\", mail);\\nobjectAttributes.put(\\\"frIndexedString2\\\", \\\"TPP Demo Two\\\");\\nobjectAttributes.put(\\\"frIndexedString1\\\", \\\"TPPDEV\\\");\\nsharedState.put(\\\"selectedOrg\\\", \\\"TPP Demo Two\\\");\\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [
+        {
+          "_id": "11af67c7-b909-4e25-b39f-941986dafc93",
+          "accountCardBackgroundColor": "#ffffff",
+          "accountCardHeaderColor": "#23282e",
+          "accountCardInnerBorderColor": "#e7eef4",
+          "accountCardInputBackgroundColor": "#ffffff",
+          "accountCardInputBorderColor": "#c0c9d5",
+          "accountCardInputLabelColor": "#5e6d82",
+          "accountCardInputSelectColor": "#e4f4fd",
+          "accountCardInputTextColor": "#23282e",
+          "accountCardOuterBorderColor": "#e7eef4",
+          "accountCardShadow": 3,
+          "accountCardTabActiveBorderColor": "#109cf1",
+          "accountCardTabActiveColor": "#e4f4fd",
+          "accountCardTextColor": "#5e6d82",
+          "accountFooter": "<footer>\n  <div class=\"container-md\">\n    <div class=\"py-3 d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between align-items-center w-100\">\n      <div class=\"text-nowrap\">\n        <span class=\"pr-1\">© 2022</span>\n        <a href=\"#\" target=\"_blank\" class=\"notranslate text-body\">Zardoz, Inc</a>\n      </div>\n      <ul class=\"nav\">\n        <li class=\"nav-item\">\n          <a href=\"#\" class=\"nav-link\">Privacy Policy</a>\n        </li>\n        <li class=\"nav-item\">\n          <a href=\"#\" class=\"nav-link\">Terms of Use</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</footer>\n",
+          "accountFooterEnabled": true,
+          "accountNavigationBackgroundColor": "#ffffff",
+          "accountNavigationTextColor": "#455469",
+          "accountNavigationToggleBorderColor": "#e7eef4",
+          "accountPageSections": {
+            "accountControls": {
+              "enabled": false
+            },
+            "accountSecurity": {
+              "enabled": true,
+              "subsections": {
+                "password": {
+                  "enabled": true
+                },
+                "securityQuestions": {
+                  "enabled": false
+                },
+                "twoStepVerification": {
+                  "enabled": true
+                },
+                "username": {
+                  "enabled": true
+                }
+              }
+            },
+            "consent": {
+              "enabled": false
+            },
+            "oauthApplications": {
+              "enabled": true
+            },
+            "personalInformation": {
+              "enabled": true
+            },
+            "preferences": {
+              "enabled": false
+            },
+            "social": {
+              "enabled": false
+            },
+            "trustedDevices": {
+              "enabled": true
+            }
+          },
+          "accountTableRowHoverColor": "#f6f8fa",
+          "backgroundColor": "#FFFFFF",
+          "backgroundImage": "",
+          "bodyText": "#5E6D82",
+          "boldLinks": false,
+          "buttonRounded": "50",
+          "dangerColor": "#f7685b",
+          "favicon": "",
+          "fontFamily": "Open Sans",
+          "isDefault": false,
+          "journeyCardBackgroundColor": "#ffffff",
+          "journeyCardBorderRadius": 4,
+          "journeyCardHeaderBackgroundColor": "#ffffff",
+          "journeyCardShadow": 3,
+          "journeyCardTextColor": "#5e6d82",
+          "journeyCardTitleColor": "#23282e",
+          "journeyFloatingLabels": true,
+          "journeyFooter": "<footer>\n            <div class=\"container-md\">\n            <div class=\"py-3 d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between align-items-center w-100\">\n              <div class=\"text-nowrap\">\n                <span class=\"pr-1\">© 2022</span>\n                <a href=\"#\" target=\"_blank\" class=\"notranslate text-body\">Zardoz, Inc</a>\n              </div>\n              <ul class=\"nav\">\n                <li class=\"nav-item\">\n                  <a href=\"#\" class=\"nav-link\">Privacy Policy</a>\n                </li>\n                <li class=\"nav-item\">\n                  <a href=\"#\" class=\"nav-link\">Terms of Use</a>\n                </li>\n              </ul>\n            </div>\n            </div>\n          </footer>\n",
+          "journeyFooterEnabled": true,
+          "journeyHeader": "<div class=\"d-flex justify-content-center py-4 flex-grow-1\">Header Content</div>",
+          "journeyHeaderEnabled": false,
+          "journeyInputBackgroundColor": "#ffffff",
+          "journeyInputBorderColor": "#c0c9d5",
+          "journeyInputLabelColor": "#5e6d82",
+          "journeyInputSelectColor": "#e4f4fd",
+          "journeyInputTextColor": "#23282e",
+          "journeyJustifiedContent": "<div style=\"display:flex;background-color:black;height:100vh\">\n  <div class=\"d-none d-md-flex justify-content-center align-items-center p-5\" style=\"background-image:url(https://cdn.forgerock.com/platform/themes/zardoz/background-zardoz.png);background-size:cover\">\n    <h1 class=\"text-center display-3\" style=\"color:rgb(255, 255, 255)\">A la varguardia de la Tendencia Open Banking. Grupo Aval una empresa con visión global.</h1>\n  </div>\n</div>\n\n",
+          "journeyJustifiedContentEnabled": true,
+          "journeyLayout": "justified-right",
+          "journeySignInButtonPosition": "flex-column",
+          "journeyTheaterMode": true,
+          "linkActiveColor": "#007661",
+          "linkColor": "#009C80",
+          "linkedTrees": [
+            "tppdev-onboarding",
+            "TPPDevResetPassword"
+          ],
+          "logo": "https://cdn.forgerock.com/platform/themes/zardoz/logo-zardoz.svg",
+          "logoAltText": "Zardoz Logo",
+          "logoEnabled": true,
+          "logoHeight": "47",
+          "logoProfile": "https://cdn.forgerock.com/platform/themes/zardoz/logo-zardoz.svg",
+          "logoProfileAltText": "Zardaz Logo",
+          "logoProfileCollapsed": "https://cdn.forgerock.com/platform/themes/zardoz/logo-zardoz.svg",
+          "logoProfileCollapsedAltText": "Zardaz Logo",
+          "logoProfileCollapsedHeight": "28",
+          "logoProfileHeight": "40",
+          "name": "Zardoz",
+          "pageTitle": "#23282e",
+          "primaryColor": "#009C80",
+          "primaryOffColor": "#007661",
+          "profileBackgroundColor": "#FFFFFF",
+          "profileMenuHighlightColor": "#FFFFFF",
+          "profileMenuHoverColor": "#FFFFFF",
+          "profileMenuHoverTextColor": "#455469",
+          "profileMenuTextHighlightColor": "#009C80",
+          "secondaryColor": "#69788b",
+          "successColor": "#2ed47a",
+          "switchBackgroundColor": "#c0c9d5",
+          "textColor": "#ffffff",
+          "topBarBackgroundColor": "#ffffff",
+          "topBarBorderColor": "#e7eef4",
+          "topBarHeaderColor": "#23282e",
+          "topBarTextColor": "#69788b"
+        }
+      ],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "origin": "https://openam-bancodechilepoc.forgeblocks.com/platform/?realm=alpha#/journeys/bdechilelogin",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2022-12-01T16:49:06.606Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "bdechilelogin"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "bdechilelogin": {
+      "tree": {
+        "_id": "bdechilelogin",
+        "_rev": "-316097057",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[\"Login\",\"Authentication\",\"Passthrough\",\"JIT Migration\"]"
+        },
+        "entryNodeId": "a1dbe04f-174d-45b4-95d7-b00ec039940f",
+        "nodes": {
+          "18292557-62b5-426c-b331-a8f598d912db": {
+            "connections": {
+              "FAILURE": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "PATCHED": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Patch Object",
+            "nodeType": "PatchObjectNode",
+            "x": 1144,
+            "y": 126.015625
+          },
+          "57c66594-335a-40e7-a2d4-a8a99dbed201": {
+            "connections": {
+              "outcome": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Increment Login Count",
+            "nodeType": "IncrementLoginCountNode",
+            "x": 835,
+            "y": 37.015625
+          },
+          "59d14882-fd33-4e1a-ae51-b8c37ae9c1c0": {
+            "connections": {
+              "false": "a567ddd9-c0a8-4f1c-86fb-51d9aa66a0db",
+              "true": "57c66594-335a-40e7-a2d4-a8a99dbed201"
+            },
+            "displayName": "Data Store Decision",
+            "nodeType": "DataStoreDecisionNode",
+            "x": 561,
+            "y": 172.015625
+          },
+          "a1dbe04f-174d-45b4-95d7-b00ec039940f": {
+            "connections": {
+              "outcome": "59d14882-fd33-4e1a-ae51-b8c37ae9c1c0"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 269,
+            "y": 148.015625
+          },
+          "a567ddd9-c0a8-4f1c-86fb-51d9aa66a0db": {
+            "connections": {
+              "AUTHENTICATED": "18292557-62b5-426c-b331-a8f598d912db",
+              "FAILED": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "MISSING": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "Passthrough Authentication",
+            "nodeType": "PassthroughAuthenticationNode",
+            "x": 803,
+            "y": 202.015625
+          }
+        },
+        "description": "Login Journey for Banco de Chile's PoC",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1464,
+            "y": 11
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1431,
+            "y": 306
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "18292557-62b5-426c-b331-a8f598d912db": {
+          "_id": "18292557-62b5-426c-b331-a8f598d912db",
+          "_rev": "-1471824137",
+          "identityResource": "managed/alpha_user",
+          "patchAsObject": false,
+          "ignoredFields": [
+            "userName"
+          ],
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "PatchObjectNode",
+            "name": "Patch Object",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "PATCHED",
+              "displayName": "Patched"
+            },
+            {
+              "id": "FAILURE",
+              "displayName": "Failed"
+            }
+          ]
+        },
+        "57c66594-335a-40e7-a2d4-a8a99dbed201": {
+          "_id": "57c66594-335a-40e7-a2d4-a8a99dbed201",
+          "_rev": "-1323775357",
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "IncrementLoginCountNode",
+            "name": "Increment Login Count",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "59d14882-fd33-4e1a-ae51-b8c37ae9c1c0": {
+          "_id": "59d14882-fd33-4e1a-ae51-b8c37ae9c1c0",
+          "_rev": "377656608",
+          "_type": {
+            "_id": "DataStoreDecisionNode",
+            "name": "Data Store Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "a1dbe04f-174d-45b4-95d7-b00ec039940f": {
+          "_id": "a1dbe04f-174d-45b4-95d7-b00ec039940f",
+          "_rev": "858871038",
+          "nodes": [
+            {
+              "_id": "7f1e2e72-1887-4e88-8314-23316df2921f",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "d13d25a1-c5e0-4552-bdb3-799c763d1c84",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "a567ddd9-c0a8-4f1c-86fb-51d9aa66a0db": {
+          "_id": "a567ddd9-c0a8-4f1c-86fb-51d9aa66a0db",
+          "_rev": "-293736921",
+          "systemEndpoint": "bdechileoud",
+          "identityAttribute": "userName",
+          "passwordAttribute": "password",
+          "objectType": "account",
+          "_type": {
+            "_id": "PassthroughAuthenticationNode",
+            "name": "Passthrough Authentication",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "AUTHENTICATED",
+              "displayName": "Authenticated"
+            },
+            {
+              "id": "MISSING",
+              "displayName": "Missing Input"
+            },
+            {
+              "id": "FAILED",
+              "displayName": "Failed"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "7f1e2e72-1887-4e88-8314-23316df2921f": {
+          "_id": "7f1e2e72-1887-4e88-8314-23316df2921f",
+          "_rev": "1425876099",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "d13d25a1-c5e0-4552-bdb3-799c763d1c84": {
+          "_id": "d13d25a1-c5e0-4552-bdb3-799c763d1c84",
+          "_rev": "-343446397",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

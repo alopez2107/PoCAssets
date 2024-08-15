@@ -1,0 +1,1065 @@
+{
+  "meta": {
+    "origin": "https://openam-jcpsupwf.forgeblocks.com/platform/?realm=alpha#/journeys/jcpSupplierOnBoarding",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2024-06-27T15:25:41.346Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "jcpSupplierOnBoarding"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "jcpSupplierOnBoarding": {
+      "tree": {
+        "_id": "jcpSupplierOnBoarding",
+        "_rev": "-985676592",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[\"JCP\",\"Login\",\"Session Management\"]"
+        },
+        "entryNodeId": "ca89bfec-5baf-4ad1-b851-a37f8783e2f0",
+        "innerTreeOnly": false,
+        "nodes": {
+          "0ebf38cf-e42d-47e0-9f2a-9558b6a7f2ef": {
+            "x": 1707,
+            "y": 270.015625,
+            "connections": {
+              "error": "280c0294-cf82-4af3-9a79-ef2271030018",
+              "true": "1c9cd6a2-8474-4aa5-853a-c5af1596c4ae"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Create Registrar User"
+          },
+          "1c9cd6a2-8474-4aa5-853a-c5af1596c4ae": {
+            "x": 2109,
+            "y": 260.015625,
+            "connections": {
+              "false": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "true": "e609a2f3-e585-4f6d-8d2a-3ab0acaf9080"
+            },
+            "nodeType": "MessageNode",
+            "displayName": "Another Task"
+          },
+          "21ef73e3-eb66-487a-b49c-32f851410c89": {
+            "x": 938,
+            "y": 471.015625,
+            "connections": {
+              "Create Registrar": "60755b94-43af-4a90-bb8c-7e53dd6002a2",
+              "Create Supplier User": "93e04c0b-ea0a-4251-8059-7f8806235ed0"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Registrar Tasks"
+          },
+          "280c0294-cf82-4af3-9a79-ef2271030018": {
+            "x": 2206,
+            "y": 611.015625,
+            "connections": {
+              "false": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "true": "e609a2f3-e585-4f6d-8d2a-3ab0acaf9080"
+            },
+            "nodeType": "MessageNode",
+            "displayName": "Error on Create"
+          },
+          "39dc0e98-4aa3-4641-9cd6-e9702346cccb": {
+            "x": 528,
+            "y": 218.015625,
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "e609a2f3-e585-4f6d-8d2a-3ab0acaf9080"
+            },
+            "nodeType": "DataStoreDecisionNode",
+            "displayName": "Data Store Decision"
+          },
+          "60755b94-43af-4a90-bb8c-7e53dd6002a2": {
+            "x": 1420,
+            "y": 223.015625,
+            "connections": {
+              "outcome": "0ebf38cf-e42d-47e0-9f2a-9558b6a7f2ef"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Create Registrar User"
+          },
+          "752dbdbe-8bb5-4c19-aa26-211871806020": {
+            "x": 1426,
+            "y": 694.015625,
+            "connections": {
+              "false": "280c0294-cf82-4af3-9a79-ef2271030018",
+              "true": "1c9cd6a2-8474-4aa5-853a-c5af1596c4ae"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Page Node"
+          },
+          "93e04c0b-ea0a-4251-8059-7f8806235ed0": {
+            "x": 1423,
+            "y": 458.015625,
+            "connections": {
+              "outcome": "ff6e0e42-3eb3-4c72-aa35-cf7be1a1da19"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Create Supplier User"
+          },
+          "98824da8-5a92-412f-ac92-37d068471181": {
+            "x": 1397,
+            "y": 45.015625,
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "1c9cd6a2-8474-4aa5-853a-c5af1596c4ae"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Create Supplier Org"
+          },
+          "ca89bfec-5baf-4ad1-b851-a37f8783e2f0": {
+            "x": 209,
+            "y": 202.015625,
+            "connections": {
+              "outcome": "39dc0e98-4aa3-4641-9cd6-e9702346cccb"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Page Node"
+          },
+          "d2cfa130-f91b-4ce4-8972-69b03d55f30d": {
+            "x": 944,
+            "y": 141.015625,
+            "connections": {
+              "Create Affiliate Group": "752dbdbe-8bb5-4c19-aa26-211871806020",
+              "Create Registrar": "60755b94-43af-4a90-bb8c-7e53dd6002a2",
+              "Create Supplier": "98824da8-5a92-412f-ac92-37d068471181",
+              "Create Supplier User": "93e04c0b-ea0a-4251-8059-7f8806235ed0"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Admin Tasks"
+          },
+          "e609a2f3-e585-4f6d-8d2a-3ab0acaf9080": {
+            "x": 572,
+            "y": 501.015625,
+            "connections": {
+              "jcpAdmin": "d2cfa130-f91b-4ce4-8972-69b03d55f30d",
+              "registrar": "21ef73e3-eb66-487a-b49c-32f851410c89"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Verify Supplier Admin"
+          },
+          "ff6e0e42-3eb3-4c72-aa35-cf7be1a1da19": {
+            "x": 1760,
+            "y": 490.015625,
+            "connections": {
+              "error": "280c0294-cf82-4af3-9a79-ef2271030018",
+              "true": "1c9cd6a2-8474-4aa5-853a-c5af1596c4ae"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Create Supplier User"
+          }
+        },
+        "staticNodes": {
+          "startNode": {
+            "x": 50,
+            "y": 250
+          },
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 2337,
+            "y": 65
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 2162,
+            "y": 13
+          }
+        },
+        "description": "JCPenney Supplier On-Boarding process.",
+        "enabled": true
+      },
+      "nodes": {
+        "0ebf38cf-e42d-47e0-9f2a-9558b6a7f2ef": {
+          "_id": "0ebf38cf-e42d-47e0-9f2a-9558b6a7f2ef",
+          "_rev": "329452690",
+          "script": "4a3fd74b-e537-42af-a1e2-0d4e5c8936ab",
+          "outcomes": [
+            "true",
+            "error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            }
+          ]
+        },
+        "1c9cd6a2-8474-4aa5-853a-c5af1596c4ae": {
+          "_id": "1c9cd6a2-8474-4aa5-853a-c5af1596c4ae",
+          "_rev": "1422300141",
+          "messageYes": {
+            "en-US": "Yes"
+          },
+          "message": {
+            "en-US": "Do you want to invoke another task?"
+          },
+          "messageNo": {
+            "en-US": "No"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "21ef73e3-eb66-487a-b49c-32f851410c89": {
+          "_id": "21ef73e3-eb66-487a-b49c-32f851410c89",
+          "_rev": "-78882529",
+          "nodes": [
+            {
+              "_id": "8729fbe3-1b21-4082-9bbf-51d02725847b",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "pageDescription": {
+            "en-US": "Please select a task to perform."
+          },
+          "pageHeader": {
+            "en-US": "Welcome Registrar"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Create Registrar",
+              "displayName": "Create Registrar"
+            },
+            {
+              "id": "Create Supplier User",
+              "displayName": "Create Supplier User"
+            }
+          ]
+        },
+        "280c0294-cf82-4af3-9a79-ef2271030018": {
+          "_id": "280c0294-cf82-4af3-9a79-ef2271030018",
+          "_rev": "572674301",
+          "messageYes": {},
+          "message": {
+            "en-US": "Error executing the previous task"
+          },
+          "messageNo": {},
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "39dc0e98-4aa3-4641-9cd6-e9702346cccb": {
+          "_id": "39dc0e98-4aa3-4641-9cd6-e9702346cccb",
+          "_rev": "1207438379",
+          "_type": {
+            "_id": "DataStoreDecisionNode",
+            "name": "Data Store Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "60755b94-43af-4a90-bb8c-7e53dd6002a2": {
+          "_id": "60755b94-43af-4a90-bb8c-7e53dd6002a2",
+          "_rev": "1651337133",
+          "nodes": [
+            {
+              "_id": "d0c853a2-d0bc-4c70-a999-bacf7321227b",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "a1bd2461-cc9a-404a-bbe6-5cd3d0b1f1aa",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Registrar User Attributes"
+            },
+            {
+              "_id": "0411c8c5-fc20-4909-80fa-8e90106eeb0c",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {
+            "en-US": "Use this form to On-Board a Supplier's Registrar User"
+          },
+          "pageHeader": {
+            "en-US": "Create a new Registrar for Supplier"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "752dbdbe-8bb5-4c19-aa26-211871806020": {
+          "_id": "752dbdbe-8bb5-4c19-aa26-211871806020",
+          "_rev": "-1922454841",
+          "nodes": [
+            {
+              "_id": "7f24f7d2-b072-473c-9385-d4a3e1f943b0",
+              "nodeType": "ScriptedDecisionNode",
+              "displayName": "Create Affiliate Group"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "93e04c0b-ea0a-4251-8059-7f8806235ed0": {
+          "_id": "93e04c0b-ea0a-4251-8059-7f8806235ed0",
+          "_rev": "2072403855",
+          "nodes": [
+            {
+              "_id": "d665acef-2838-4697-91be-7669593c85b8",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "9c0b8149-fd3a-4f09-8dd3-a58ed710865a",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Member Attributes"
+            },
+            {
+              "_id": "40f48a9b-80b8-4b62-8665-bcb904ce5205",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "98824da8-5a92-412f-ac92-37d068471181": {
+          "_id": "98824da8-5a92-412f-ac92-37d068471181",
+          "_rev": "1489375628",
+          "nodes": [
+            {
+              "_id": "c75c7fde-e67e-4972-86d0-edecd0dd23a6",
+              "nodeType": "ScriptedDecisionNode",
+              "displayName": "Create Supplier"
+            }
+          ],
+          "pageDescription": {
+            "en-US": "Use this form to create a new Supplier Organization."
+          },
+          "pageHeader": {
+            "en-US": "Please provide the details of the new Supplier."
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "ca89bfec-5baf-4ad1-b851-a37f8783e2f0": {
+          "_id": "ca89bfec-5baf-4ad1-b851-a37f8783e2f0",
+          "_rev": "-435782357",
+          "nodes": [
+            {
+              "_id": "2c00c344-e3e7-4427-88aa-64f7f2d40b7d",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "e27a6d7e-e563-439a-a1ea-b58d5afb00ee",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "d2cfa130-f91b-4ce4-8972-69b03d55f30d": {
+          "_id": "d2cfa130-f91b-4ce4-8972-69b03d55f30d",
+          "_rev": "-2046688122",
+          "nodes": [
+            {
+              "_id": "b3fe7f64-2aa9-4e8d-8b34-ecec2b5fe5ba",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "pageDescription": {
+            "en-US": "Please select a task to perform."
+          },
+          "pageHeader": {
+            "en-US": "Welcome JCP Admin"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Create Supplier",
+              "displayName": "Create Supplier"
+            },
+            {
+              "id": "Create Registrar",
+              "displayName": "Create Registrar"
+            },
+            {
+              "id": "Create Supplier User",
+              "displayName": "Create Supplier User"
+            },
+            {
+              "id": "Create Affiliate Group",
+              "displayName": "Create Affiliate Group"
+            }
+          ]
+        },
+        "e609a2f3-e585-4f6d-8d2a-3ab0acaf9080": {
+          "_id": "e609a2f3-e585-4f6d-8d2a-3ab0acaf9080",
+          "_rev": "-2139414844",
+          "script": "ee08a4e6-85cd-4fee-910b-50beb5340a27",
+          "outcomes": [
+            "jcpAdmin",
+            "registrar",
+            "noadmin"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "jcpAdmin",
+              "displayName": "jcpAdmin"
+            },
+            {
+              "id": "registrar",
+              "displayName": "registrar"
+            },
+            {
+              "id": "noadmin",
+              "displayName": "noadmin"
+            }
+          ]
+        },
+        "ff6e0e42-3eb3-4c72-aa35-cf7be1a1da19": {
+          "_id": "ff6e0e42-3eb3-4c72-aa35-cf7be1a1da19",
+          "_rev": "-320714910",
+          "script": "76a3c90c-af09-4bea-8b02-0ccf3ef13025",
+          "outcomes": [
+            "true",
+            "error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "8729fbe3-1b21-4082-9bbf-51d02725847b": {
+          "_id": "8729fbe3-1b21-4082-9bbf-51d02725847b",
+          "_rev": "-975881729",
+          "defaultChoice": "Create Registrar",
+          "choices": [
+            "Create Registrar",
+            "Create Supplier User"
+          ],
+          "prompt": "Select a Task",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Create Registrar",
+              "displayName": "Create Registrar"
+            },
+            {
+              "id": "Create Supplier User",
+              "displayName": "Create Supplier User"
+            }
+          ]
+        },
+        "d0c853a2-d0bc-4c70-a999-bacf7321227b": {
+          "_id": "d0c853a2-d0bc-4c70-a999-bacf7321227b",
+          "_rev": "2141686213",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "a1bd2461-cc9a-404a-bbe6-5cd3d0b1f1aa": {
+          "_id": "a1bd2461-cc9a-404a-bbe6-5cd3d0b1f1aa",
+          "_rev": "1269446697",
+          "attributesToCollect": [
+            "frIndexedString2",
+            "givenName",
+            "sn",
+            "mail",
+            "telephoneNumber"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": true,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "0411c8c5-fc20-4909-80fa-8e90106eeb0c": {
+          "_id": "0411c8c5-fc20-4909-80fa-8e90106eeb0c",
+          "_rev": "1117030887",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "7f24f7d2-b072-473c-9385-d4a3e1f943b0": {
+          "_id": "7f24f7d2-b072-473c-9385-d4a3e1f943b0",
+          "_rev": "-864449668",
+          "script": "caafc0cb-bf62-4c3f-8124-3028dfe2ea9b",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "d665acef-2838-4697-91be-7669593c85b8": {
+          "_id": "d665acef-2838-4697-91be-7669593c85b8",
+          "_rev": "-1704093231",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "9c0b8149-fd3a-4f09-8dd3-a58ed710865a": {
+          "_id": "9c0b8149-fd3a-4f09-8dd3-a58ed710865a",
+          "_rev": "874139900",
+          "attributesToCollect": [
+            "frIndexedString2",
+            "givenName",
+            "sn",
+            "mail",
+            "telephoneNumber"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": false,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "40f48a9b-80b8-4b62-8665-bcb904ce5205": {
+          "_id": "40f48a9b-80b8-4b62-8665-bcb904ce5205",
+          "_rev": "-802830639",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "c75c7fde-e67e-4972-86d0-edecd0dd23a6": {
+          "_id": "c75c7fde-e67e-4972-86d0-edecd0dd23a6",
+          "_rev": "-848018018",
+          "script": "5f933faf-7b02-4781-934a-7cb6c0e97ae9",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "2c00c344-e3e7-4427-88aa-64f7f2d40b7d": {
+          "_id": "2c00c344-e3e7-4427-88aa-64f7f2d40b7d",
+          "_rev": "-23644466",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "e27a6d7e-e563-439a-a1ea-b58d5afb00ee": {
+          "_id": "e27a6d7e-e563-439a-a1ea-b58d5afb00ee",
+          "_rev": "1311291426",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "b3fe7f64-2aa9-4e8d-8b34-ecec2b5fe5ba": {
+          "_id": "b3fe7f64-2aa9-4e8d-8b34-ecec2b5fe5ba",
+          "_rev": "-776602114",
+          "defaultChoice": "Create Supplier",
+          "choices": [
+            "Create Supplier",
+            "Create Registrar",
+            "Create Supplier User",
+            "Create Affiliate Group"
+          ],
+          "prompt": "Select a Task",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Create Supplier",
+              "displayName": "Create Supplier"
+            },
+            {
+              "id": "Create Registrar",
+              "displayName": "Create Registrar"
+            },
+            {
+              "id": "Create Supplier User",
+              "displayName": "Create Supplier User"
+            },
+            {
+              "id": "Create Affiliate Group",
+              "displayName": "Create Affiliate Group"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "4a3fd74b-e537-42af-a1e2-0d4e5c8936ab": {
+          "_id": "4a3fd74b-e537-42af-a1e2-0d4e5c8936ab",
+          "name": "createRegistrarUser",
+          "description": "After the successful creation of the user we need to add him/her as an Admin of the Supplier Org she is supposed to manage.",
+          "script": "\"var objectAttributes = nodeState.getObject(\\\"objectAttributes\\\");\\nvar authnUser = nodeState.getObject(\\\"authnUser\\\");\\n\\nvar userName = objectAttributes.get(\\\"userName\\\");\\nvar givenName = objectAttributes.get(\\\"givenName\\\");\\nvar sn = objectAttributes.get(\\\"sn\\\");\\nvar mail = objectAttributes.get(\\\"mail\\\");\\nvar telephoneNumber = objectAttributes.get(\\\"telephoneNumber\\\");\\nvar frUnindexedString1 = \\\"REGISTRAR\\\";\\nvar supplierNumber = objectAttributes.get(\\\"frIndexedString2\\\");\\nvar password = objectAttributes.get(\\\"password\\\");\\n\\nvar registrarUser = {\\n    userName: userName,\\n    givenName: givenName,\\n    sn: sn,\\n    mail: mail,\\n    telephoneNumber: telephoneNumber,\\n    frUnindexedString1: frUnindexedString1,\\n    frIndexedString2: supplierNumber,\\n    password: password\\n};\\n\\ntry {\\n    var newUserObj = openidm.create(\\\"managed/alpha_user\\\", null, registrarUser, null, [\\\"*\\\"]);\\n    nodeState.putShared(\\\"username\\\", authnUser.get(\\\"userName\\\"));\\n    nodeState.putShared(\\\"objectAttributes\\\", authnUser);\\n    action.goTo(\\\"true\\\");\\n}\\ncatch (e) {\\n    logger.error(\\\"Exception caught {}\\\", e);\\n    action.goTo(\\\"error\\\");\\n}\\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        },
+        "ee08a4e6-85cd-4fee-910b-50beb5340a27": {
+          "_id": "ee08a4e6-85cd-4fee-910b-50beb5340a27",
+          "name": "verifySupplierAdmin",
+          "description": "Verifies that the logged in user is in the Supplier Admins internal role.",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\nvar _id = nodeState.get(\\\"_id\\\");\\nvar userEndpoint = \\\"managed/alpha_user\\\";\\n\\nvar authnUser = nodeState.getObject(\\\"authnUser\\\");\\nif (!authnUser) {\\n    var userName = nodeState.get(\\\"username\\\");\\n    logger.error(\\\"The userName is {}\\\", userName);\\n    var _queryFilter = `userName eq \\\"${userName}\\\"`;\\n    authnUser = openidm.query(userEndpoint, {\\\"_queryFilter\\\": _queryFilter}, [\\\"*\\\", \\\"*_ref/*/*\\\"]).result[0];\\n}     \\n    \\nvar orgOptions = [];\\nvar authzRoles = authnUser.authzRoles;\\nvar userType = \\\"noadmin\\\";\\n\\nvar cleanObjectAttributes = {\\n    userName: \\\"\\\",\\n    givenName: \\\"\\\",\\n    sn: \\\"\\\",\\n    mail: \\\"\\\",\\n    frIndexedString2: \\\"\\\",\\n    frUnindexedString1: \\\"\\\",\\n    telephoneNumber: \\\"\\\"\\n};\\n\\nauthzRoles.forEach((role) => {\\n    logger.error(\\\"The authz role found is {}\\\", JSON.stringify(role));\\n    if (role.name === \\\"Supplier Admins\\\") {\\n        userType = \\\"jcpAdmin\\\";\\n    } \\n    if (role.name.includes(\\\"Registrars\\\")) {\\n        cleanObjectAttributes[\\\"frIndexedString2\\\"] = authnUser.frIndexedString2;  // Pre-fill the supplierNumber from the Registrar\\n        userType = \\\"registrar\\\";\\n    }\\n});\\nnodeState.putShared(\\\"authnUser\\\", authnUser);\\nnodeState.putShared(\\\"objectAttributes\\\", cleanObjectAttributes);\\naction.goTo(userType);\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        },
+        "76a3c90c-af09-4bea-8b02-0ccf3ef13025": {
+          "_id": "76a3c90c-af09-4bea-8b02-0ccf3ef13025",
+          "name": "createSupplierUser",
+          "description": "Add the user to the Organization as a Member (Supplier User Non-Registrar)",
+          "script": "\"var objectAttributes = nodeState.getObject(\\\"objectAttributes\\\");\\nvar authnUser = nodeState.getObject(\\\"authnUser\\\");\\nvar userName = objectAttributes.get(\\\"userName\\\");\\nvar givenName = objectAttributes.get(\\\"givenName\\\");\\nvar sn = objectAttributes.get(\\\"sn\\\");\\nvar mail = objectAttributes.get(\\\"mail\\\");\\nvar telephoneNumber = objectAttributes.get(\\\"telephoneNumber\\\");\\nvar frUnindexedString1 = \\\"SUPPLIER-USER\\\";\\nvar supplierNumber = objectAttributes.get(\\\"frIndexedString2\\\");\\nvar password = objectAttributes.get(\\\"password\\\");\\n\\nvar supplierUser = {\\n    userName: userName,\\n    givenName: givenName,\\n    sn: sn,\\n    mail: mail,\\n    telephoneNumber: telephoneNumber,\\n    frUnindexedString1: frUnindexedString1,\\n    frIndexedString2: supplierNumber,\\n    password: password\\n};\\n\\ntry {\\n    var newUserObj = openidm.create(\\\"managed/alpha_user\\\", null, supplierUser, null, [\\\"*\\\"]);\\n    nodeState.putShared(\\\"username\\\", authnUser.get(\\\"userName\\\"));\\n    nodeState.putShared(\\\"objectAttributes\\\", authnUser);\\n    action.goTo(\\\"true\\\");\\n}\\ncatch (e) {\\n    logger.error(\\\"Exception caught {}\\\", e);\\n    action.goTo(\\\"error\\\");\\n}\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        },
+        "caafc0cb-bf62-4c3f-8124-3028dfe2ea9b": {
+          "_id": "caafc0cb-bf62-4c3f-8124-3028dfe2ea9b",
+          "name": "createAffiliateGroup",
+          "description": "Script to display a create form for an affiliate group.",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\nvar supplierTypes = openidm.query(\\\"managed/SupplierType\\\", {_queryFilter: \\\"true\\\"}, [\\\"*\\\"]).result;\\n\\nvar supplierTypeOptions = [\\\"Select a Type of Supplier\\\"];\\nsupplierTypes.forEach((supplierType) => {\\n    supplierTypeOptions.push(supplierType.name);\\n})\\nvar fields = [\\n    \\\"roleId\\\",\\n    \\\"supplierNumber\\\"\\n];\\n\\nif (callbacks.isEmpty()) {\\n    callbacksBuilder.stringAttributeInputCallback(\\\"roleId\\\", \\\"Role ID\\\", \\\"\\\", true);\\n    callbacksBuilder.stringAttributeInputCallback(\\\"supplierNumber\\\", \\\"Supplier Number\\\", \\\"\\\", true);\\n    callbacksBuilder.choiceCallback(\\\"Please Select your Supplier Organization Type\\\", supplierTypeOptions, 0, false);\\n}\\nelse {\\n    var selectedType = callbacks.getChoiceCallbacks().get(0)[0];\\n    var stringAttrInputCallbacks = callbacks.getStringAttributeInputCallbacks();\\n    var index = 0;\\n    stringAttrInputCallbacks.forEach((callback) => {\\n       logger.error(\\\"Callback found {} for Field name {}\\\", callback, fields[index]);\\n       nodeState.putShared(fields[index], callback); \\n        ++index;\\n    });\\n\\n    var selectedTypeID = supplierTypes[selectedType-1].id;\\n    var affiliateRoleName = `Affiliate Role (${nodeState.get(\\\"supplierNumber\\\")}-${nodeState.get(\\\"roleId\\\")})`;\\n    var membershipRule = `/custom_effectiveOrgNames [supplierNumber eq \\\\\\\"${nodeState.get(\\\"supplierNumber\\\")}\\\\\\\"] and !(/frIndexedString1 co \\\\\\\"Financial\\\\\\\")`;\\n    var newAffiliateGroup = {\\n        roieId: nodeState.get(\\\"roleId\\\"),\\n        name: affiliateRoleName,\\n        supplierNumber: nodeState.get(\\\"supplierNumber\\\"),\\n        description: affiliateRoleName,\\n        supplierTypeID: selectedTypeID,\\n        condition: membershipRule\\n    };\\n\\n    try {\\n        var newAffiliateGroupObj = openidm.create(\\\"managed/alpha_role\\\", null, newAffiliateGroup);\\n        action.goTo(\\\"true\\\");        \\n    }\\n    catch (e) {\\n        logger.error(\\\"Exception caught {}\\\", e);\\n        action.goTo(\\\"false\\\");\\n    }\\n    \\n} \\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        },
+        "5f933faf-7b02-4781-934a-7cb6c0e97ae9": {
+          "_id": "5f933faf-7b02-4781-934a-7cb6c0e97ae9",
+          "name": "createSupplierOrg",
+          "description": "Display a form to create a new Supplier Organization",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\nvar supplierTypes = openidm.query(\\\"managed/SupplierType\\\", {_queryFilter: \\\"true\\\"}, [\\\"*\\\"]).result;\\n\\nvar supplierTypeOptions = [\\\"Select a Type of Supplier\\\"];\\nsupplierTypes.forEach((supplierType) => {\\n    supplierTypeOptions.push(supplierType.name);\\n})\\nvar fields = [\\n    \\\"supplierNumber\\\",\\n    \\\"name\\\",\\n    \\\"description\\\"\\n];\\n\\nif (callbacks.isEmpty()) {\\n    callbacksBuilder.stringAttributeInputCallback(\\\"supplierNumber\\\", \\\"Supplier Number\\\", \\\"\\\", true);\\n    callbacksBuilder.stringAttributeInputCallback(\\\"name\\\", \\\"Supplier Name\\\", \\\"\\\", true);\\n    callbacksBuilder.stringAttributeInputCallback(\\\"description\\\", \\\"Description\\\", \\\"\\\", true);\\n    callbacksBuilder.choiceCallback(\\\"Please Select your Supplier Organization Type\\\", supplierTypeOptions, 0, false);\\n}\\nelse {\\n    var selectedType = callbacks.getChoiceCallbacks().get(0)[0];\\n    var stringAttrInputCallbacks = callbacks.getStringAttributeInputCallbacks();\\n    var index = 0;\\n    stringAttrInputCallbacks.forEach((callback) => {\\n       logger.error(\\\"Callback found {} for Field name {}\\\", callback, fields[index]);\\n       nodeState.putShared(fields[index], callback); \\n        ++index;\\n    });\\n\\n    var selectedTypeID = supplierTypes[selectedType-1].id;\\n    logger.error(\\\"New Supplier Org data {} {} {} {}\\\", nodeState.get(\\\"name\\\"), nodeState.get(\\\"supplierNumber\\\"), nodeState.get(\\\"description\\\"), selectedTypeID);\\n    var newSupplierOrg = {\\n        name: nodeState.get(\\\"name\\\"),\\n        supplierNumber: nodeState.get(\\\"supplierNumber\\\"),\\n        description: nodeState.get(\\\"description\\\"),\\n        supplierTypeID: selectedTypeID\\n    };\\n\\n    try {\\n        var newSupplierOrgObj = openidm.create(\\\"managed/alpha_organization\\\", null, newSupplierOrg);\\n        action.goTo(\\\"true\\\");    \\n    }\\n    catch (e) {\\n        logger.error(\\\"Exception caught {}\\\", e);\\n        action.goTo(\\\"false\\\");\\n    }\\n} \\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [
+        {
+          "_id": "37118fc1-5b55-4b5f-a332-c78678770fb1",
+          "accountCardBackgroundColor": "#ffffff",
+          "accountCardHeaderColor": "#23282e",
+          "accountCardInnerBorderColor": "#e7eef4",
+          "accountCardInputBackgroundColor": "#ffffff",
+          "accountCardInputBorderColor": "#c0c9d5",
+          "accountCardInputLabelColor": "#5e6d82",
+          "accountCardInputSelectColor": "#e4f4fd",
+          "accountCardInputSelectHoverColor": "#f6f8fa",
+          "accountCardInputTextColor": "#23282e",
+          "accountCardOuterBorderColor": "#e7eef4",
+          "accountCardShadow": 3,
+          "accountCardTabActiveBorderColor": "#109cf1",
+          "accountCardTabActiveColor": "#e4f4fd",
+          "accountCardTextColor": "#5e6d82",
+          "accountFooter": "<footer class=\"w-100\">\n            <div class=\"d-flex flex-column flex-md-row justify-content-center align-items-center py-4\">\n              <div class=\"container w-100\">\n                <div class=\"mt-5 py-4 border-top border-darkened\">\n                  <div class=\"row\" style=\"color: #23282e;\">\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                      <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">Company</h5>\n                      <ul class=\"nav mb-4 flex-column\">\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">About Us</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Contact Us</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a></li>\n                      </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                      <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">Support</h5>\n                      <ul class=\"nav mb-4 flex-column\">\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Help Center</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Docs</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a></li>\n                      </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                      <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">Community</h5>\n                      <ul class=\"nav mb-4 flex-column\">\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Facebook</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Twitter</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Forum</a></li>\n                      </ul>\n                    </div>\n                    <div class=\"col-12 col-lg-6\" style=\"color: #5e6d82\">\n                      <div class=\"d-flex align-items-center justify-content-lg-end py-4 py-lg-0\">\n                        <span class=\"pr-1\">&copy; 2021</span>\n                        <a href=\"#\" class=\"text-decoration-none\" target=\"_self\" style=\"color: #5e6d82\">Rob Roy Markets, Inc</a>\n                      </div>\n                    </div>\n                  </div>\n                </div> \n              </div>\n            </div>\n          </footer>\n",
+          "accountFooterEnabled": false,
+          "accountFooterScriptTag": "",
+          "accountFooterScriptTagEnabled": false,
+          "accountNavigationBackgroundColor": "#ffffff",
+          "accountNavigationTextColor": "#455469",
+          "accountNavigationToggleBorderColor": "#e7eef4",
+          "accountPageSections": {
+            "accountControls": {
+              "enabled": false
+            },
+            "accountSecurity": {
+              "enabled": true,
+              "subsections": {
+                "password": {
+                  "enabled": true
+                },
+                "securityQuestions": {
+                  "enabled": false
+                },
+                "twoStepVerification": {
+                  "enabled": true
+                },
+                "username": {
+                  "enabled": true
+                }
+              }
+            },
+            "consent": {
+              "enabled": false
+            },
+            "oauthApplications": {
+              "enabled": false
+            },
+            "personalInformation": {
+              "enabled": true
+            },
+            "preferences": {
+              "enabled": false
+            },
+            "social": {
+              "enabled": false
+            },
+            "trustedDevices": {
+              "enabled": true
+            }
+          },
+          "accountTableRowHoverColor": "#f6f8fa",
+          "backgroundColor": "#FFFFFF",
+          "backgroundImage": "https://assets.apnews.com/e7/ee/0cc9de349b7f3fef7a5ac4b68e93/7df9e5f8eb104e29b0f5c9a04ff0f3a9",
+          "bodyText": "#5E6D82",
+          "boldLinks": false,
+          "buttonRounded": "12",
+          "dangerColor": "#f7685b",
+          "favicon": "",
+          "fontFamily": "Helvetica",
+          "isDefault": false,
+          "journeyCardBackgroundColor": "#ffffff",
+          "journeyCardBorderRadius": 4,
+          "journeyCardHeaderBackgroundColor": "#ffffff",
+          "journeyCardShadow": 3,
+          "journeyCardTextColor": "#5e6d82",
+          "journeyCardTitleColor": "#23282e",
+          "journeyFloatingLabels": true,
+          "journeyFocusFirstFocusableItemEnabled": false,
+          "journeyFooter": "<footer class=\"w-100\">\n    <div class=\"d-flex flex-column flex-md-row justify-content-center align-items-center py-4\">\n        <div class=\"container w-100\">\n            <div class=\"mt-5 py-4 border-top border-darkened\">\n                <div class=\"row\" style=\"color: #23282e;\">\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                        <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">\n                            Company\n                        </h5>\n                        <ul class=\"nav mb-4 flex-column\">\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">About Us</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Contact Us</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                        <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">\n                            Support\n                        </h5>\n                        <ul class=\"nav mb-4 flex-column\">\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Help Center</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Docs</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                        <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">\n                            Community\n                        </h5>\n                        <ul class=\"nav mb-4 flex-column\">\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Facebook</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Twitter</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Forum</a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"col-12 col-lg-6\">\n                        <div class=\"d-flex align-items-center justify-content-lg-end py-4 py-lg-0\">\n                            <span class=\"pr-1\">&copy; 2021</span>\n                            <a href=\"#\" class=\"text-decoration-none\" target=\"_self\">Highlander, Inc.</a>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</footer>\n\n",
+          "journeyFooterEnabled": false,
+          "journeyFooterScriptTag": "",
+          "journeyFooterScriptTagEnabled": false,
+          "journeyHeader": "<header>\n  <nav class=\"navbar shadow-lg navbar-light bg-white navbar-expand-lg\">\n    <a href=\"#\" target=\"_self\" class=\"navbar-brand\">\n      <img src=\"https://pbs.twimg.com/profile_images/1697224200753119232/mSe7GfpY_400x400.jpg\" alt=\"Logo\" style=\"height:28px\" />\n    </a>\n    <div class=\"navbar-collapse d-none d-lg-flex\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"https://openam-jcpsupwf.forgeblocks.com/am/XUI/?realm=alpha&amp;authIndexType=service&amp;authIndexValue=jcpSupplierPortalLogin\">Supplier Portal</a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</header>\n",
+          "journeyHeaderEnabled": true,
+          "journeyHeaderSkipLinkEnabled": false,
+          "journeyInputBackgroundColor": "#ffffff",
+          "journeyInputBorderColor": "#c0c9d5",
+          "journeyInputLabelColor": "#5e6d82",
+          "journeyInputSelectColor": "#e4f4fd",
+          "journeyInputSelectHoverColor": "#f6f8fa",
+          "journeyInputTextColor": "#23282e",
+          "journeyJustifiedContent": "",
+          "journeyJustifiedContentEnabled": false,
+          "journeyJustifiedContentMobileViewEnabled": false,
+          "journeyLayout": "card",
+          "journeyRememberMeEnabled": false,
+          "journeyRememberMeLabel": "",
+          "journeySignInButtonPosition": "flex-column",
+          "journeyTheaterMode": false,
+          "linkActiveColor": "#C60819",
+          "linkColor": "#EB0A1E",
+          "linkedTrees": [
+            "jcpSupplierPortalLogin",
+            "jcpRegisterPush",
+            "jcpSupplierOnBoarding",
+            "createLARAccount"
+          ],
+          "logo": "https://pbs.twimg.com/profile_images/1697224200753119232/mSe7GfpY_400x400.jpg",
+          "logoAltText": "JCPenney",
+          "logoEnabled": true,
+          "logoHeight": "100",
+          "logoProfile": "https://pbs.twimg.com/profile_images/1697224200753119232/mSe7GfpY_400x400.jpg",
+          "logoProfileAltText": "JCPenney",
+          "logoProfileCollapsed": "https://pbs.twimg.com/profile_images/1697224200753119232/mSe7GfpY_400x400.jpg",
+          "logoProfileCollapsedAltText": "JCPenney",
+          "logoProfileCollapsedHeight": "28",
+          "logoProfileHeight": "40",
+          "name": "JCPenney",
+          "pageTitle": "#23282e",
+          "primaryColor": "#DF0000",
+          "primaryOffColor": "#B30000",
+          "profileBackgroundColor": "#FFCCCC",
+          "profileMenuHighlightColor": "#FFFFFF",
+          "profileMenuHoverColor": "#FFCCCC",
+          "profileMenuHoverTextColor": "#B30000",
+          "profileMenuTextHighlightColor": "#EB0A1E",
+          "secondaryColor": "#69788b",
+          "successColor": "#2ed47a",
+          "switchBackgroundColor": "#c0c9d5",
+          "textColor": "#ffffff",
+          "topBarBackgroundColor": "#ffffff",
+          "topBarBorderColor": "#e7eef4",
+          "topBarHeaderColor": "#23282e",
+          "topBarTextColor": "#69788b"
+        }
+      ],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

@@ -1,0 +1,1949 @@
+{
+  "meta": {
+    "origin": "https://openam-telcell.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2022-12-01T16:06:41.088Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "processByUser"
+    ],
+    "innerTreesIncluded": [
+      "validateFingerPrintJourney",
+      "otpByEmailJourney",
+      "IdentityProofing"
+    ]
+  },
+  "trees": {
+    "IdentityProofing": {
+      "tree": {
+        "_id": "IdentityProofing",
+        "_rev": "18081853",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "61dd9a94-dfe6-4efe-b73a-16d66430f979",
+        "nodes": {
+          "0478adf2-4302-481c-8d51-a2a5e14a154e": {
+            "connections": {
+              "outcome": "61dd9a94-dfe6-4efe-b73a-16d66430f979"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 238,
+            "y": 427
+          },
+          "15d1cd26-8664-43de-b9e8-3a79d5546968": {
+            "connections": {
+              "false": "885754b6-129d-4573-9227-6646c940ebbe",
+              "true": "885754b6-129d-4573-9227-6646c940ebbe"
+            },
+            "displayName": "Onfido-CheckApplicant",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 803,
+            "y": 10
+          },
+          "2a9d6d2a-6a77-4757-a93c-bc0662d5ea6d": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Create F1 User",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1560,
+            "y": 213.015625
+          },
+          "5d140ac7-ad74-40e4-96bf-3de3b75ccb68": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "61dd9a94-dfe6-4efe-b73a-16d66430f979"
+            },
+            "displayName": "Verification Error Dialog",
+            "nodeType": "PageNode",
+            "x": 1907,
+            "y": 574.7666625976562
+          },
+          "61dd9a94-dfe6-4efe-b73a-16d66430f979": {
+            "connections": {
+              "known": "d9a826b5-657a-4092-95eb-645049076fde",
+              "unknown": "0478adf2-4302-481c-8d51-a2a5e14a154e"
+            },
+            "displayName": "Check Username",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 232,
+            "y": 221
+          },
+          "63f6402d-9452-43b5-a6c3-28878003bbf5": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "d339126b-f100-45db-b307-64232de7db5c"
+            },
+            "displayName": "Onfido-CreateApplicant",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 518,
+            "y": 328
+          },
+          "885754b6-129d-4573-9227-6646c940ebbe": {
+            "connections": {
+              "DONE": "e4dbe00b-18fa-4ccf-a0f2-92b798340b5f"
+            },
+            "displayName": "Polling Wait Node",
+            "nodeType": "PollingWaitNode",
+            "x": 1052,
+            "y": 121.5
+          },
+          "d339126b-f100-45db-b307-64232de7db5c": {
+            "connections": {
+              "true": "15d1cd26-8664-43de-b9e8-3a79d5546968"
+            },
+            "displayName": "Onfido-CaptureEvidence",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 655,
+            "y": 204
+          },
+          "d9a826b5-657a-4092-95eb-645049076fde": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "63f6402d-9452-43b5-a6c3-28878003bbf5"
+            },
+            "displayName": "Identify Existing User",
+            "nodeType": "IdentifyExistingUserNode",
+            "x": 384,
+            "y": 48
+          },
+          "e4dbe00b-18fa-4ccf-a0f2-92b798340b5f": {
+            "connections": {
+              "clear": "2a9d6d2a-6a77-4757-a93c-bc0662d5ea6d",
+              "consider": "5d140ac7-ad74-40e4-96bf-3de3b75ccb68",
+              "error": "5d140ac7-ad74-40e4-96bf-3de3b75ccb68",
+              "pending": "fb530016-9ed1-4541-a150-e55711f58b38",
+              "wronguser": "5d140ac7-ad74-40e4-96bf-3de3b75ccb68"
+            },
+            "displayName": "Onfido-CheckStatus",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1188,
+            "y": 308
+          },
+          "fb530016-9ed1-4541-a150-e55711f58b38": {
+            "connections": {
+              "Reject": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "Retry": "885754b6-129d-4573-9227-6646c940ebbe"
+            },
+            "displayName": "Retry Limit Decision",
+            "nodeType": "RetryLimitDecisionNode",
+            "x": 1413,
+            "y": 22
+          }
+        },
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 2160,
+            "y": 162
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 2167,
+            "y": 344
+          },
+          "startNode": {
+            "x": 70,
+            "y": 200
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "0478adf2-4302-481c-8d51-a2a5e14a154e": {
+          "_id": "0478adf2-4302-481c-8d51-a2a5e14a154e",
+          "_rev": "-1809946462",
+          "nodes": [
+            {
+              "_id": "e10b0ec2-f156-4a79-a13f-3bed45563cff",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Username"
+            }
+          ],
+          "pageDescription": {},
+          "stage": "{\"themeId\":\"5bc0e730-53e4-41af-9d1e-edf0265c660c\"}",
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "15d1cd26-8664-43de-b9e8-3a79d5546968": {
+          "_id": "15d1cd26-8664-43de-b9e8-3a79d5546968",
+          "_rev": "1385079086",
+          "script": "d2a41d85-d33a-42d9-a7dd-50dfbc9fa7c0",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "2a9d6d2a-6a77-4757-a93c-bc0662d5ea6d": {
+          "_id": "2a9d6d2a-6a77-4757-a93c-bc0662d5ea6d",
+          "_rev": "1263265603",
+          "script": "be6ae73b-69e3-44d7-a4ea-db72305a2a63",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "5d140ac7-ad74-40e4-96bf-3de3b75ccb68": {
+          "_id": "5d140ac7-ad74-40e4-96bf-3de3b75ccb68",
+          "_rev": "-196117267",
+          "nodes": [
+            {
+              "_id": "cddeb3ed-fb5e-4024-84f0-cefe71f151c2",
+              "nodeType": "MessageNode",
+              "displayName": "Error"
+            }
+          ],
+          "pageDescription": {
+            "en": "There was an error verifying your identity. Please try again or contact us by email at help@kemper.com or call us at +1-234-5678."
+          },
+          "pageHeader": {
+            "en": "Unable to verify your identity!"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "61dd9a94-dfe6-4efe-b73a-16d66430f979": {
+          "_id": "61dd9a94-dfe6-4efe-b73a-16d66430f979",
+          "_rev": "-876700098",
+          "script": "739bdc48-fd24-4c52-b353-88706d75558a",
+          "outcomes": [
+            "known",
+            "unknown"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "known",
+              "displayName": "known"
+            },
+            {
+              "id": "unknown",
+              "displayName": "unknown"
+            }
+          ]
+        },
+        "63f6402d-9452-43b5-a6c3-28878003bbf5": {
+          "_id": "63f6402d-9452-43b5-a6c3-28878003bbf5",
+          "_rev": "-106831992",
+          "script": "25d8a628-3556-4219-aaf5-2384e2e5f19a",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "885754b6-129d-4573-9227-6646c940ebbe": {
+          "_id": "885754b6-129d-4573-9227-6646c940ebbe",
+          "_rev": "455035730",
+          "spamDetectionTolerance": 3,
+          "spamDetectionEnabled": false,
+          "exitMessage": {},
+          "waitingMessage": {},
+          "secondsToWait": 8,
+          "exitable": false,
+          "_type": {
+            "_id": "PollingWaitNode",
+            "name": "Polling Wait Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "DONE",
+              "displayName": "Done"
+            }
+          ]
+        },
+        "d339126b-f100-45db-b307-64232de7db5c": {
+          "_id": "d339126b-f100-45db-b307-64232de7db5c",
+          "_rev": "2093665693",
+          "script": "71545db5-ce01-46b1-b79f-d41af36bd548",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        },
+        "d9a826b5-657a-4092-95eb-645049076fde": {
+          "_id": "d9a826b5-657a-4092-95eb-645049076fde",
+          "_rev": "-1498866042",
+          "identityAttribute": "userName",
+          "identifier": "userName",
+          "_type": {
+            "_id": "IdentifyExistingUserNode",
+            "name": "Identify Existing User",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "e4dbe00b-18fa-4ccf-a0f2-92b798340b5f": {
+          "_id": "e4dbe00b-18fa-4ccf-a0f2-92b798340b5f",
+          "_rev": "-1213008087",
+          "script": "0c189425-e5ea-4062-ae2e-53ea14320bf4",
+          "outcomes": [
+            "pending",
+            "clear",
+            "consider",
+            "error",
+            "wronguser"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "pending",
+              "displayName": "pending"
+            },
+            {
+              "id": "clear",
+              "displayName": "clear"
+            },
+            {
+              "id": "consider",
+              "displayName": "consider"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            },
+            {
+              "id": "wronguser",
+              "displayName": "wronguser"
+            }
+          ]
+        },
+        "fb530016-9ed1-4541-a150-e55711f58b38": {
+          "_id": "fb530016-9ed1-4541-a150-e55711f58b38",
+          "_rev": "78997379",
+          "incrementUserAttributeOnFailure": true,
+          "retryLimit": 12,
+          "_type": {
+            "_id": "RetryLimitDecisionNode",
+            "name": "Retry Limit Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Retry",
+              "displayName": "Retry"
+            },
+            {
+              "id": "Reject",
+              "displayName": "Reject"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "e10b0ec2-f156-4a79-a13f-3bed45563cff": {
+          "_id": "e10b0ec2-f156-4a79-a13f-3bed45563cff",
+          "_rev": "-44380228",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "cddeb3ed-fb5e-4024-84f0-cefe71f151c2": {
+          "_id": "cddeb3ed-fb5e-4024-84f0-cefe71f151c2",
+          "_rev": "1877640319",
+          "messageYes": {
+            "en": "Try again"
+          },
+          "message": {
+            "en": "Would you like to try again?"
+          },
+          "messageNo": {
+            "en": "Abort"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "d2a41d85-d33a-42d9-a7dd-50dfbc9fa7c0": {
+          "_id": "d2a41d85-d33a-42d9-a7dd-50dfbc9fa7c0",
+          "name": "Onfido-CheckApplicant",
+          "description": "Check Applicant",
+          "script": "\"logger.error(\\\"Onfido-CheckApplicant: Start\\\");\\n\\n/*\\n * !!! Extend your authentication session time so your identity proofing flows don't time out !!!\\n *\\n * Authentication > Settings > Trees > Max Duration (Minutes)\\n *\\n * Set to 15 minutes.\\n *\\n */\\n\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n *\\n * REPLACE WITH YOUR OWN ONFIDO API TOKEN\\n */\\n//var ONFIDO_API_TOKEN = \\\"api_live.StUdfxdiCFb.YrzbadxB_R2-qG5lFUc3lWg6JAc3Cnq-\\\"\\nvar ONFIDO_API_TOKEN = \\\"api_live.H5ysRusAomY.nbbkimoWc91cDZAWJZkJt0Tkqdjm1Rjr\\\";\\n/*\\n * END SCRIPT CONFIGURATION\\n */\\n\\nvar requestBodyJson = {\\n    \\\"applicant_id\\\": String(sharedState.get(\\\"onfidoApplicantID\\\")),\\n    \\\"report_names\\\": [\\\"document\\\", \\\"facial_similarity_photo\\\"]\\n}\\n// var requestBodyJson = {\\n//     \\\"applicant_id\\\": String(sharedState.get(\\\"onfidoApplicantID\\\")),\\n//     \\\"report_names\\\": [\\\"document\\\"]\\n// }\\n\\nvar failure = true\\n\\nvar fr = JavaImporter(\\n    org.forgerock.http.protocol.Request\\n)\\n\\nvar request = new fr.Request()\\nrequest.setUri(\\\"https://api.onfido.com/v3/checks\\\")\\nrequest.setMethod(\\\"POST\\\")\\nrequest.getHeaders().add(\\\"Content-Type\\\", \\\"application/json; charset=UTF-8\\\")\\nrequest.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN)\\nrequest.getEntity().setString(JSON.stringify(requestBodyJson))\\n\\nvar response = httpClient.send(request).get()\\nlogger.error(\\\"Onfido-CheckApplicant: Initiate checks response: \\\".concat(response.getEntity().getString()));\\n\\nif (response.getStatus().getCode() === 200) {\\n    var id = JSON.parse(response.getEntity().getString()).id\\n    failure = !id\\n    if (!failure) sharedState.put(\\\"onfidoAuthToken\\\", id);\\n} else {\\n    failure = true\\n}\\n\\noutcome = failure ? \\\"false\\\" : \\\"true\\\";\\nlogger.error(\\\"Onfido-CheckApplicant: End (outcome=\\\".concat(outcome).concat(\\\")\\\"));\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "be6ae73b-69e3-44d7-a4ea-db72305a2a63": {
+          "_id": "be6ae73b-69e3-44d7-a4ea-db72305a2a63",
+          "name": "createF1Customer",
+          "description": "Creates a Customer on F1 Repository",
+          "script": "\"(function() {\\n\\n  /*\\n    - Data made available by nodes that have already executed are available in the sharedState variable.\\n    - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n   */\\n  var objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\n  var userID = sharedState.get(\\\"_id\\\");\\n  logger.error(\\\"**** Create F1 Customer - User ID is {}\\\", String(userID));\\n  var apellidoPaterno;\\n  var apellidoMaterno;\\n  if (sharedState.get(\\\"onFidoOutcome\\\") && String(sharedState.get(\\\"onFidoOutcome\\\")) === \\\"clear\\\") { // Format Last Name and Second Last name\\n    var lastName = String(objectAttributes.get(\\\"sn\\\")).split(\\\" \\\");\\n    if (lastName.length > 1) {\\n      apellidoMaterno = String(lastName[1]);\\n      if (lastName.length > 2) {\\n        apellidoMaterno = apellidoMaterno + \\\"-\\\" + lastName[2];\\n      }\\n      logger.error(\\\"**** Create F1 Customer - Second Last Name is {}\\\", apellidoMaterno);\\n      apellidoPaterno =  String(lastName[0]);\\n    }\\n    logger.error(\\\"**** Create F1 Customer - Last Name  {}\\\", lastName[0]);\\n  }\\n  else {\\n    apellidoPaterno = String(objectAttributes.get(\\\"sn\\\"));\\n    apellidoMaterno = String(objectAttributes.get(\\\"frUnindexedString1\\\"));\\n  }\\n\\n  const postalAddress = String(objectAttributes.get(\\\"postalAddress\\\"));\\n  const city = String(objectAttributes.get(\\\"city\\\"));\\n  const stateProvince = String(objectAttributes.get(\\\"stateProvince\\\"));\\n  const postalCode = String(objectAttributes.get(\\\"postalCode\\\"));\\n  const formattedAddress = String(postalAddress) + \\\", \\\" + String(city) + \\\", \\\" + String(stateProvince) + \\\", \\\" + String(postalCode);\\n  logger.error(\\\"**** Create F1 Customer - Formatted Address  {}\\\", formattedAddress);\\n\\n  var restBody = {\\n    telephoneNumber: String(objectAttributes.get(\\\"telephoneNumber\\\")),\\n    userId: String(objectAttributes.get(\\\"mail\\\")),\\n    userType: String(objectAttributes.get(\\\"description\\\")),\\n    address: String(formattedAddress),\\n    rfc: String(objectAttributes.get(\\\"frIndexedString4\\\")),\\n    nombre: String(objectAttributes.get(\\\"givenName\\\")),\\n    apellidoPaterno: String(apellidoPaterno),\\n    apellidoMaterno: String(apellidoMaterno),\\n    email: String(objectAttributes.get(\\\"mail\\\")),\\n  };\\n\\n  if (String(objectAttributes.get(\\\"description\\\")) === \\\"Usuario\\\") {\\n    restBody.titularUserId = String(objectAttributes.get(\\\"frIndexedString5\\\"));\\n  }\\n\\n  var request = new org.forgerock.http.protocol.Request();\\n  request.setMethod('POST');\\n  request.setUri('http://34.239.121.198:9090/customers');\\n  request.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\n  request.getEntity().setString(JSON.stringify(restBody));\\n  var response = httpClient.send(request).get();\\n  var jsonResult = JSON.parse(response.getEntity().getString());\\n\\n  if (jsonResult.hasOwnProperty(\\\"error\\\") ) {\\n      outcome = \\\"false\\\";\\n  } else {\\n    objectAttributes.put(\\\"givenName\\\", jsonResult.nombre);\\n    objectAttributes.put(\\\"userName\\\", jsonResult.email);\\n    objectAttributes.put(\\\"sn\\\", jsonResult.apellidoPaterno);\\n    objectAttributes.put(\\\"frUnindexedString1\\\", jsonResult.apellidoMaterno);\\n    objectAttributes.put(\\\"mail\\\", jsonResult.email);\\n    objectAttributes.put(\\\"frIndexedString4\\\", jsonResult.rfc);\\n    objectAttributes.put(\\\"description\\\", jsonResult.userType);\\n    objectAttributes.put(\\\"telephoneNumber\\\", jsonResult.telephoneNumber);\\n    if (jsonResult.userType === \\\"Usuario\\\") {\\n      objectAttributes.put(\\\"frIndexedString5\\\", jsonResult.titularUserId);\\n    }\\n    sharedState.put(\\\"objectAttributes\\\", objectAttributes);\\n    sharedState.put(\\\"username\\\", jsonResult.email);\\n    sharedState.put(\\\"savedUserName\\\", jsonResult.email);\\n    outcome = \\\"true\\\";\\n  }\\n}());\\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "739bdc48-fd24-4c52-b353-88706d75558a": {
+          "_id": "739bdc48-fd24-4c52-b353-88706d75558a",
+          "name": "Check Username",
+          "description": "Check if username has already been collected.",
+          "script": "\"/* Check Username\\n *\\n * Author: volker.scheuber@forgerock.com\\n * \\n * Check if username has already been collected.\\n * Return \\\"known\\\" if yes, \\\"unknown\\\" otherwise.\\n * \\n * This script does not need to be parametrized. It will work properly as is.\\n * \\n * The Scripted Decision Node needs the following outcomes defined:\\n * - known\\n * - unknown\\n */\\n(function () {\\n    if (null != sharedState.get(\\\"username\\\")) {\\n        outcome = \\\"known\\\";\\n    }\\n    else {\\n        outcome = \\\"unknown\\\";\\n    }\\n}());\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "25d8a628-3556-4219-aaf5-2384e2e5f19a": {
+          "_id": "25d8a628-3556-4219-aaf5-2384e2e5f19a",
+          "name": "Onfido-CreateApplicant",
+          "description": "Create Applicant",
+          "script": "\"logger.error(\\\"Onfido-CreateApplicant: Start\\\");\\n\\n/*\\n * !!! Extend your authentication session time so your identity proofing flows don't time out !!!\\n *\\n * Authentication > Settings > Trees > Max Duration (Minutes)\\n *\\n * Set to 15 minutes.\\n *\\n */\\n\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n *\\n * REPLACE WITH YOUR OWN ONFIDO API TOKEN\\n */\\nvar ONFIDO_API_TOKEN = \\\"api_live.StUdfxdiCFb.YrzbadxB_R2-qG5lFUc3lWg6JAc3Cnq-\\\";\\n/*\\n * END SCRIPT CONFIGURATION\\n */\\n\\n// Requires Identify Existing User auth node to retrieve real user ID from IDM\\nvar username = sharedState.get(\\\"_id\\\");\\n\\n// Retrieve user profile attributes for comparison with document verification\\n// var requestBodyJson = {\\n//     \\\"first_name\\\": String(idRepository.getAttribute(username, \\\"givenName\\\").iterator().next().toString()),\\n//     \\\"last_name\\\": String(idRepository.getAttribute(username, \\\"sn\\\").iterator().next().toString()),\\n//     \\\"dob\\\": String(idRepository.getAttribute(username, \\\"fr-attr-istr1\\\").iterator().next().toString())\\n// }\\nvar requestBodyJson = {\\n    \\\"first_name\\\": String(idRepository.getAttribute(username, \\\"givenName\\\").iterator().next().toString()),\\n    \\\"last_name\\\": String(idRepository.getAttribute(username, \\\"sn\\\").iterator().next().toString())\\n}\\n\\nvar failure = true\\n\\nvar fr = JavaImporter(\\n    org.forgerock.http.protocol.Request\\n)\\n\\nvar request = new fr.Request();\\nrequest.setUri(\\\"https://api.onfido.com/v3/applicants/\\\");\\nrequest.setMethod(\\\"POST\\\");\\nrequest.getHeaders().add(\\\"Content-Type\\\", \\\"application/json; charset=UTF-8\\\");\\nrequest.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN);\\nrequest.getEntity().setString(JSON.stringify(requestBodyJson));\\n\\nvar response = httpClient.send(request).get();\\nlogger.error(\\\"Onfido-CreateApplicant: Create applicant ID response: \\\".concat(response.getEntity().getString()));\\n\\nif (response.getStatus().getCode() === 201) {\\n    var applicantID = JSON.parse(response.getEntity().getString()).id;\\n    failure = !applicantID;\\n    if (!failure) sharedState.put(\\\"onfidoApplicantID\\\", applicantID);\\n}\\nelse {\\n    failure = true;\\n}\\n\\n// Get Onfido client JWT token required by client SDK\\nif (!failure) {\\n\\t// get the referer\\n\\tvar referer = parseUrl(requestHeaders.get(\\\"referer\\\").get(0));\\n    var requestBodyJson = {\\n        \\\"applicant_id\\\": String(sharedState.get(\\\"onfidoApplicantID\\\")),\\n        \\\"referrer\\\": referer.origin.concat(\\\"/\\\")\\n    }\\n\\n    failure = true;\\n\\n    request = new fr.Request();\\n    request.setUri(\\\"https://api.onfido.com/v3/sdk_token\\\");\\n    request.setMethod(\\\"POST\\\");\\n    request.getHeaders().add(\\\"Content-Type\\\", \\\"application/json; charset=UTF-8\\\");\\n    request.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN);\\n    request.getEntity().setString(JSON.stringify(requestBodyJson));\\n\\n    response = httpClient.send(request).get();\\n    logger.error(\\\"Onfido-CreateApplicant: Get sdk token response: \\\".concat(response.getEntity().getString()));\\n\\n    if (response.getStatus().getCode() === 200) {\\n        var token = JSON.parse(response.getEntity().getString()).token\\n        failure = !token;\\n        if (!failure) sharedState.put(\\\"onfidoAuthToken\\\", token);\\n    }\\n    else {\\n        failure = true;\\n    }\\n}\\n\\noutcome = failure ? \\\"false\\\" : \\\"true\\\";\\nlogger.error(\\\"Onfido-CreateApplicant: End (outcome=\\\".concat(outcome).concat(\\\")\\\"));\\n\\n/*\\n * Parse a URL into its components and make them easily accessible by name\\n * \\n * e.g.: https://openam-volker-dev.forgeblocks.com/am/XUI/?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim#/\\n * {\\n *     hash: '#/',\\n *     host: 'openam-volker-dev.forgeblocks.com',\\n *     hostname: 'openam-volker-dev.forgeblocks.com',\\n *     href: 'https://openam-volker-dev.forgeblocks.com/am/XUI/?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim#/',\\n *     origin: 'https://openam-volker-dev.forgeblocks.com',\\n *     pathname: '/am/XUI/',\\n *     port: '',\\n *     protocol: 'https',\\n *     search: '?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim',\\n *     username: '',\\n *     password: '',\\n *     searchParam: {\\n *         realm: '/bravo',\\n *         authIndexType: 'service',\\n *         authIndexValue: 'InitiateOwnerClaim'\\n *     }\\n * }\\n */\\nfunction parseUrl(href) {\\n    var m = href.match(/^(([^:\\\\/?#]+):?(?:\\\\/\\\\/((?:([^\\\\/?#:]*):([^\\\\/?#:]*)@)?([^\\\\/?#:]*)(?::([^\\\\/?#:]*))?)))?([^?#]*)(\\\\?[^#]*)?(#.*)?$/),\\n    r = {\\n        hash: m[10] || \\\"\\\",                      // #/\\n        host: m[3] || \\\"\\\",                       // openam-volker-dev.forgeblocks.com\\n        hostname: m[6] || \\\"\\\",                   // openam-volker-dev.forgeblocks.com\\n        href: m[0] || \\\"\\\",                       // https://openam-volker-dev.forgeblocks.com/am/XUI/?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim#/\\n        origin: m[1] || \\\"\\\",                     // https://openam-volker-dev.forgeblocks.com\\n        pathname: m[8] || (m[1] ? \\\"/\\\" : \\\"\\\"),    // /am/XUI/\\n        port: m[7] || \\\"\\\",                       // \\n        protocol: m[2] || \\\"\\\",                   // https\\n        search: m[9] || \\\"\\\",                     // ?realm=/bravo&authIndexType=service&authIndexValue=InitiateOwnerClaim\\n        username: m[4] || \\\"\\\",                   // \\n        password: m[5] || \\\"\\\",                   // \\n        searchParam: {}                         // { realm: '/bravo',\\n                                                //   authIndexType: 'service',\\n                                                //   authIndexValue: 'InitiateOwnerClaim' }\\n    };\\n    if (r.protocol.length == 2) {\\n        r.protocol = \\\"file:///\\\" + r.protocol.toUpperCase();\\n        r.origin = r.protocol + \\\"//\\\" + r.host;\\n    }\\n    if (r.search.length > 2) {\\n        var query = (r.search.indexOf('?') === 0) ? r.search.substr(1) : r.search;\\n        var vars = query.split('&');\\n        for (var i = 0; i < vars.length; i++) {\\n        var pair = vars[i].split('=');\\n        r.searchParam[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);\\n        }\\n    }\\n    r.href = r.origin + r.pathname + r.search + r.hash;\\n    return r;\\n};\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "71545db5-ce01-46b1-b79f-d41af36bd548": {
+          "_id": "71545db5-ce01-46b1-b79f-d41af36bd548",
+          "name": "Onfido-CaptureEvidence",
+          "description": "Capture Evidence",
+          "script": "\"logger.error(\\\"Onfido-CaptureEvidence: Start\\\");\\n/*\\n * !!! Extend your authentication session time so your identity proofing flows don't time out !!!\\n *\\n * Authentication > Settings > Trees > Max Duration (Minutes)\\n *\\n * Set to 15 minutes.\\n *\\n */\\n\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n */\\nvar onfido_auth_token = String(sharedState.get(\\\"onfidoAuthToken\\\"));\\nvar onfido_dialog_title = \\\"Join the Expanse family!\\\";\\nvar onfido_dialog_msg1 = \\\"To open an Expanse account, we will need to verify your identity.\\\";\\nvar onfido_dialog_msg2 = \\\"It will only take a couple of minutes.\\\";\\nvar onfido_country_code = \\\"US\\\";\\n/*\\n * END SCRIPT CONFIGURATION\\n */\\n\\nvar mobile = idRepository.getAttribute(sharedState.get(\\\"_id\\\"), \\\"telephoneNumber\\\");\\nvar smsNumber = \\\"\\\";\\nif (mobile && mobile.iterator().hasNext()) {\\n    smsNumber = String(mobile.iterator().next().toString());\\n}\\n\\n// Inject Onfido SDK into login page\\nonfidoScript = String(\\\"var body=document.body;\\\\n\\\" +\\n    \\\"var script = document.createElement('script');\\\\n\\\" +\\n    \\\"document.getElementById('callbacksPanel').style.display = 'none';\\\\n\\\" +\\n    \\\"var onfido_div = document.createElement(\\\\\\\"div\\\\\\\");\\\\n\\\" +\\n    \\\"onfido_div.id=\\\\\\\"onfido-mount\\\\\\\";\\\\n\\\" +\\n    \\\"script.src = 'https://assets.onfido.com/web-sdk-releases/5.2.1/onfido.min.js';\\\\n\\\" +\\n    \\\"var head = document.head; \\\\n \\\" +\\n    \\\"var link = document.createElement(\\\\\\\"link\\\\\\\");  \\\\n\\\" +\\n    \\\"     link.type = \\\\\\\"text/css\\\\\\\"; \\\\n \\\" +\\n    \\\"     link.rel = \\\\\\\"stylesheet\\\\\\\"; \\\\n \\\" +\\n    \\\"     link.href = 'https://assets.onfido.com/web-sdk-releases/5.2.1/style.css'; \\\\n \\\" +\\n    \\\"    head.appendChild(link); \\\\n \\\" +\\n    \\\";\\\\n\\\" +\\n    \\\"var onfido = {};\\\\n\\\" +\\n    \\\"script.onload=function() {\\\\n\\\" +\\n    \\\"\\tonfido=Onfido.init({\\\\n\\\" +\\n    \\\"       token: '\\\" + onfido_auth_token + \\\"', \\\\n\\\" +\\n    \\\"       useModal: true, \\\\n\\\" +\\n    \\\"       isModalOpen: true, \\\\n\\\" +\\n    \\\"       smsNumberCountryCode: '\\\" + onfido_country_code + \\\"', \\\\n\\\" +\\n    \\\"       userDetails: { \\\\n\\\" +\\n    \\\"           smsNumber: '\\\" + smsNumber + \\\"' \\\\n\\\" +\\n    \\\"       }, \\\\n\\\" +\\n    \\\"       steps: [\\\\n\\\" +\\n    \\\"           {\\\\n\\\" +\\n    \\\"               type:'welcome',\\\\n\\\" +\\n    \\\"               options:{\\\\n\\\" +\\n    \\\"                   title:'\\\" + onfido_dialog_title + \\\"',\\\\n\\\" +\\n    \\\"                   descriptions:[\\\\n\\\" +\\n    \\\"                       '\\\" + onfido_dialog_msg1 + \\\"',\\\\n\\\" +\\n    \\\"                       '\\\" + onfido_dialog_msg2 + \\\"',\\\\n\\\" +\\n    \\\"                   ]\\\\n\\\" +\\n    \\\"               }\\\\n\\\" +\\n    \\\"          },\\\\n\\\" +\\n    \\\"          'document',\\\\n\\\" +\\n    \\\"          'face',\\\\n\\\" +\\n    \\\"          'complete',\\\\n\\\" +\\n    \\\"       ],\\\\n\\\" +\\n    \\\"       onComplete: function(data){ console.log('DONE'); onfido.setOptions({ isModalOpen:false }); document.getElementById('loginButton_0').click(); } \\\\n\\\" +\\n    \\\"    })\\\\n\\\" +\\n    \\\"};\\\\n\\\" +\\n    \\\"document.body.appendChild(script);\\\\n\\\");\\n\\nvar fr = JavaImporter(\\n    org.forgerock.openam.auth.node.api,\\n    javax.security.auth.callback.NameCallback,\\n    com.sun.identity.authentication.callbacks.ScriptTextOutputCallback\\n);\\n\\nwith (fr) {\\n    if (callbacks.isEmpty()) {\\n        logger.error(\\\"Onfido-CaptureEvidence: Sending callbacks\\\");\\n        action = Action.send(new ScriptTextOutputCallback(onfidoScript)).build();\\n    } else {\\n        logger.error(\\\"Onfido-CaptureEvidence: End (outcome=true)\\\");\\n        action = Action.goTo(\\\"true\\\").build();\\n    }\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "0c189425-e5ea-4062-ae2e-53ea14320bf4": {
+          "_id": "0c189425-e5ea-4062-ae2e-53ea14320bf4",
+          "name": "Onfido-CheckStatus",
+          "description": "Check Status",
+          "script": "\"logger.error(\\\"Onfido-CheckStatus: Start\\\");\\n\\n/*\\n * !!! Extend your authentication session time so your identity proofing flows don't time out !!!\\n *\\n * Authentication > Settings > Trees > Max Duration (Minutes)\\n *\\n * Set to 15 minutes.\\n *\\n */\\n\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n *\\n * REPLACE WITH YOUR OWN ONFIDO API TOKEN\\n */\\n//var ONFIDO_API_TOKEN = \\\"api_live.StUdfxdiCFb.YrzbadxB_R2-qG5lFUc3lWg6JAc3Cnq-\\\"\\nvar ONFIDO_API_TOKEN = \\\"api_live.H5ysRusAomY.nbbkimoWc91cDZAWJZkJt0Tkqdjm1Rjr\\\";\\n/*\\n * BEGIN SCRIPT CONFIGURATION\\n */\\n\\nvar fr = JavaImporter(\\n    org.forgerock.http.protocol.Request\\n)\\n\\nvar request = new fr.Request()\\nrequest.setUri(\\\"https://api.onfido.com/v3/checks?applicant_id=\\\" + String(sharedState.get(\\\"onfidoApplicantID\\\")));\\nrequest.setMethod(\\\"GET\\\")\\nrequest.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN)\\nvar response = httpClient.send(request).get()\\nlogger.error(\\\"Onfido-CheckStatus: status check response: \\\".concat(response.getEntity().getString()));\\n\\noutcome = \\\"pending\\\";\\n\\nif (response.getStatus().getCode() === 200) {\\n    var json = JSON.parse(response.getEntity().getString());\\n    if (json.checks.length > 0) {\\n        if (json.checks[0].status == \\\"complete\\\") {\\n            outcome = json.checks[0].result;\\n\\n            for (i = 0; i < json.checks[0].report_ids.length; i++) {\\n\\n                var request = new fr.Request()\\n                request.setUri(\\\"https://api.onfido.com/v3/reports/\\\" + String(json.checks[0].report_ids[i]));\\n                request.setMethod(\\\"GET\\\")\\n                request.getHeaders().add(\\\"Authorization\\\", \\\"Token token=\\\" + ONFIDO_API_TOKEN)\\n                response = httpClient.send(request).get()\\n                logger.error(\\\"Onfido-CheckStatus: get report response: \\\".concat(response.getEntity().getString()));\\n\\n                var report = JSON.parse(response.getEntity().getString());\\n                if (report.name == \\\"document\\\") {\\n                    if (report.properties.hasOwnProperty(\\\"first_name\\\")) setSharedObjectAttribute(\\\"givenName\\\", titleCase(report.properties.first_name));\\n                    if (report.properties.hasOwnProperty(\\\"last_name\\\")) setSharedObjectAttribute(\\\"sn\\\", titleCase(report.properties.last_name));\\n                    if (report.properties.barcode[0].hasOwnProperty(\\\"address_line_1\\\")) setSharedObjectAttribute(\\\"postalAddress\\\", titleCase(report.properties.barcode[0].address_line_1));\\n                    if (report.properties.barcode[0].hasOwnProperty(\\\"address_line_3\\\")) setSharedObjectAttribute(\\\"city\\\", titleCase(report.properties.barcode[0].address_line_3));\\n                    if (report.properties.barcode[0].hasOwnProperty(\\\"address_line_5\\\")) setSharedObjectAttribute(\\\"stateProvince\\\", report.properties.barcode[0].address_line_5);\\n                    if (report.properties.barcode[0].hasOwnProperty(\\\"address_line_4\\\")) setSharedObjectAttribute(\\\"postalCode\\\", formatOnfidoZipCode(report.properties.barcode[0].address_line_4));\\n                    if (report.properties.hasOwnProperty(\\\"issuing_country\\\")) setSharedObjectAttribute(\\\"country\\\", report.properties.issuing_country);\\n                }\\n            }\\n        }\\n    }\\n  \\n} else outcome = \\\"error\\\";\\n\\nsharedState.put(\\\"onFidoOutcome\\\", outcome);\\nlogger.error(\\\"Onfido-CheckStatus: End (outcome=\\\".concat(outcome).concat(\\\")\\\"));\\n\\n/*\\n * Output str in title case\\n * \\n * e.g.: 'ALL UPPERCASE AND all lowercase' = 'All Uppercase And All Lowercase'\\n */\\nfunction titleCase(input) {\\n    var str = input.toString();\\n    var splitStr = str.toLowerCase().split(' ');\\n    for (var i = 0; i < splitStr.length; i++) {\\n        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].slice(1)\\n    }\\n    return splitStr.join(' '); \\n}\\n\\n/*\\n * Format ZIP code from Onfido identity proofing output\\n * \\n * e.g.: 786260000 = 78626\\n *       786261234 = 78626-1234\\n */\\nfunction formatOnfidoZipCode(str) {\\n  if (str.substring(5) == \\\"0000\\\") {\\n    return str.substring(0,5)\\n  }\\n  else {\\n    return str.substring(0,5) + \\\"-\\\" + str.substring(5);\\n  }\\n}\\n\\n/*\\n * Store attributes in shared state for use with the Create/Patch Object nodes.\\n */\\nfunction setSharedObjectAttribute(name, value) {\\n  logger.error(\\\"**** FR Attribute Name {} : OnFIDO Attr value: {}\\\", name, value);\\n  //sharedState.put(name, value);\\n  var storage = sharedState.get(\\\"objectAttributes\\\");\\n  if (storage && value) {\\n    if (storage.put) {\\n      storage.put(name, value);\\n    }\\n    else {\\n      storage[name] = value;\\n    }\\n  }\\n  else if (value) {\\n    sharedState.put(\\\"objectAttributes\\\", JSON.parse(\\\"{\\\\\\\"\\\"+name+\\\"\\\\\\\":\\\\\\\"\\\"+value+\\\"\\\\\\\"}\\\"));\\n  }\\n  sharedState.put(\\\"objectAttributes\\\", storage);\\n}\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    },
+    "otpByEmailJourney": {
+      "tree": {
+        "_id": "otpByEmailJourney",
+        "_rev": "1857575045",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "3d51c811-8391-4d01-aa46-0ed26f26301d",
+        "nodes": {
+          "00b35b48-2c2c-4496-8752-be169b6d9de8": {
+            "connections": {
+              "outcome": "da5bd1b5-2455-4999-8638-ebfdeb671f1b"
+            },
+            "displayName": "OTP Email Sender",
+            "nodeType": "OneTimePasswordSmtpSenderNode",
+            "x": 471,
+            "y": 185.015625
+          },
+          "3d51c811-8391-4d01-aa46-0ed26f26301d": {
+            "connections": {
+              "outcome": "00b35b48-2c2c-4496-8752-be169b6d9de8"
+            },
+            "displayName": "HOTP Generator",
+            "nodeType": "OneTimePasswordGeneratorNode",
+            "x": 193,
+            "y": 186.015625
+          },
+          "da5bd1b5-2455-4999-8638-ebfdeb671f1b": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 760,
+            "y": 177.015625
+          }
+        },
+        "description": "Aunthentication via OTP sent by e-mail",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1067,
+            "y": 103
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1079,
+            "y": 401
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "00b35b48-2c2c-4496-8752-be169b6d9de8": {
+          "_id": "00b35b48-2c2c-4496-8752-be169b6d9de8",
+          "_rev": "-903971694",
+          "password": null,
+          "username": "apikey",
+          "hostName": "smtp.sendgrid.net",
+          "fromEmailAddress": "telceladmin@tsa.demo.com",
+          "hostPort": 2525,
+          "emailContent": {},
+          "smsGatewayImplementationClass": "com.sun.identity.authentication.modules.hotp.DefaultSMSGatewayImpl",
+          "emailSubject": {
+            "en": "Su Contraseña Temporal"
+          },
+          "emailAttribute": "mail",
+          "sslOption": "START_TLS",
+          "_type": {
+            "_id": "OneTimePasswordSmtpSenderNode",
+            "name": "OTP Email Sender",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "3d51c811-8391-4d01-aa46-0ed26f26301d": {
+          "_id": "3d51c811-8391-4d01-aa46-0ed26f26301d",
+          "_rev": "38432752",
+          "length": 8,
+          "_type": {
+            "_id": "OneTimePasswordGeneratorNode",
+            "name": "HOTP Generator",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "da5bd1b5-2455-4999-8638-ebfdeb671f1b": {
+          "_id": "da5bd1b5-2455-4999-8638-ebfdeb671f1b",
+          "_rev": "1045138416",
+          "nodes": [
+            {
+              "_id": "6579913d-e697-4a98-b9cc-175fc8f35e16",
+              "nodeType": "OneTimePasswordCollectorDecisionNode",
+              "displayName": "OTP Collector Decision"
+            }
+          ],
+          "pageDescription": {
+            "en": "Introduzca la Contraseña Temporal que le enviaron por correo electrónico."
+          },
+          "stage": "{\"submitButtonText\":{\"en\":\"Validar\"}}",
+          "pageHeader": {
+            "en": "Contraseña Temporal"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "6579913d-e697-4a98-b9cc-175fc8f35e16": {
+          "_id": "6579913d-e697-4a98-b9cc-175fc8f35e16",
+          "_rev": "369269005",
+          "passwordExpiryTime": 5,
+          "_type": {
+            "_id": "OneTimePasswordCollectorDecisionNode",
+            "name": "OTP Collector Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    },
+    "validateFingerPrintJourney": {
+      "tree": {
+        "_id": "validateFingerPrintJourney",
+        "_rev": "-822615006",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "47de725b-7186-4f53-9dd1-1a6e231e7cc4",
+        "nodes": {
+          "47de725b-7186-4f53-9dd1-1a6e231e7cc4": {
+            "connections": {
+              "outcome": "6fcbc060-5cd9-458c-95fa-1f2eb1d44228"
+            },
+            "displayName": "Capture Fingerprint",
+            "nodeType": "PageNode",
+            "x": 190,
+            "y": 134.015625
+          },
+          "6fcbc060-5cd9-458c-95fa-1f2eb1d44228": {
+            "connections": {
+              "invalid": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "system_error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "valid": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Validate Fingerprint",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 440,
+            "y": 146.015625
+          }
+        },
+        "description": "Authentication via Fingerprint Reader (Simulation)",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 901,
+            "y": 50
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 720,
+            "y": 432
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "47de725b-7186-4f53-9dd1-1a6e231e7cc4": {
+          "_id": "47de725b-7186-4f53-9dd1-1a6e231e7cc4",
+          "_rev": "-1305229172",
+          "nodes": [
+            {
+              "_id": "8cc237f2-e2d6-485c-a093-6d36f87ca07c",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Attribute Collector"
+            }
+          ],
+          "pageDescription": {
+            "en": "Favor de proveer su huella digital en el lector. Siga las indicaciones de su asesor."
+          },
+          "pageHeader": {
+            "en": "Huella Digital"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "6fcbc060-5cd9-458c-95fa-1f2eb1d44228": {
+          "_id": "6fcbc060-5cd9-458c-95fa-1f2eb1d44228",
+          "_rev": "1205312164",
+          "script": "b68a71b1-1384-48b8-97ad-86a71df668ef",
+          "outcomes": [
+            "valid",
+            "invalid",
+            "system_error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "valid",
+              "displayName": "valid"
+            },
+            {
+              "id": "invalid",
+              "displayName": "invalid"
+            },
+            {
+              "id": "system_error",
+              "displayName": "system_error"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "8cc237f2-e2d6-485c-a093-6d36f87ca07c": {
+          "_id": "8cc237f2-e2d6-485c-a093-6d36f87ca07c",
+          "_rev": "-1272817859",
+          "attributesToCollect": [
+            "frIndexedString3"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": true,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "b68a71b1-1384-48b8-97ad-86a71df668ef": {
+          "_id": "b68a71b1-1384-48b8-97ad-86a71df668ef",
+          "name": "validateFingerPrint",
+          "description": "Simulate Fingerprint  Validation against Biometric Service.",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n// Call the 34.239.121.198:8080/users/telcel/<Num Cliente> endpoint GET\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar credential = objectAttributes.get(\\\"frIndexedString3\\\");\\nvar userID = sharedState.get(\\\"_id\\\");\\nvar email = idRepository.getAttribute(userID, \\\"mail\\\").iterator().next();\\n\\nvar restBody = {\\n  userId: email,\\n  credential: credential\\n};\\n\\nvar request = new org.forgerock.http.protocol.Request();\\nrequest.setMethod('POST');\\nrequest.setUri('http://34.239.121.198:8080/users/credential/verify');\\nrequest.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\nrequest.getEntity().setString(JSON.stringify(restBody));\\nvar response = httpClient.send(request).get();\\nvar jsonResult = JSON.parse(response.getEntity().getString());\\n\\nif (jsonResult.hasOwnProperty(\\\"error\\\") ) {\\n\\tif ( jsonResult.error === 'Expectation Failed') {\\n      outcome = \\\"invalid\\\";\\n    }\\n    else {\\n      outcome = \\\"system_error\\\";\\n    }\\n} else {\\n  outcome = \\\"valid\\\";\\n}\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    },
+    "processByUser": {
+      "tree": {
+        "_id": "processByUser",
+        "_rev": "-1963456111",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "15bafa50-e650-463a-8b5c-28a3cad3fd1e",
+        "nodes": {
+          "0bb38c8d-cc9b-4217-9707-52bff94ebdae": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "KBA Verification",
+            "nodeType": "KbaVerifyNode",
+            "x": 2072,
+            "y": 724.015625
+          },
+          "137f1626-49cc-44cb-9b60-c18056b677dd": {
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "failure": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "noDevice": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "success": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "unsupported": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "WebAuthn Authentication Node",
+            "nodeType": "WebAuthnAuthenticationNode",
+            "x": 2008,
+            "y": 0
+          },
+          "15bafa50-e650-463a-8b5c-28a3cad3fd1e": {
+            "connections": {
+              "outcome": "f57d6586-cb5b-46bf-9aec-f40a8f60808c"
+            },
+            "displayName": "Verify Data",
+            "nodeType": "PageNode",
+            "x": 160,
+            "y": 204.015625
+          },
+          "2718759a-4bf1-4cc2-8497-72b051672f41": {
+            "connections": {
+              "Titular": "2c60e4f8-b839-489b-ac03-a38fa3f1e2b4",
+              "Usuario": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "Validate Owner Data",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1044,
+            "y": 15
+          },
+          "29f26d20-120f-4546-afba-8dbde51c572e": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "c65cc90f-47f5-4102-b873-5f66cd123a5a"
+            },
+            "displayName": "Verify Owner is Present",
+            "nodeType": "MessageNode",
+            "x": 604,
+            "y": 57.015625
+          },
+          "2c60e4f8-b839-489b-ac03-a38fa3f1e2b4": {
+            "connections": {
+              "Credencial INE": "b82266cd-0af8-44e4-8e63-fd00aa15811e",
+              "Otro Documento (OnFIDO)": "fac9a5c9-6f82-41a0-b157-c48fc0aa4040"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 1205,
+            "y": 213.015625
+          },
+          "5f9837a2-4ca9-4242-b34c-437a8eca9c7c": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "2718759a-4bf1-4cc2-8497-72b051672f41"
+            },
+            "displayName": "Identify Existing User",
+            "nodeType": "IdentifyExistingUserNode",
+            "x": 880,
+            "y": 169.015625
+          },
+          "839ca3e0-45f4-4008-a441-dcf98d367e61": {
+            "connections": {
+              "outcome": "83bf0ff3-08cf-4a15-8283-bbb66507f8e1"
+            },
+            "displayName": "Verify Owner ID Proofing Data",
+            "nodeType": "PageNode",
+            "x": 1642,
+            "y": 582.015625
+          },
+          "83bf0ff3-08cf-4a15-8283-bbb66507f8e1": {
+            "connections": {
+              "Cuestionario de Seguridad": "c5adbc14-52f8-4e6c-b020-6a3eb16ceeb6",
+              "Huella Digital": "c42886d9-98d5-4dc7-b831-54c248b76a25",
+              "OTP via E-Mail": "c7e45618-6236-46cd-970d-2eb7e40aefc8",
+              "Supervisor": "8f8b0373-12f4-4996-8973-72c936d4e804",
+              "Token Fïsico (FIDO)": "137f1626-49cc-44cb-9b60-c18056b677dd"
+            },
+            "displayName": "Second Factor Selection",
+            "nodeType": "PageNode",
+            "x": 1711,
+            "y": 15
+          },
+          "84a3c704-84fc-449b-bfb0-65d1956decf8": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Authenticate Supervisor",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 2393,
+            "y": 406.015625
+          },
+          "8f8b0373-12f4-4996-8973-72c936d4e804": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "d9ee454c-263c-4645-a7d7-6d8e5944b141"
+            },
+            "displayName": "Supervisor Authentication",
+            "nodeType": "MessageNode",
+            "x": 2044,
+            "y": 225.015625
+          },
+          "b82266cd-0af8-44e4-8e63-fd00aa15811e": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "83bf0ff3-08cf-4a15-8283-bbb66507f8e1"
+            },
+            "displayName": "Validation by INE",
+            "nodeType": "MessageNode",
+            "x": 1402,
+            "y": 0.015625
+          },
+          "c42886d9-98d5-4dc7-b831-54c248b76a25": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Valiate Customer FIngerprint",
+            "nodeType": "InnerTreeEvaluatorNode",
+            "x": 2045,
+            "y": 365.015625
+          },
+          "c5adbc14-52f8-4e6c-b020-6a3eb16ceeb6": {
+            "connections": {
+              "false": "f83848c2-c5e1-44f0-add3-10cea2479655",
+              "true": "0bb38c8d-cc9b-4217-9707-52bff94ebdae"
+            },
+            "displayName": "KBA Decision",
+            "nodeType": "KbaDecisionNode",
+            "x": 1863,
+            "y": 755.015625
+          },
+          "c65cc90f-47f5-4102-b873-5f66cd123a5a": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "5f9837a2-4ca9-4242-b34c-437a8eca9c7c"
+            },
+            "displayName": "Switch to Owner",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 714,
+            "y": 365.015625
+          },
+          "c7e45618-6236-46cd-970d-2eb7e40aefc8": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "OTP Flow Journey",
+            "nodeType": "InnerTreeEvaluatorNode",
+            "x": 1898,
+            "y": 493.015625
+          },
+          "d9ee454c-263c-4645-a7d7-6d8e5944b141": {
+            "connections": {
+              "outcome": "84a3c704-84fc-449b-bfb0-65d1956decf8"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 2217,
+            "y": 556.015625
+          },
+          "f57d6586-cb5b-46bf-9aec-f40a8f60808c": {
+            "connections": {
+              "Cambio de SIM por Garantía": "2c60e4f8-b839-489b-ac03-a38fa3f1e2b4",
+              "Cambio de SIM por robo": "29f26d20-120f-4546-afba-8dbde51c572e"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 376,
+            "y": 28.015625
+          },
+          "f83848c2-c5e1-44f0-add3-10cea2479655": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "83bf0ff3-08cf-4a15-8283-bbb66507f8e1"
+            },
+            "displayName": "KBA Misconfigured",
+            "nodeType": "MessageNode",
+            "x": 2066,
+            "y": 872.015625
+          },
+          "fac9a5c9-6f82-41a0-b157-c48fc0aa4040": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "839ca3e0-45f4-4008-a441-dcf98d367e61"
+            },
+            "displayName": "OnFIDO Validation Journey",
+            "nodeType": "InnerTreeEvaluatorNode",
+            "x": 1418,
+            "y": 452.015625
+          }
+        },
+        "description": "Process executed by a User of a line within a contract",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 2687,
+            "y": 46
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 2688,
+            "y": 285
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "0bb38c8d-cc9b-4217-9707-52bff94ebdae": {
+          "_id": "0bb38c8d-cc9b-4217-9707-52bff94ebdae",
+          "_rev": "1922692730",
+          "kbaInfoAttribute": "kbaInfo",
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "KbaVerifyNode",
+            "name": "KBA Verification",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "137f1626-49cc-44cb-9b60-c18056b677dd": {
+          "_id": "137f1626-49cc-44cb-9b60-c18056b677dd",
+          "_rev": "1457777130",
+          "requiresResidentKey": false,
+          "asScript": true,
+          "origins": [],
+          "userVerificationRequirement": "PREFERRED",
+          "isRecoveryCodeAllowed": false,
+          "timeout": 60,
+          "_type": {
+            "_id": "WebAuthnAuthenticationNode",
+            "name": "WebAuthn Authentication Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "unsupported",
+              "displayName": "Unsupported"
+            },
+            {
+              "id": "noDevice",
+              "displayName": "No Device Registered"
+            },
+            {
+              "id": "success",
+              "displayName": "Success"
+            },
+            {
+              "id": "failure",
+              "displayName": "Failure"
+            },
+            {
+              "id": "error",
+              "displayName": "Client Error"
+            }
+          ]
+        },
+        "15bafa50-e650-463a-8b5c-28a3cad3fd1e": {
+          "_id": "15bafa50-e650-463a-8b5c-28a3cad3fd1e",
+          "_rev": "883149325",
+          "nodes": [
+            {
+              "_id": "bfdee782-8321-435c-af75-d9b3dcdf088e",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Attribute Collector"
+            }
+          ],
+          "pageDescription": {
+            "en": "Favor de confirmar que la información del titular es correcta."
+          },
+          "pageHeader": {
+            "en": "Verificar Información de Usuario"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "2718759a-4bf1-4cc2-8497-72b051672f41": {
+          "_id": "2718759a-4bf1-4cc2-8497-72b051672f41",
+          "_rev": "-307446805",
+          "script": "1fd54a6f-1dda-4bb2-8359-940d4638c211",
+          "outcomes": [
+            "Titular",
+            "Usuario"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Titular",
+              "displayName": "Titular"
+            },
+            {
+              "id": "Usuario",
+              "displayName": "Usuario"
+            }
+          ]
+        },
+        "29f26d20-120f-4546-afba-8dbde51c572e": {
+          "_id": "29f26d20-120f-4546-afba-8dbde51c572e",
+          "_rev": "-1429963614",
+          "messageYes": {
+            "es": "Si"
+          },
+          "message": {
+            "es": "Este trámite sólo puede ser ejecutado por el Titular de la cuenta. ¿Está presente el Titular de la línea Telcel?"
+          },
+          "messageNo": {
+            "es": "No"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "2c60e4f8-b839-489b-ac03-a38fa3f1e2b4": {
+          "_id": "2c60e4f8-b839-489b-ac03-a38fa3f1e2b4",
+          "_rev": "1521176592",
+          "nodes": [
+            {
+              "_id": "f9b63e3b-b654-4708-8738-c14bffaf2043",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "ID Document Validation"
+            }
+          ],
+          "pageDescription": {},
+          "stage": "{\"ChoiceCallback\":[{\"id\":\"1bb79d48-fc2e-4886-a8af-5ff684be91a2\",\"displayType\":\"radio\"}]}",
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Credencial INE",
+              "displayName": "Credencial INE"
+            },
+            {
+              "id": "Otro Documento (OnFIDO)",
+              "displayName": "Otro Documento (OnFIDO)"
+            }
+          ]
+        },
+        "5f9837a2-4ca9-4242-b34c-437a8eca9c7c": {
+          "_id": "5f9837a2-4ca9-4242-b34c-437a8eca9c7c",
+          "_rev": "2022237602",
+          "identityAttribute": "userName",
+          "identifier": "_id",
+          "_type": {
+            "_id": "IdentifyExistingUserNode",
+            "name": "Identify Existing User",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "839ca3e0-45f4-4008-a441-dcf98d367e61": {
+          "_id": "839ca3e0-45f4-4008-a441-dcf98d367e61",
+          "_rev": "478278201",
+          "nodes": [
+            {
+              "_id": "567ac9ee-1325-4bc2-9a91-7cd1fd825ff6",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Attribute Collector"
+            }
+          ],
+          "pageDescription": {
+            "en": "Favor de Confirmar que los datos del titular del contrato son correctos."
+          },
+          "stage": "{\"submitButtonText\":{\"en\":\"Confirmar\"}}",
+          "pageHeader": {
+            "en": "Verificación de los Datos del Titular"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "83bf0ff3-08cf-4a15-8283-bbb66507f8e1": {
+          "_id": "83bf0ff3-08cf-4a15-8283-bbb66507f8e1",
+          "_rev": "1705725673",
+          "nodes": [
+            {
+              "_id": "50dcb018-ba23-44d4-aef5-54ebe160d451",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "pageDescription": {
+            "en": "Seleccione su método de Autenticación Segura."
+          },
+          "stage": "{\"ChoiceCallback\":[{\"id\":\"b9401b74-3c5b-4f71-9b62-bc403e6f90e5\",\"displayType\":\"radio\"}]}",
+          "pageHeader": {
+            "en": "Método de Autenticación Segura"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Token Fïsico (FIDO)",
+              "displayName": "Token Fïsico (FIDO)"
+            },
+            {
+              "id": "Supervisor",
+              "displayName": "Supervisor"
+            },
+            {
+              "id": "OTP via E-Mail",
+              "displayName": "OTP via E-Mail"
+            },
+            {
+              "id": "Cuestionario de Seguridad",
+              "displayName": "Cuestionario de Seguridad"
+            },
+            {
+              "id": "Huella Digital",
+              "displayName": "Huella Digital"
+            }
+          ]
+        },
+        "84a3c704-84fc-449b-bfb0-65d1956decf8": {
+          "_id": "84a3c704-84fc-449b-bfb0-65d1956decf8",
+          "_rev": "77386112",
+          "script": "62b6cb0e-53ae-49bc-a2c9-40bab9fdbf81",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "8f8b0373-12f4-4996-8973-72c936d4e804": {
+          "_id": "8f8b0373-12f4-4996-8973-72c936d4e804",
+          "_rev": "-1998343156",
+          "messageYes": {
+            "en": "Aceptar"
+          },
+          "message": {
+            "en": "Validación por Supervisor"
+          },
+          "messageNo": {
+            "en": "Rechazar"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "b82266cd-0af8-44e4-8e63-fd00aa15811e": {
+          "_id": "b82266cd-0af8-44e4-8e63-fd00aa15811e",
+          "_rev": "-765791121",
+          "messageYes": {
+            "en": "Si"
+          },
+          "message": {
+            "en": "El cliente fue validado exitósamente?"
+          },
+          "stateField": "ineValidationFailed",
+          "messageNo": {
+            "en": "No"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "c42886d9-98d5-4dc7-b831-54c248b76a25": {
+          "_id": "c42886d9-98d5-4dc7-b831-54c248b76a25",
+          "_rev": "9889868",
+          "tree": "validateFingerPrintJourney",
+          "_type": {
+            "_id": "InnerTreeEvaluatorNode",
+            "name": "Inner Tree Evaluator",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "c5adbc14-52f8-4e6c-b020-6a3eb16ceeb6": {
+          "_id": "c5adbc14-52f8-4e6c-b020-6a3eb16ceeb6",
+          "_rev": "-1173187266",
+          "identityAttribute": "userName",
+          "_type": {
+            "_id": "KbaDecisionNode",
+            "name": "KBA Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "c65cc90f-47f5-4102-b873-5f66cd123a5a": {
+          "_id": "c65cc90f-47f5-4102-b873-5f66cd123a5a",
+          "_rev": "-792779048",
+          "script": "4a42db35-691d-4db8-a75e-34f4d0e4fa50",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "c7e45618-6236-46cd-970d-2eb7e40aefc8": {
+          "_id": "c7e45618-6236-46cd-970d-2eb7e40aefc8",
+          "_rev": "-1213623244",
+          "tree": "otpByEmailJourney",
+          "_type": {
+            "_id": "InnerTreeEvaluatorNode",
+            "name": "Inner Tree Evaluator",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "d9ee454c-263c-4645-a7d7-6d8e5944b141": {
+          "_id": "d9ee454c-263c-4645-a7d7-6d8e5944b141",
+          "_rev": "701479183",
+          "nodes": [
+            {
+              "_id": "963ba425-7ac7-4b61-a5be-e6b026b19093",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "95b9d1bb-af4c-456a-9db7-bbd2c3b865cc",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {
+            "en": "Favor de Introducir Credenciales de Usuario Supervisor Telcel"
+          },
+          "stage": "{\"submitButtonText\":{\"en\":\"Ingresar\"}}",
+          "pageHeader": {
+            "en": "Autenticación del Supervisor"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "f57d6586-cb5b-46bf-9aec-f40a8f60808c": {
+          "_id": "f57d6586-cb5b-46bf-9aec-f40a8f60808c",
+          "_rev": "-618865807",
+          "nodes": [
+            {
+              "_id": "a6cf713f-df41-423e-a2ac-82033fa564c7",
+              "nodeType": "ChoiceCollectorNode",
+              "displayName": "Choice Collector"
+            }
+          ],
+          "pageDescription": {},
+          "stage": "{\"submitButtonText\":{\"en\":\"Confirmar\"},\"ChoiceCallback\":[{\"id\":\"123538da-5fda-402f-a7fc-d0771c7cc230\",\"displayType\":\"radio\"}]}",
+          "pageHeader": {
+            "en": "Seleccione su Trámite"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Cambio de SIM por robo",
+              "displayName": "Cambio de SIM por robo"
+            },
+            {
+              "id": "Cambio de SIM por Garantía",
+              "displayName": "Cambio de SIM por Garantía"
+            },
+            {
+              "id": "Transferencia eSIM a SIM Físico",
+              "displayName": "Transferencia eSIM a SIM Físico"
+            }
+          ]
+        },
+        "f83848c2-c5e1-44f0-add3-10cea2479655": {
+          "_id": "f83848c2-c5e1-44f0-add3-10cea2479655",
+          "_rev": "-737929286",
+          "messageYes": {
+            "es": "Si"
+          },
+          "message": {
+            "es": "Su usuario no tiene configurado su cuestionario de seguridad correctamente. ¿Desea seleccionar otro método de autenticación?"
+          },
+          "messageNo": {
+            "es": "No"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "fac9a5c9-6f82-41a0-b157-c48fc0aa4040": {
+          "_id": "fac9a5c9-6f82-41a0-b157-c48fc0aa4040",
+          "_rev": "729248999",
+          "tree": "IdentityProofing",
+          "_type": {
+            "_id": "InnerTreeEvaluatorNode",
+            "name": "Inner Tree Evaluator",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "bfdee782-8321-435c-af75-d9b3dcdf088e": {
+          "_id": "bfdee782-8321-435c-af75-d9b3dcdf088e",
+          "_rev": "-116849763",
+          "attributesToCollect": [
+            "givenName",
+            "sn",
+            "frUnindexedString1",
+            "mail",
+            "telephoneNumber",
+            "postalAddress",
+            "city",
+            "postalCode",
+            "frIndexedString5"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": false,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "f9b63e3b-b654-4708-8738-c14bffaf2043": {
+          "_id": "f9b63e3b-b654-4708-8738-c14bffaf2043",
+          "_rev": "1281052865",
+          "defaultChoice": "Credencial INE",
+          "choices": [
+            "Credencial INE",
+            "Otro Documento (OnFIDO)"
+          ],
+          "prompt": "Seleccione la Identificación de Identidad",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Credencial INE",
+              "displayName": "Credencial INE"
+            },
+            {
+              "id": "Otro Documento (OnFIDO)",
+              "displayName": "Otro Documento (OnFIDO)"
+            }
+          ]
+        },
+        "567ac9ee-1325-4bc2-9a91-7cd1fd825ff6": {
+          "_id": "567ac9ee-1325-4bc2-9a91-7cd1fd825ff6",
+          "_rev": "-1174672629",
+          "attributesToCollect": [
+            "givenName",
+            "sn",
+            "telephoneNumber",
+            "postalAddress",
+            "city",
+            "postalCode"
+          ],
+          "identityAttribute": "userName",
+          "validateInputs": false,
+          "required": true,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "50dcb018-ba23-44d4-aef5-54ebe160d451": {
+          "_id": "50dcb018-ba23-44d4-aef5-54ebe160d451",
+          "_rev": "-1393274337",
+          "defaultChoice": "Token Físico (FIDO)",
+          "choices": [
+            "Token Fïsico (FIDO)",
+            "Supervisor",
+            "OTP via E-Mail",
+            "Cuestionario de Seguridad",
+            "Huella Digital"
+          ],
+          "prompt": "Seleccione MFA",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Token Fïsico (FIDO)",
+              "displayName": "Token Fïsico (FIDO)"
+            },
+            {
+              "id": "Supervisor",
+              "displayName": "Supervisor"
+            },
+            {
+              "id": "OTP via E-Mail",
+              "displayName": "OTP via E-Mail"
+            },
+            {
+              "id": "Cuestionario de Seguridad",
+              "displayName": "Cuestionario de Seguridad"
+            },
+            {
+              "id": "Huella Digital",
+              "displayName": "Huella Digital"
+            }
+          ]
+        },
+        "963ba425-7ac7-4b61-a5be-e6b026b19093": {
+          "_id": "963ba425-7ac7-4b61-a5be-e6b026b19093",
+          "_rev": "852980455",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "95b9d1bb-af4c-456a-9db7-bbd2c3b865cc": {
+          "_id": "95b9d1bb-af4c-456a-9db7-bbd2c3b865cc",
+          "_rev": "-1370010943",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "a6cf713f-df41-423e-a2ac-82033fa564c7": {
+          "_id": "a6cf713f-df41-423e-a2ac-82033fa564c7",
+          "_rev": "1853194796",
+          "defaultChoice": "Cambio de SIM por robo",
+          "choices": [
+            "Cambio de SIM por robo",
+            "Cambio de SIM por Garantía",
+            "Transferencia eSIM a SIM Físico"
+          ],
+          "prompt": "Seleccione el trámite deseado",
+          "_type": {
+            "_id": "ChoiceCollectorNode",
+            "name": "Choice Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "Cambio de SIM por robo",
+              "displayName": "Cambio de SIM por robo"
+            },
+            {
+              "id": "Cambio de SIM por Garantía",
+              "displayName": "Cambio de SIM por Garantía"
+            },
+            {
+              "id": "Transferencia eSIM a SIM Físico",
+              "displayName": "Transferencia eSIM a SIM Físico"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "1fd54a6f-1dda-4bb2-8359-940d4638c211": {
+          "_id": "1fd54a6f-1dda-4bb2-8359-940d4638c211",
+          "name": "getCustData",
+          "description": "Get Customer Data from Telcel F1",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n// Call the F1 Service when ready\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar userID = sharedState.get(\\\"_id\\\");\\nvar custID = idRepository.getAttribute(userID, \\\"telephoneNumber\\\").iterator().next();\\nvar address = idRepository.getAttribute(userID, \\\"street\\\").iterator().next();\\nvar city = idRepository.getAttribute(userID, \\\"l\\\").iterator().next();\\nvar postalCode = idRepository.getAttribute(userID, \\\"postalCode\\\").iterator().next();\\nvar rfc = idRepository.getAttribute(userID, \\\"fr-attr-istr4\\\").iterator().next();\\nvar userType = idRepository.getAttribute(userID, \\\"description\\\").iterator().next();\\n\\nvar request = new org.forgerock.http.protocol.Request();\\nrequest.setMethod('GET');\\nrequest.setUri('http://34.239.121.198:9090/customers/'.concat(custID));\\nrequest.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\nvar response = httpClient.send(request).get();\\nvar jsonResult = JSON.parse(response.getEntity().getString());\\n\\nif (jsonResult.hasOwnProperty(\\\"error\\\") ) {\\n\\tif ( jsonResult.error === 'Not Found') {\\n      outcome = \\\"notRegistered\\\";\\n    }\\n    else {\\n      outcome = \\\"system_error\\\";\\n    }\\n} else {\\n  objectAttributes.put(\\\"givenName\\\", jsonResult.nombre);\\n  objectAttributes.put(\\\"userName\\\", jsonResult.email);\\n  objectAttributes.put(\\\"sn\\\", jsonResult.apellidoPaterno);\\n  objectAttributes.put(\\\"frUnindexedString1\\\", jsonResult.apellidoMaterno);\\n  objectAttributes.put(\\\"mail\\\", jsonResult.email);\\n  objectAttributes.put(\\\"postalAddress\\\", address);\\n  objectAttributes.put(\\\"city\\\", city);\\n  objectAttributes.put(\\\"postalCode\\\", postalCode);\\n  objectAttributes.put(\\\"frIndexedString4\\\", rfc);\\n  objectAttributes.put(\\\"description\\\", userType);\\n  objectAttributes.put(\\\"telephoneNumber\\\", custID);\\n  if (jsonResult.userType === \\\"Usuario\\\") {\\n    objectAttributes.put(\\\"frIndexedString5\\\", jsonResult.titularUserId);\\n  }\\n  sharedState.put(\\\"objectAttributes\\\", objectAttributes);\\n  sharedState.put(\\\"username\\\", jsonResult.email);\\n  sharedState.put(\\\"savedUserName\\\", jsonResult.email);\\n  outcome = jsonResult.userType;\\n}\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "62b6cb0e-53ae-49bc-a2c9-40bab9fdbf81": {
+          "_id": "62b6cb0e-53ae-49bc-a2c9-40bab9fdbf81",
+          "name": "authenticateEmployee",
+          "description": "Authenticates Employees from Telcel - used at the beginning of the Journeys or to authenticate a Supervisor",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\n\\nvar telcelLoginName = objectAttributes.get(\\\"userName\\\");\\nvar telcelLoginPassword = transientState.get(\\\"password\\\");\\n\\n\\nvar restBody = {\\n  userName: telcelLoginName,\\n  password: telcelLoginPassword\\n};\\n\\n\\nvar request = new org.forgerock.http.protocol.Request();\\nrequest.setMethod('POST');\\nrequest.setUri('https://telcell-bl.catalyst.forgerock.org/authenticate');\\nrequest.getHeaders().add(\\\"Content-Type\\\",\\\"application/json\\\");\\nrequest.getEntity().setString(JSON.stringify(restBody));\\nvar response = httpClient.send(request).get();\\nvar jsonResult = JSON.parse(response.getEntity().getString());\\n\\nif (jsonResult.hasOwnProperty(\\\"error\\\")) {\\n  outcome = \\\"false\\\";\\n}\\nelse {\\n  objectAttributes.put(\\\"mail\\\", jsonResult.email);\\n  if (sharedState.get(\\\"savedUserName\\\") === null) {\\n  \\tsharedState.put(\\\"username\\\", jsonResult.sub);\\n  }\\n  else {\\n    sharedState.put(\\\"username\\\", sharedState.get(\\\"savedUserName\\\"));\\n  }\\n}\\noutcome = \\\"true\\\";\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        },
+        "4a42db35-691d-4db8-a75e-34f4d0e4fa50": {
+          "_id": "4a42db35-691d-4db8-a75e-34f4d0e4fa50",
+          "name": "switchToOwner",
+          "description": "Switches the Identity of the Journey from User to Owner using the reference to the Owner's Identity in the User's Identity.",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\nvar objectAttributes = sharedState.get(\\\"objectAttributes\\\");\\nvar mail = objectAttributes.get(\\\"frIndexedString5\\\");\\n\\nlogger.error(\\\"**** E-Mail for Owner is {}\\\", mail);\\nif (mail === null) {\\n  outcome = \\\"false\\\";\\n}\\nelse {\\n  objectAttributes.put(\\\"userName\\\", mail);\\n  outcome = \\\"true\\\";\\n}\\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

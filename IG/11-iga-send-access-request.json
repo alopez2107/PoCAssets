@@ -1,0 +1,73 @@
+{
+  "name" : "11-IGA Access Request Proxy",
+  "baseURI" : "http://idm:80",
+  "condition" : "${matches(request.uri.path, '^/user-request')}",
+  "handler" : "Chain-1",
+  "properties" : {
+    "idmOauthClientID" : "idm-rest",
+    "idmOauthClientSecret" : "qa1jPudGBmTjRfDOtfkSb4yP",
+    "accessTokenEndPoint" : "https://tenaris-ent71.catalyst.forgerock.org/am/oauth2/realms/root/access_token",
+    "adminUserID" : "forgerock",
+    "adminPwd" : "9yEc4jaCJtYLXNaf0W8vXLMN"
+  },
+  "heap" : [ {
+    "name" : "ReverseProxyHandler",
+    "type" : "ReverseProxyHandler"
+  }, {
+    "type" : "BaseUriDecorator",
+    "name" : "baseUri"
+  }, {
+    "type" : "TimerDecorator",
+    "name" : "timer",
+    "config" : {
+      "timeUnit" : "ms"
+    }
+  }, {
+    "type" : "CaptureDecorator",
+    "name" : "capture",
+    "config" : {
+      "captureEntity" : false,
+      "captureContext" : false,
+      "maxEntityLength" : 524288
+    }
+  }, {
+    "name" : "Chain-1",
+    "type" : "Chain",
+    "config" : {
+      "handler" : "ReverseProxyHandler",
+      "filters" : [ "GetIDMAdminAccessToken", "Add IDM Admin Access Token", "RedirectToIDM" ]
+    }
+  }, {
+    "type" : "ScriptableFilter",
+    "name" : "GetIDMAdminAccessToken",
+    "config" : {
+      "type" : "application/x-groovy",
+      "source" : [ "import groovy.json.JsonSlurper", "", "String basicAuth = \"${oauthClientId}:${oauthClientPwd}\".bytes.encodeBase64().toString()", "String data = \"grant_type=password&username=${adminUserName}&password=${adminPassword}&scope=${URLEncoder.encode(scopes, 'UTF-8')}\"", "def connection = new URL(amAccessTokenBaseURL)", "def accessTokenResp = connection.openConnection().with {", "  setRequestMethod(\"POST\")", "  doOutput = true", "  setRequestProperty(\"Content-Type\", \"application/x-www-form-urlencoded\")", "  setRequestProperty(\"Authorization\", \"Basic ${basicAuth}\")", "  outputStream.withWriter {writer ->", "    writer << data", "  }", "  inputStream.withCloseable { inStream ->", "    new JsonSlurper().parse(inStream as InputStream)", "  }", "}", "String access_token = accessTokenResp.access_token", "contexts.attributes.attributes.accessToken = access_token", "return next.handle(context, request)", "" ],
+      "args" : {
+        "oauthClientId" : "${idmOauthClientID}",
+        "oauthClientPwd" : "${idmOauthClientSecret}",
+        "amAccessTokenBaseURL" : "${accessTokenEndPoint}",
+        "adminUserName" : "${adminUserID}",
+        "adminPassword" : "${adminPwd}",
+        "scopes" : "openid fr:idm:*"
+      }
+    }
+  }, {
+    "name" : "Add IDM Admin Access Token",
+    "type" : "HeaderFilter",
+    "config" : {
+      "messageType" : "REQUEST",
+      "add" : {
+        "Authorization" : [ "Bearer ${contexts.attributes.attributes.accessToken}" ]
+      }
+    }
+  }, {
+    "name" : "RedirectToIDM",
+    "type" : "UriPathRewriteFilter",
+    "config" : {
+      "mappings" : {
+        "/user-request" : "/openidm/access-request/request"
+      }
+    }
+  } ]
+}

@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "origin": "https://openam-telcell.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2022-12-01T16:06:14.703Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "registerTokenFIDO"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "registerTokenFIDO": {
+      "tree": {
+        "_id": "registerTokenFIDO",
+        "_rev": "97881727",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[]"
+        },
+        "entryNodeId": "7bf449b4-cc32-4a57-ad2b-7ad0f3892edc",
+        "nodes": {
+          "0081508d-2c3c-4c91-b29f-d455c1f84203": {
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "failure": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "success": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "unsupported": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "displayName": "WebAuthn Registration Node",
+            "nodeType": "WebAuthnRegistrationNode",
+            "x": 466,
+            "y": 65.015625
+          },
+          "7bf449b4-cc32-4a57-ad2b-7ad0f3892edc": {
+            "connections": {
+              "outcome": "0081508d-2c3c-4c91-b29f-d455c1f84203"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 232,
+            "y": 90.015625
+          }
+        },
+        "description": "Registration of a YUBI Key (FIDO Key) for a user.",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 990,
+            "y": 44
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1050,
+            "y": 365
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "enabled": true
+      },
+      "nodes": {
+        "0081508d-2c3c-4c91-b29f-d455c1f84203": {
+          "_id": "0081508d-2c3c-4c91-b29f-d455c1f84203",
+          "_rev": "-872777965",
+          "trustStoreAlias": "trustalias",
+          "relyingPartyName": "ForgeRock",
+          "generateRecoveryCodes": true,
+          "storeAttestationDataInTransientState": false,
+          "origins": [],
+          "userVerificationRequirement": "PREFERRED",
+          "postponeDeviceProfileStorage": false,
+          "excludeCredentials": false,
+          "requiresResidentKey": false,
+          "authenticatorAttachment": "UNSPECIFIED",
+          "asScript": true,
+          "acceptedSigningAlgorithms": [
+            "ES256",
+            "RS256"
+          ],
+          "attestationPreference": "NONE",
+          "enforceRevocationCheck": false,
+          "timeout": 60,
+          "_type": {
+            "_id": "WebAuthnRegistrationNode",
+            "name": "WebAuthn Registration Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "unsupported",
+              "displayName": "Unsupported"
+            },
+            {
+              "id": "success",
+              "displayName": "Success"
+            },
+            {
+              "id": "failure",
+              "displayName": "Failure"
+            },
+            {
+              "id": "error",
+              "displayName": "Client Error"
+            }
+          ]
+        },
+        "7bf449b4-cc32-4a57-ad2b-7ad0f3892edc": {
+          "_id": "7bf449b4-cc32-4a57-ad2b-7ad0f3892edc",
+          "_rev": "627617329",
+          "nodes": [
+            {
+              "_id": "3eb1b4f0-f20a-441d-ad91-39cac59d3b37",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "3eb1b4f0-f20a-441d-ad91-39cac59d3b37": {
+          "_id": "3eb1b4f0-f20a-441d-ad91-39cac59d3b37",
+          "_rev": "-582209062",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}
