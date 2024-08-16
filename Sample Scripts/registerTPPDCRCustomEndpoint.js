@@ -7,6 +7,7 @@
         var tppJwks = request.content.jwks;
         var orgId = request.content.orgId;
         var orgName = request.content.orgName;
+        var softwareDescription = request.content.softwareDescription;
 
         var uuid = require('uuid');
         var software_id = uuid.v4();
@@ -14,10 +15,10 @@
 
         var ssaContent = {
             software_id: software_id,
-            software_client_name: "Secure API Gateway test generated client",
+            software_client_name: softwareDescription,
             software_client_id: software_id,
             software_tos_uri: "https://github.com/SecureApiGateway",
-            software_client_description: "Open Banking UK TPP Flows Postman Client",
+            software_client_description: softwareDescription,
             software_redirect_uris: tppRedirectUris,
             software_policy_uri: "https://github.com/SecureApiGateway",
             software_logo_uri: "https://avatars.githubusercontent.com/u/74596995?s=96&v=4",
@@ -74,7 +75,7 @@
                     "refresh_token",
                     "client_credentials"
                 ],
-                software_statement: "{{ssa_jwt}}",
+                software_statement: ssaJWT,
                 token_endpoint_auth_method: "private_key_jwt",
                 token_endpoint_auth_signing_alg: "PS256",
                 id_token_signed_response_alg: "PS256",

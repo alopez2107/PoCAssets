@@ -4,6 +4,7 @@ var tppTLSCert = newObject.tlsClientCert;
 var tppTLSPrivateKey = newObject.tlsPrivateKey;
 var tppJwks = newObject.jwks;
 var tppRedirectUri = newObject.redirectURL;
+var tppSoftwareDescription = newObject.softwareDescription;
 
 var payload = {
     orgId: tppOrgId,
@@ -11,7 +12,8 @@ var payload = {
     tlsCert: tppTLSCert,
     tlsPrivateKey: tppTLSPrivateKey,
     jwks: tppJwks,
-    redirectUri: tppRedirectUri
+    redirectUri: tppRedirectUri,
+    softwareDescription: tppSoftwareDescription
 };
 
 var params = {
