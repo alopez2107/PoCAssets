@@ -1,0 +1,138 @@
+{
+    "name": "02-bcolsignedconsentresponsejwt",
+    "baseURI": "http://ig:80",
+    "condition": "${matches(request.uri.path, '^/signedConsentResponseJWT')}",
+    "handler": "Chain-1",
+    "heap": [
+      {
+        "type": "BaseUriDecorator",
+        "name": "baseUri"
+      },
+      {
+        "type": "TimerDecorator",
+        "name": "timer",
+        "config": {
+          "timeUnit": "ms"
+        }
+      },
+      {
+        "type": "CaptureDecorator",
+        "name": "capture",
+        "config": {
+          "captureEntity": false,
+          "captureContext": false,
+          "maxEntityLength": 524288
+        }
+      },
+      {
+        "type": "StaticResponseHandler",
+        "name": "GenerateJWTResponseForConsent",
+        "config": {
+          "status": 200,
+          "reason": "OK",
+          "entity": "{\n  \"consent_response\": \"${contexts.jwtBuilder.value}\",\n  \"redirect_uri\": \"${contexts.attributes.attributes.redirectUri}\"\n}",
+          "headers": {
+            "Content-Type": [
+              "application/json"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Chain-1",
+        "type": "Chain",
+        "config": {
+          "handler": "GenerateJWTResponseForConsent",
+          "filters": [
+            "GenerateConsentJWTClaims",
+            "Build Signed Consent Response JWT"
+          ]
+        }
+      },
+      {
+        "type": "ScriptableFilter",
+        "name": "GenerateConsentJWTClaims",
+        "config": {
+          "type": "application/x-groovy",
+          "source": [
+            "import groovy.json.JsonBuilder",
+            "import groovy.json.JsonSlurper",
+            "",
+            "def jwt = request.getEntity().getJson().get(\"consent_request\")",
+            "",
+            "println \"Initial Consent Request is ${jwt}\"",
+            "",
+            "def decision = request.getEntity().getJson().get(\"decision\")",
+            "",
+            "println \"Consent Decision is ${decision}\"",
+            "",
+            "def allowedAccounts = request.getEntity().getJson().get(\"allowedAccts\")",
+            "",
+            "println \"Allowed Accounts : ${allowedAccounts}\"",
+            "",
+            "def chunks = jwt.split(\"\\\\.\")",
+            "",
+            "Base64.Decoder decoder = Base64.getUrlDecoder()",
+            "",
+            "def header = new String(decoder.decode(chunks[0]))",
+            "def payload = new String(decoder.decode(chunks[1]))",
+            "",
+            "println \"Header ${header}\"",
+            "println \"Payload ${payload}\"",
+            "",
+            "def claims = new JsonSlurper().parseText(payload)",
+            "",
+            "int exp = (int)(new Date().getTime() / 1000) + 600",
+            "",
+            "// Switch Issuer with Aud",
+            "def issuer = claims.iss",
+            "def aud = claims.aud",
+            "",
+            "claims.exp = exp",
+            "",
+            "claims.iss = aud",
+            "claims.aud = issuer",
+            "",
+            "claims.put(\"decision\", decision)",
+            "//claims.put(\"claims\",[\"allowedAccounts\": allowedAccounts])",
+            "",
+            "//claims.save_consent_enabled = true",
+            "",
+            "// Rebuild the scopes",
+            "def scopesArray = claims.scopes.keySet() as String[]",
+            "",
+            "claims.put(\"scopes\", scopesArray)",
+            "",
+            "JsonBuilder builder = new JsonBuilder(claims)",
+            "",
+            "println \"The Claims in JSON are:\"",
+            "println builder.toPrettyString()",
+            "",
+            "contexts.attributes.attributes.jwtClaims = claims",
+            "",
+            "contexts.attributes.attributes.redirectUri = claims.consentApprovalRedirectUri",
+            "",
+            "return next.handle(context, request)"
+          ]
+        }
+      },
+      {
+        "name": "Build Signed Consent Response JWT",
+        "type": "JwtBuilderFilter",
+        "config": {
+          "template": "${contexts.attributes.attributes.jwtClaims}",
+          "secretsProvider": {
+            "name": "JwkSetSecretStore-1",
+            "type": "JwkSetSecretStore",
+            "config": {
+              "jwkUrl": "https://bcolpoc.encore.forgerock.com/bcol-jwk"
+            }
+          },
+          "signature": {
+            "secretId": "myKey",
+            "algorithm": "ES256"
+          }
+        }
+      }
+    ]
+  }

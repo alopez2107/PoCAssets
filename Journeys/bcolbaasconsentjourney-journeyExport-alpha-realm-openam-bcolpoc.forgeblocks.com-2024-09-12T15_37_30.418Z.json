@@ -1,0 +1,461 @@
+{
+  "meta": {
+    "origin": "https://openam-bcolpoc.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2024-09-12T15:37:30.418Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "bcolbaasconsentjourney"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "bcolbaasconsentjourney": {
+      "tree": {
+        "_id": "bcolbaasconsentjourney",
+        "_rev": "-240383537",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[\"BaaS\",\"Consent\",\"JWT\",\"Open Banking\"]"
+        },
+        "entryNodeId": "c118dde9-41c3-43f5-bc37-d94abfdb0ecc",
+        "innerTreeOnly": false,
+        "nodes": {
+          "0a4c513e-b9e1-4626-a5fd-6c8b5a2575ed": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "37d0724c-3b6a-4737-881e-4dd181a558f5"
+            },
+            "displayName": "Retrieve Accounts",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 693,
+            "y": 111.015625
+          },
+          "37d0724c-3b6a-4737-881e-4dd181a558f5": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "5d602b88-45cc-4c39-aec6-6360a5f226a0"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 1023,
+            "y": 44.015625
+          },
+          "5d602b88-45cc-4c39-aec6-6360a5f226a0": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Get JWT Consent Response",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1370,
+            "y": 54.015625
+          },
+          "c118dde9-41c3-43f5-bc37-d94abfdb0ecc": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "0a4c513e-b9e1-4626-a5fd-6c8b5a2575ed"
+            },
+            "displayName": "Read Consent JWT from Query String",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 203,
+            "y": 169.015625
+          }
+        },
+        "description": "Process the consent request and obtains a signed Response JWT to send back to ID Cloud",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1809,
+            "y": 76
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1727,
+            "y": 523
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "mustRun": false,
+        "enabled": true
+      },
+      "nodes": {
+        "0a4c513e-b9e1-4626-a5fd-6c8b5a2575ed": {
+          "_id": "0a4c513e-b9e1-4626-a5fd-6c8b5a2575ed",
+          "_rev": "-367090927",
+          "script": "07529b5c-c643-4323-b9db-3395365fc79f",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "37d0724c-3b6a-4737-881e-4dd181a558f5": {
+          "_id": "37d0724c-3b6a-4737-881e-4dd181a558f5",
+          "_rev": "-1288355755",
+          "nodes": [
+            {
+              "_id": "2e208201-63b5-4320-ac24-26df655bf675",
+              "nodeType": "ScriptedDecisionNode",
+              "displayName": "Show Consent Screen"
+            }
+          ],
+          "pageDescription": {
+            "en-US": "By selecting the accounts below you consent My Simulated TPP to access account's balance and transactions.  You must provide this consent before continuing."
+          },
+          "pageHeader": {
+            "en-US": "Provide Access Consent"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "5d602b88-45cc-4c39-aec6-6360a5f226a0": {
+          "_id": "5d602b88-45cc-4c39-aec6-6360a5f226a0",
+          "_rev": "1840474282",
+          "script": "fb74d391-2ae9-49ec-aa8c-f27d88f85f74",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        },
+        "c118dde9-41c3-43f5-bc37-d94abfdb0ecc": {
+          "_id": "c118dde9-41c3-43f5-bc37-d94abfdb0ecc",
+          "_rev": "-977299773",
+          "script": "0db7854d-d44a-4171-a630-577b8502e802",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "2e208201-63b5-4320-ac24-26df655bf675": {
+          "_id": "2e208201-63b5-4320-ac24-26df655bf675",
+          "_rev": "452180590",
+          "script": "b7349b03-17c4-49e0-8460-4297aafc23bb",
+          "outcomes": [
+            "true",
+            "false"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "false",
+              "displayName": "false"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "07529b5c-c643-4323-b9db-3395365fc79f": {
+          "_id": "07529b5c-c643-4323-b9db-3395365fc79f",
+          "name": "retrieveAccountsFromCustomer",
+          "description": "Retrieves the attribute custom_accounts from the user's profile",
+          "script": "\"(() => {\\n    var jwt = nodeState.get(\\\"consent_request\\\")[0];\\n\\n    var chunks = jwt.split('.');\\n    var decodedJWT = JSON.parse(utils.base64url.decode(chunks[1]));\\n\\n    logger.error(\\\"ALEXLOG: Decoded Consent Request JWT {}\\\", JSON.stringify(decodedJWT));  \\n    try {\\n        var clientId = decodedJWT.clientId;\\n        var username = decodedJWT.username;\\n        var intentId = decodedJWT.claims.id_token.openbanking_intent_id.value;\\n\\n        nodeState.putShared(\\\"intentId\\\", intentId);\\n        \\n        logger.error(\\\"ALEXLOG: Consent Request Parameters Client ID: {} and Username: {}\\\", clientId, username);\\n        var userObj = openidm.read(\\\"managed/alpha_user/\\\" + username, null, [\\\"*\\\"]);\\n            \\n        try {\\n            var tppConsentIntentObj = openidm.read(intentId, null, [\\\"*\\\"]);  \\n            nodeState.putShared(\\\"consentIntent\\\", tppConsentIntentObj);\\n        }\\n        catch (e) {\\n            nodeState.putShared(\\\"ConsentCreateException\\\", e.getMessage());\\n            logger.error(\\\"ALEXLOG: exception caught: {}\\\", e.getMessage());\\n            action.goTo(\\\"false\\\");\\n        }\\n    \\n        logger.error(\\\"ALEXLOG: Retrieving account from user {}\\\", JSON.stringify(userObj));\\n        \\n    \\n        var docType = userObj.custom_docType;\\n        var docNumber = userObj.custom_docNumber;\\n            \\n        var auxPOCApiKeySecure =  systemEnv.getProperty(\\\"esv.acctsapi.key\\\");\\n        \\n        \\n        var options = {\\n          method: \\\"GET\\\",\\n          headers: {\\n            \\\"api-key-secure\\\": auxPOCApiKeySecure  \\n          }\\n        }\\n        \\n        var requestURL = `https://api.gestiondelfraude-abr.co/v1/open-banking/accounts?document-type=${docType}&document-number=${docNumber}&consent-type=domestic-payment`;\\n            \\n        var response = httpClient.send(\\n            requestURL, options).get();\\n        \\n        if (response.status === 200) {\\n            var responseText = response.text();\\n            var responseJson = response.json();\\n            var responseJson1 = responseJson.data;\\n            \\n            var accounts = [];\\n            responseJson1.accounts.forEach((account) => {\\n                var acctDesc = account.type + \\\" - \\\" + account.lastFour;\\n                logger.error(\\\"ALEXLOG: Account to be pushed is {}\\\", acctDesc);\\n                accounts.push({\\n                    acctNumber: account.accountId,\\n                    acctName: acctDesc,\\n                    consented: false\\n                });        \\n            });\\n            nodeState.putShared(\\\"accounts\\\", accounts);\\n            nodeState.putShared(\\\"username\\\", userObj.userName);\\n            nodeState.putShared(\\\"_id\\\", userObj._id);\\n            action.goTo(\\\"true\\\");\\n            \\n        } else{  \\n            logger.error(\\\"ALEXLOG: API Error Response {}\\\", JSON.stringify(response.json.data));\\n            action.goTo(\\\"false\\\");\\n        }\\n    }\\n    catch(e) {\\n        logger.error(\\\"Exception Caught {}\\\", e);\\n        action.goTo(\\\"false\\\");\\n    }\\n    \\n})();\\n\\n   \\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        },
+        "fb74d391-2ae9-49ec-aa8c-f27d88f85f74": {
+          "_id": "fb74d391-2ae9-49ec-aa8c-f27d88f85f74",
+          "name": "retrieveJWTConsentResponse",
+          "description": null,
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\nvar jwt = nodeState.get(\\\"consent_request\\\")[0];\\nvar decision = (nodeState.get(\\\"decision\\\") == \\\"true\\\")? true: false;\\nvar allowedAccounts = nodeState.getObject(\\\"allowedAccounts\\\");\\n\\nlogger.error(\\\"ALEXLOG: Consent Request JWT from Shared State {}\\\", jwt);\\nvar options = {\\n  method: \\\"POST\\\",\\n  headers: {\\n    \\\"Content-Type\\\": \\\"application/json\\\"\\n  },\\n  body: {\\n    \\\"consent_request\\\": jwt,\\n    \\\"decision\\\": decision,\\n    \\\"allowedAccts\\\": allowedAccounts\\n  }\\n}\\n\\nvar requestURL =\\n    \\\"https://bcolpoc.encore.forgerock.com/signedConsentResponseJWT\\\";\\nvar response = httpClient.send(\\n    requestURL, options).get();\\n\\nif (response.status === 200) {\\n    logger.error(\\\"ALEXLOG: Successful response from Consent Response Generation Service \\\");\\n    var responseText = response.text();\\n    var responseJson = response.json();\\n\\n    logger.error(\\\"ALEXLOG: Response data is {}\\\", JSON.stringify(responseJson));\\n\\n    var consentResponse = responseJson.consent_response;\\n    var redirectUri = responseJson.redirect_uri;\\n    logger.error(\\\"ALEXLOG: Signed JWT for Response {}\\\", consentResponse );\\n    logger.error(\\\"ALEXLOG: Redirect URI for Response {}\\\", redirectUri );\\n    var consent_response = {\\n        \\\"consent_response\\\": consentResponse\\n    }\\n    \\n    callbacksBuilder.redirectCallback(redirectUri, consent_response, \\\"POST\\\");\\n    action.goTo(\\\"true\\\");\\n    \\n} else if (response.status >= 500) {\\n    logger.warn(\\\"MEULOG: Not available \\\");\\n    outcome = \\\"error\\\";\\n} else{\\n    logger.warn(\\\"MEULOG: DEU ERRO NA CHAMADA \\\");\\n    outcome = \\\"false\\\";    \\n}\\n\\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        },
+        "0db7854d-d44a-4171-a630-577b8502e802": {
+          "_id": "0db7854d-d44a-4171-a630-577b8502e802",
+          "name": "setupConsentJWT",
+          "description": null,
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\nif (requestParameters.get(\\\"consent_request\\\")) {\\n    var jwt = requestParameters.get(\\\"consent_request\\\");\\n    nodeState.putShared(\\\"consent_request\\\", jwt);\\n    outcome = \\\"true\\\";\\n}\\nelse {\\n    outcome = \\\"false\\\";\\n}\\n\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        },
+        "b7349b03-17c4-49e0-8460-4297aafc23bb": {
+          "_id": "b7349b03-17c4-49e0-8460-4297aafc23bb",
+          "name": "showConsentScreen",
+          "description": "Display the list of accounts for Consent by Customer",
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\nvar userId = nodeState.get(\\\"_id\\\");\\nvar consentObj = nodeState.getObject(\\\"consentIntent\\\");\\nvar intentId = nodeState.get(\\\"intentId\\\");\\nvar expirationDateTime = consentObj.ExpirationDateTime;\\nlogger.error(\\\"ALEXLOG: userId: {}\\\", userId);\\nvar accounts = nodeState.getObject(\\\"accounts\\\");\\nif (!accounts) {\\n    logger.error(\\\"ALEXLOG: No Accounts Found\\\");\\n    action.goTo(\\\"true\\\");\\n}\\nlogger.error(\\\"ALEXLOG: Accounts collected from User Profile {}\\\", JSON.stringify(accounts));\\n\\nif (callbacks.isEmpty()) {\\n    accounts.forEach((account) => {\\n      var accountNumber = account.acctNumber;\\n      var label = account.acctName;  \\n      callbacksBuilder.booleanAttributeInputCallback(account.acctNumber, `${label}`, account.consented, true);  \\n    });\\n    \\n    var expirationDateOutput = `Expiration Date: ${expirationDateTime}`\\n    \\n    logger.error(\\\"ALEXLOG: Output Message is {}\\\", expirationDateOutput);\\n    \\n    callbacksBuilder.textOutputCallback(0, expirationDateOutput);\\n}\\nelse {\\n    var consentedAccts = [];\\n    var grantedConsents = [];\\n    var idx = 0;\\n    var consented = callbacks.getBooleanAttributeInputCallbacks();\\n    accounts.forEach((account) => {\\n        var granted = consented.get(idx);\\n        logger.error(\\\"ALEXLOG: Account {} Granted: {}\\\", account.acctNumber, granted);\\n        account.consented = granted;\\n        if (granted) {\\n            grantedConsents.push(account);\\n        }\\n        consentedAccts.push(account);\\n        ++idx;    \\n    });\\n\\n    logger.error(\\\"ALEXLOG: Consented Accounts is {}\\\", JSON.stringify(consentedAccts));\\n\\n    try {\\n        var consentOps = [\\n            {\\n                operation: \\\"replace\\\",\\n                field: \\\"consentedAccounts\\\",\\n                value: grantedConsents\\n            },\\n            {\\n                operation: \\\"replace\\\",\\n                field: \\\"AccountOwner\\\",\\n                value: {\\n                    _ref: \\\"managed/alpha_user/\\\" + userId\\n                }\\n            },\\n            {\\n                operation: \\\"replace\\\",\\n                field: \\\"status\\\",\\n                value: \\\"Authorized\\\"\\n            }  \\n        ];\\n\\n        var updatedConsentIntentObj = openidm.patch(intentId, null, consentOps);\\n        \\n        nodeState.putShared(\\\"allowedAccounts\\\", consentedAccts);\\n        nodeState.putShared(\\\"decision\\\", \\\"true\\\");\\n        action.goTo(\\\"true\\\");    \\n    }\\n    catch (e) {\\n        logger.error(\\\"Exception caught {}\\\", e);\\n        action.goTo(\\\"false\\\");\\n    }\\n} \\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [
+        {
+          "_id": "b29799dd-0b2a-4fb5-aea9-ed362775148f",
+          "accountCardBackgroundColor": "#ffffff",
+          "accountCardHeaderColor": "#23282e",
+          "accountCardInnerBorderColor": "#e7eef4",
+          "accountCardInputBackgroundColor": "#ffffff",
+          "accountCardInputBorderColor": "#c0c9d5",
+          "accountCardInputLabelColor": "#5e6d82",
+          "accountCardInputSelectColor": "#e4f4fd",
+          "accountCardInputSelectHoverColor": "#f6f8fa",
+          "accountCardInputTextColor": "#23282e",
+          "accountCardOuterBorderColor": "#e7eef4",
+          "accountCardShadow": 3,
+          "accountCardTabActiveBorderColor": "#109cf1",
+          "accountCardTabActiveColor": "#e4f4fd",
+          "accountCardTextColor": "#5e6d82",
+          "accountFooter": "<div class=\"d-flex justify-content-center py-4 w-100\"><span class=\"pr-1\">© 2024</span>\n<a href=\"#\" target=\"_blank\" class=\"text-body\">My Company, Inc</a><a href=\"#\" target=\"_blank\" style=\"color: #0000ee\" class=\"pl-3 text-body\">Privacy Policy</a><a href=\"#\" target=\"_blank\" style=\"color: #0000ee\" class=\"pl-3 text-body\">Terms & Conditions</a></div>",
+          "accountFooterEnabled": false,
+          "accountFooterScriptTag": "",
+          "accountFooterScriptTagEnabled": false,
+          "accountNavigationBackgroundColor": "#ffffff",
+          "accountNavigationTextColor": "#455469",
+          "accountNavigationToggleBorderColor": "#e7eef4",
+          "accountPageSections": {
+            "accountControls": {
+              "enabled": false
+            },
+            "accountSecurity": {
+              "enabled": true,
+              "subsections": {
+                "password": {
+                  "enabled": true
+                },
+                "securityQuestions": {
+                  "enabled": false
+                },
+                "twoStepVerification": {
+                  "enabled": true
+                },
+                "username": {
+                  "enabled": true
+                }
+              }
+            },
+            "consent": {
+              "enabled": false
+            },
+            "oauthApplications": {
+              "enabled": false
+            },
+            "personalInformation": {
+              "enabled": true
+            },
+            "preferences": {
+              "enabled": false
+            },
+            "social": {
+              "enabled": false
+            },
+            "trustedDevices": {
+              "enabled": true
+            }
+          },
+          "accountTableRowHoverColor": "#f6f8fa",
+          "backgroundColor": "#F1F1F1",
+          "backgroundImage": "https://fua-qa.apps.ambientesbc.com/static/media/trazo-desktop.3de67dbd4b31f3798f8a1d3e3a90197c.svg",
+          "bodyText": "#23282e",
+          "boldLinks": false,
+          "buttonRounded": "100",
+          "dangerColor": "#f7685b",
+          "favicon": "https://fua-qa.apps.ambientesbc.com/static/media/headerIconBancolombia.e9678f112a702758542f8f98283cea47.svg",
+          "fontFamily": "Open Sans",
+          "isDefault": false,
+          "journeyA11yAddFallbackErrorHeading": true,
+          "journeyCardBackgroundColor": "#FFFFFF",
+          "journeyCardBorderRadius": "16",
+          "journeyCardHeaderBackgroundColor": "#FFFFFF",
+          "journeyCardShadow": "8",
+          "journeyCardTextColor": "#2C2A29",
+          "journeyCardTitleColor": "#2C2A29",
+          "journeyFloatingLabels": true,
+          "journeyFocusElement": "header",
+          "journeyFocusFirstFocusableItemEnabled": false,
+          "journeyFooter": "<div class=\"d-flex justify-content-center py-4 w-100\"><span class=\"pr-1\">© 2024</span>\n<a href=\"#\" target=\"_blank\" class=\"text-body\">My Company, Inc</a><a href=\"#\" target=\"_blank\" style=\"color: #0000ee\" class=\"pl-3 text-body\">Privacy Policy</a><a href=\"#\" target=\"_blank\" style=\"color: #0000ee\" class=\"pl-3 text-body\">Terms & Conditions</a></div>",
+          "journeyFooterEnabled": false,
+          "journeyFooterScriptTag": "",
+          "journeyFooterScriptTagEnabled": false,
+          "journeyHeader": "<div class=\"d-flex justify-content-center py-4 flex-grow-1\">Header Content</div>",
+          "journeyHeaderEnabled": false,
+          "journeyHeaderSkipLinkEnabled": false,
+          "journeyInputBackgroundColor": "#ffffff",
+          "journeyInputBorderColor": "#c0c9d5",
+          "journeyInputLabelColor": "#5e6d82",
+          "journeyInputSelectColor": "#e4f4fd",
+          "journeyInputSelectHoverColor": "#f6f8fa",
+          "journeyInputTextColor": "#23282e",
+          "journeyJustifiedContent": "",
+          "journeyJustifiedContentEnabled": false,
+          "journeyJustifiedContentMobileViewEnabled": false,
+          "journeyLayout": "card",
+          "journeyRememberMeEnabled": false,
+          "journeyRememberMeLabel": "",
+          "journeySignInButtonPosition": "flex-column",
+          "journeyTheaterMode": false,
+          "linkActiveColor": "#004067",
+          "linkColor": "#0070b3",
+          "linkedTrees": [
+            "bancolombia-poc-auth-pj-register-svn-consumer",
+            "flujo_poc_auth_pj",
+            "svnRegistration",
+            "bcolbaasconsentjourney",
+            "BancolombiaCIBAStarter",
+            "PoC-PJ-svnRegistration",
+            "personaNaturalRegistration",
+            "personaNaturalAuthentication",
+            "TPPAdminLogin",
+            "registerTPP",
+            "PoC-PJ-useCase-init",
+            "PoC-PJ-useCase-auth",
+            "PoC-UpdateTrustedDevice",
+            "PoC-passkeys",
+            "PoC--Passwordless",
+            "PoC-Transaccion-riesgosa",
+            "PoC-PN-useCase-init",
+            "PoC-PN-useCase-auth",
+            "PSD2CustomerAuthentication",
+            "BancolombiaBaaSLogin"
+          ],
+          "logo": "https://fua-qa.apps.ambientesbc.com/static/media/headerIconBancolombia.e9678f112a702758542f8f98283cea47.svg",
+          "logoAltText": "",
+          "logoEnabled": true,
+          "logoHeight": "60",
+          "logoProfile": "https://fua-qa.apps.ambientesbc.com/static/media/headerIconBancolombia.e9678f112a702758542f8f98283cea47.svg",
+          "logoProfileAltText": "Bancolombia",
+          "logoProfileCollapsed": "https://fua-qa.apps.ambientesbc.com/static/media/headerIconBancolombia.e9678f112a702758542f8f98283cea47.svg",
+          "logoProfileCollapsedAltText": "Bancolombia",
+          "logoProfileHeight": "30",
+          "name": "daniel-poc-bancolombia",
+          "pageTitle": "#23282e",
+          "primaryColor": "#FDDA24",
+          "primaryOffColor": "#FDDA24",
+          "profileBackgroundColor": "#ffffff",
+          "profileMenuHighlightColor": "#f6f8fa",
+          "profileMenuHoverColor": "#f6f8fa",
+          "profileMenuHoverTextColor": "#455469",
+          "profileMenuTextHighlightColor": "#455469",
+          "secondaryColor": "#000000",
+          "successColor": "#2ed47a",
+          "switchBackgroundColor": "#c0c9d5",
+          "textColor": "#000000",
+          "topBarBackgroundColor": "#ffffff",
+          "topBarBorderColor": "#e7eef4",
+          "topBarHeaderColor": "#23282e",
+          "topBarTextColor": "#69788b"
+        }
+      ],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

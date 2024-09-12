@@ -1,0 +1,42 @@
+{
+  "name": "01-bcoljwk-uri",
+  "baseURI": "http://ig:80",
+  "condition": "${matches(request.uri.path, '^/bcol-jwk')}",
+  "handler": "JWK-Response",
+  "heap": [
+    {
+      "type": "BaseUriDecorator",
+      "name": "baseUri"
+    },
+    {
+      "type": "TimerDecorator",
+      "name": "timer",
+      "config": {
+        "timeUnit": "ms"
+      }
+    },
+    {
+      "type": "CaptureDecorator",
+      "name": "capture",
+      "config": {
+        "captureEntity": false,
+        "captureContext": false,
+        "maxEntityLength": 524288
+      }
+    },
+    {
+      "type": "StaticResponseHandler",
+      "name": "JWK-Response",
+      "config": {
+        "status": 200,
+        "reason": "OK",
+        "entity": "{\"keys\" :[{   \"kty\": \"EC\",   \"d\": \"bXhBnmXPav9lgPPs6zavwlqbSmaMpdyeh564d0uNI8k\",   \"use\": \"sig\",   \"crv\": \"P-256\",   \"kid\": \"mykey\",   \"x\": \"E8IyIrUIBdMVAFhRIcNtDVUI8OTDDSs-LRziuBthM4s\",   \"y\": \"1jH5o5B5hBeqARhYTMPl5l8CVNOFIVrvYd_TiFH6FkQ\" }]}",
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      }
+    }
+  ]
+}

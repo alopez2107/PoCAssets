@@ -1,11 +1,10 @@
 {
 	"info": {
-		"_postman_id": "38c88582-4de3-40cf-8ca9-31a55d108424",
+		"_postman_id": "e7956d4f-f716-4282-911b-b1cec69d0538",
 		"name": "Secure API Gateway v3.x.x - Plain FAPI",
 		"description": "# Welcome to the Postman Collection for the Secure API Gateway, Plain FAPI Edition.\n\nThis collection can be used to try out the [Secure API Gateway](https://github.com/SecureApiGateway) Plain FAPI API. This API is used in order to achieve OIDF FAPI conformance, and serves as a demonstration of how to protect an API using SAPI-G.\n\nThe Secure API Gateway is an Open Source project inititated by ForgeRock. It uses ForgeRock's Identity Gateway and Identity Cloud to provide FAPI level **Identity and Access Management for your APIs**. It is intended to be used by ForgeRock customers wishing to develop highly secure APIs that are protected by;\n\n- Dynamic Client Registration - Use API endpoints to securely register a client to use the protected API. The client must have both TLS certificates and a Software Statment Assertion issued by a trusted directory\n- Mutual Auth TLS (MTLS) - client certs issued by a trusted directory are used to identify both client and server in the TLS transport layer encryption\n- Software Statement bound Access Tokens. Checks are made during API access to ensure that the MTLS certificate presented by the Api Client and the presented access_token are associated with the same software statement in the trusted directory\n    \n\n## Environment variables:\n\n- This is meant to be run with the environment **v2.x release cluster**\n    \n\n#### Variables Types:\n\nThere are two kind of variables used across this collection:\n\n- The upper case with dash variables (_**VAR-NAME**_) are used as constants dynamically in the requests and they need to be initialise with the proper values before run any collection request.\n- The lower case with underscore variables (_**dynamic_var_name**_) are created dynamically when a request is running and are used across the next requests, these variables are updated with the proper value depending of the request step. These variables can be deleted to reset the environment variables.\n    \n\n## Initialise the collection\n\nTo start sending request to **SAPI-G Open Banking edition**, make sure that you have set the **CURRENT VALUE** of below environment variables first:\n\n| **Variable** | **Description** | **INITIAL VALUE** |\n| --- | --- | --- |\n| ENVIRONMENT | Environment to send the request, this value will be replace in the FQDN variables defined. | dev |\n| IG-FQDN | Identity Gateway Host name | obdemo.{ENVIRONMENT}.forgerock.financial |\n| IDENTITY-PLATFORM-FQDN | Identity platform Host name | iam.{ENVIRONMENT}.forgerock.financial |\n| REALM | Identity access management realm name | alpha |\n| OB-SIGNING-KEY-ID | OB Directory Signing key Id | add kid to Current Value column -> |\n| TOKEN_ENDPOINT_AUTH_METHOD | The token_endpoint_auth_method to request during Dynamic Client Registration. To be FAPI compliant this must be tls_client_auth or private_key_jwt | tls_client_auth |\n| OB-SEAL-PRIVATE-KEY | OB Seal private key | add pem to Current Value column -> |\n| OB-SOFTWARE-ID | OB Directory Software Statement Client Id |  |\n| OB-SCOPES | Scopes expected by OB directory to obtain the access token from OB Authorisation server | ASPSPReadAccess TPPReadAccess AuthoritiesReadAccess |\n| OB-AUDIENCE | Auth resource identifier | [https://matls-sso.openbankingtest.org.uk/as/token.oauth2](https://matls-sso.openbankingtest.org.uk/as/token.oauth2) |\n| OB-TOKEN-URL | OB directory Access token endpoint | [https://matls-sso.openbankingtest.org.uk/as/token.oauth2](https://matls-sso.openbankingtest.org.uk/as/token.oauth2) |\n| OB-SSA-URL | OB directory endpoint to retrieve an SSA | [https://matls-dirapi.openbankingtest.org.uk](https://matls-dirapi.openbankingtest.org.uk) |\n| OB-ORGANIZATION-ID | OB directory Organisation ID | add Open Banking TPP Organization Id here to Current Value column -> |\n\n> After set these variables you need initialise the collection running the",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29272036",
-		"_collection_link": "https://cloud-forgerock.postman.co/workspace/Secure-API-Gateway---Releases~b7243dee-8f10-4848-b6a5-de1eafca2905/collection/29272036-38c88582-4de3-40cf-8ca9-31a55d108424?action=share&source=collection_link&creator=29272036"
+		"_exporter_id": "27859633"
 	},
 	"item": [
 		{
@@ -361,7 +360,8 @@
 										"exec": [
 											"postman.setEnvironmentVariable(\"ssa_jwt\", responseBody);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -370,7 +370,8 @@
 										"exec": [
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -446,7 +447,8 @@
 											"pm.environment.set('ob_jwt_signed', signedToken)",
 											"console.log('Signed and encoded JWT', signedToken)"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -467,13 +469,20 @@
 											"",
 											"postman.setEnvironmentVariable(\"ob_access_token\", data.access_token);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "ssl-client-cert",
+										"value": "-----BEGIN%20CERTIFICATE-----%0AMIIDljCCAn6gAwIBAgIQcva%2FY88r1h%2FC9cVsdRPMzDANBgkqhkiG9w0BAQsFADAp%0AMScwJQYDVQQDDB5UZXN0IFRydXN0ZWQgRGlyZWN0b3J5IFJvb3QgQ0EwHhcNMjQw%0AODI3MDAwMDAwWhcNMjUwODI3MDAwMDAwWjA6MRUwEwYDVQQDDAxBY21lIEZpbnRl%0AY2gxITAfBgNVBGEMGEJDT0xQT0MtVFBQLU9yZ2FuaXphdGlvbjCCASIwDQYJKoZI%0AhvcNAQEBBQADggEPADCCAQoCggEBAKHAo7S0cOkRQ98%2BLlZqvLfx1450QC3OwaXS%0ASXAktJ%2Fx0NZdiKB1NMCjuf0cE186lcljLx829O%2FzRen8%2FV7DK9WlxaTuxefocHTC%0Ar22soQpl3mtJ8PfbkyOrTOv5pdMv3K8Q9vkF9tYvoWnpE%2F6zFwhdZ3x5Y7r%2FvyZ0%0AqYauiDoHm%2Fmijg2kP19dxjVxFTfSnqwW6IqTsOnd9bJuW7nR9gOHQInwmkEeKsG3%0AEIm3ELSmqsHQFaTa2ixWGVGOlOLUPCncQAmq9MkZ4sSqoNnmnPtanxb1jBuLoJmu%0AiLs%2F2ZMlA7TIl0y6h0UDWz9YzAcmdjtAISUUyzHp07TtO31P1TkCAwEAAaOBqDCB%0ApTAMBgNVHRMBAf8EAjAAMFQGA1UdIwRNMEuAFM%2Bq8YIFi%2BkWxNMFyxyDD159hckj%0AoS2kKzApMScwJQYDVQQDEx5UZXN0IFRydXN0ZWQgRGlyZWN0b3J5IFJvb3QgQ0GC%0ABFdVpG0wHQYDVR0OBBYEFHBXyHZJgBvSL%2BPoPTDGl35zs7VOMAsGA1UdDwQEAwIH%0AgDATBgNVHSUEDDAKBggrBgEFBQcDAjANBgkqhkiG9w0BAQsFAAOCAQEAkDCOziPA%0AfZirl5fjGJHI9iYf76QR2VGc4DVZeErkMXL7CuRMO1YDOqNtnROcBydvp%2BUhfs8m%0AvFDWzBc9lZi6PIti%2FGbEHNvp3MJ%2BhsjmtX22IBJjpTCCccijN6gsjwC0sRUlQjQb%0Avum3ATvT3L9%2B%2FKE3nkAca6pm4tfhVhp4cAYN8nI%2Bpmz8lPbi62uoqQcpr39goaNG%0AuoCNqvx67AOGqRAVtKOsC40D5ff0uEnubZatzj2kTVoSSXe8IRpl3xYCYNBpY271%0A70tugTun00h48Cw7rwSWd4m3hxBHYYrQbq%2BFqCuX3kcclg3QBA8BVDlZ9LzNUW%2BC%0A351gxZ3kZFohRw%3D%3D%0A-----END%20CERTIFICATE-----",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -678,6 +687,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt",
+										"type": "text"
+									},
+									{
+										"key": "ssl-client-cert",
+										"value": "-----BEGIN%20CERTIFICATE-----%0AMIIDljCCAn6gAwIBAgIQcva%2FY88r1h%2FC9cVsdRPMzDANBgkqhkiG9w0BAQsFADAp%0AMScwJQYDVQQDDB5UZXN0IFRydXN0ZWQgRGlyZWN0b3J5IFJvb3QgQ0EwHhcNMjQw%0AODI3MDAwMDAwWhcNMjUwODI3MDAwMDAwWjA6MRUwEwYDVQQDDAxBY21lIEZpbnRl%0AY2gxITAfBgNVBGEMGEJDT0xQT0MtVFBQLU9yZ2FuaXphdGlvbjCCASIwDQYJKoZI%0AhvcNAQEBBQADggEPADCCAQoCggEBAKHAo7S0cOkRQ98%2BLlZqvLfx1450QC3OwaXS%0ASXAktJ%2Fx0NZdiKB1NMCjuf0cE186lcljLx829O%2FzRen8%2FV7DK9WlxaTuxefocHTC%0Ar22soQpl3mtJ8PfbkyOrTOv5pdMv3K8Q9vkF9tYvoWnpE%2F6zFwhdZ3x5Y7r%2FvyZ0%0AqYauiDoHm%2Fmijg2kP19dxjVxFTfSnqwW6IqTsOnd9bJuW7nR9gOHQInwmkEeKsG3%0AEIm3ELSmqsHQFaTa2ixWGVGOlOLUPCncQAmq9MkZ4sSqoNnmnPtanxb1jBuLoJmu%0AiLs%2F2ZMlA7TIl0y6h0UDWz9YzAcmdjtAISUUyzHp07TtO31P1TkCAwEAAaOBqDCB%0ApTAMBgNVHRMBAf8EAjAAMFQGA1UdIwRNMEuAFM%2Bq8YIFi%2BkWxNMFyxyDD159hckj%0AoS2kKzApMScwJQYDVQQDEx5UZXN0IFRydXN0ZWQgRGlyZWN0b3J5IFJvb3QgQ0GC%0ABFdVpG0wHQYDVR0OBBYEFHBXyHZJgBvSL%2BPoPTDGl35zs7VOMAsGA1UdDwQEAwIH%0AgDATBgNVHSUEDDAKBggrBgEFBQcDAjANBgkqhkiG9w0BAQsFAAOCAQEAkDCOziPA%0AfZirl5fjGJHI9iYf76QR2VGc4DVZeErkMXL7CuRMO1YDOqNtnROcBydvp%2BUhfs8m%0AvFDWzBc9lZi6PIti%2FGbEHNvp3MJ%2BhsjmtX22IBJjpTCCccijN6gsjwC0sRUlQjQb%0Avum3ATvT3L9%2B%2FKE3nkAca6pm4tfhVhp4cAYN8nI%2Bpmz8lPbi62uoqQcpr39goaNG%0AuoCNqvx67AOGqRAVtKOsC40D5ff0uEnubZatzj2kTVoSSXe8IRpl3xYCYNBpY271%0A70tugTun00h48Cw7rwSWd4m3hxBHYYrQbq%2BFqCuX3kcclg3QBA8BVDlZ9LzNUW%2BC%0A351gxZ3kZFohRw%3D%3D%0A-----END%20CERTIFICATE-----",
 										"type": "text"
 									}
 								],
@@ -1074,7 +1088,198 @@
 							"name": "4.1.2b: Authorize with PAR",
 							"item": [
 								{
-									"name": "4.1.2b.1: Create PAR Authorize Request",
+									"name": "4.1.2b.1 create access_token with client_credential grant and scopes fr:idm:* plus accounts",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"response must be valid and have a json body\", function () {",
+													"    pm.response.to.have.status(200);",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"});",
+													"",
+													"var data = JSON.parse(responseBody);",
+													"",
+													"pm.test(\"To have an access token and id token\", function () {",
+													"    pm.expect(data.access_token).to.not.be.null;",
+													"    pm.expect(data.id_token).to.not.be.null;",
+													"});",
+													"",
+													"pm.environment.set(\"client_credential_access_token_with_account_scope\", data.access_token);",
+													"pm.environment.set(\"id_token\", data.id_token);",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var navigator = {}; //fake a navigator object for the lib",
+													"var window = {}; //fake a window object for the lib",
+													"//eval(pm.environment.get('pmlib_code'))",
+													"eval(pm.environment.get(\"jsrsasign_js\"));",
+													"eval(pm.environment.get(\"client_jws_helpers\"));",
+													"",
+													"var token_endpoint_auth_method = pm.environment.get(\"TOKEN_ENDPOINT_AUTH_METHOD\");",
+													"client_jws_helpers.setClientCredentialRequestHeaders(token_endpoint_auth_method);"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableCookies": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "client_credentials",
+													"type": "text"
+												},
+												{
+													"key": "scope",
+													"value": "openid accounts",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+													"description": "When using private_key_jwt, the www-form-urlencoded body must contain the key client_assertion_type with a value of urn:ietf:params:oauth:client-assertion-type:jwt-bearer. See rfc7523 for further details. So that this collection can work with clients that use both private_key_jwt and tls_client_auth as the token_endpoint_auth_method, this key/value pair is added by the pre-request script if required.",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "client_assertion",
+													"value": "{{client_credential_jwt}}",
+													"description": "When using private_key_jwt, the www-form-urlencoded body must contain the a client_assertion in the form of a client crendential JWT. See rfc7523 for further details. So that this collection can work with clients that use both private_key_jwt and tls_client_auth as the token_endpoint_auth_method, this key/value pair is added by the pre-request script if required.",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "client_id",
+													"value": "{{client_id}}",
+													"description": "When a client has registerd to use tls_client_auth, the www-form-urlencoded body must contain the OAuth2 client_id as returned from the Dynamic Client Registration request. So that this collection can work with clients that use both private_key_jwt and tls_client_auth as the token_endpoint_auth_method, this key/value pair is added by the pre-request script if required.",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{as_token_endpoint}}",
+											"host": [
+												"{{as_token_endpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "4.1.2b.2: Create AccountAccessConsent",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"//Fixed syntax ",
+													"pm.test(\"Status code is 201 and return json body\", function () {",
+													"    pm.response.to.have.status(201);",
+													"    pm.response.to.be.withBody;",
+													"    pm.response.to.be.json;",
+													"});",
+													"",
+													"var data = pm.response.json();",
+													"console.log(\"Response body from AccountAccessIntent creation {}\", data);",
+													"",
+													"pm.test(\"To have a ConsentId id\", function () {",
+													"    pm.expect(data.Data.ConsentId).to.not.be.null;",
+													"});",
+													"",
+													"pm.test(\"Status is AwaitingAuthorisation\", function () {",
+													"    pm.expect(data.status).to.eql(\"AwaitingAuthorisation\");",
+													"});",
+													"var intent_id_str = \"managed/AccountAccessConsent/\" + data._id;",
+													"console.log(\"Intent id Created is \" + data._id);",
+													"pm.environment.set(\"account_intent_id\", data._id);",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var today = new Date();",
+													"var expDate = today.setDate(today.getDate() + 2);",
+													"pm.environment.set(\"expirationDateTime\", new Date(expDate));"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{client_credential_access_token_with_account_scope}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "x-fapi-financial-id",
+												"value": "{{X-FAPI-FINANCIAL-ID}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"Data\": {\n    \"Permissions\": [\n      \"ReadAccountsBasic\",\n      \"ReadTransactionsBasic\",\n      \"ReadStatementsBasic\"\n    ]\n  },\n  \"ExpirationDateTime\": \"{{expirationDateTime}}\",\n  \"Risk\": {}\n}"
+										},
+										"url": {
+											"raw": "https://{{MTLS-IG-FQDN}}/rs/open-banking/accountAccessConsent",
+											"protocol": "https",
+											"host": [
+												"{{MTLS-IG-FQDN}}"
+											],
+											"path": [
+												"rs",
+												"open-banking",
+												"accountAccessConsent"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "4.1.2b.3: Create PAR Authorize Request",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -1087,11 +1292,82 @@
 													"var consent_id = pm.environment.get(\"account_intent_id\")",
 													"console.log(\"Creating authorize request with 'openid accounts' scope and consent_id '\" + consent_id + \"'\")",
 													"var scope = \"openid accounts\"",
-													"var signedToken = client_jws_helpers.createAuthorizeJwtWithPkce(scope, consent_id, false)",
+													"var privateKey = pm.environment.get('OB-SEAL-PRIVATE-KEY') ;",
+													"console.log(privateKey)",
+													"var currentTimestamp = Math.floor(Date.now() / 1000)",
+													"",
+													"/************************************/",
+													"",
+													"// Function to generate a random string of specified length",
+													"function generateRandomString(length) {",
+													"    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';",
+													"    let result = '';",
+													"    for (let i = 0; i < length; i++) {",
+													"        const randomIndex = Math.floor(Math.random() * chars.length);",
+													"        result += chars[randomIndex];",
+													"    }",
+													"    return result;",
+													"}",
+													"",
+													"// Function to base64url encode a buffer",
+													"function createSHA256Hash(code_verifier) {",
+													"    return code_challenge = base64URLEncode(CryptoJS.SHA256(code_verifier))",
+													"}",
+													"",
+													"function base64URLEncode(hash) {",
+													"    return hash.toString(CryptoJS.enc.Base64)",
+													"    .replace(/=/g, '')",
+													"    .replace(/\\+/g, '-')",
+													"    .replace(/\\//g, '_');",
+													"}",
+													"",
+													"// Generate the code verifier",
+													"const codeVerifier = generateRandomString(50); // Length should be between 43 and 128 characters",
+													"pm.environment.set(\"pkce_verifier\", codeVerifier);",
+													" /***********************************/",
+													" var code_challenge = createSHA256Hash(codeVerifier); ",
+													" pm.environment.set('pkce_challenge', code_challenge);",
+													" var state = generateRandomString(32);",
+													"var header = {",
+													"\t'typ': 'JWT',",
+													"\t'alg': 'PS256',",
+													"    \"kid\": pm.environment.get('OB-SIGNING-KEY-ID') || ''",
+													"};",
+													"var exp = currentTimestamp + 120;",
+													"var clientId = pm.environment.get(\"client_id\");",
+													"var parBody = {",
+													"  \"aud\": \"https://sapig.gestiondelfraude-abr.co/am/oauth2/realms/root/realms/alpha\",",
+													"  \"scope\": \"openid accounts\",",
+													"  \"iss\": clientId,",
+													"  \"exp\": exp,",
+													"  \"nbf\": exp,",
+													"  \"claims\": {",
+													"    \"id_token\": {",
+													"      \"acr\": {",
+													"        \"value\": \"baas\",",
+													"        \"essential\": true",
+													"      },",
+													"      \"openbanking_intent_id\": {",
+													"          \"value\": \"managed/AccountAccessConsent/\" + consent_id,",
+													"          \"essential\": true",
+													"      }",
+													"    }",
+													"  },",
+													"  \"response_type\": \"code id_token\",",
+													"  \"redirect_uri\": \"https://postman-echo.com/get\",",
+													"  \"state\": state,",
+													"  \"nonce\": state,",
+													"  \"client_id\": clientId,",
+													"  \"code_challenge\": code_challenge,",
+													"  \"code_challenge_method\": \"S256\"",
+													"}",
+													"",
+													"var signedToken =  KJUR.jws.JWS.sign(\"PS256\", header, parBody, privateKey);",
+													"/*var signedToken = client_jws_helpers.createAuthorizeJwtWithPkce(scope, consent_id, false);*/",
 													"",
 													"var token_endpoint_auth_method = pm.environment.get(\"TOKEN_ENDPOINT_AUTH_METHOD\");",
 													"client_jws_helpers.setClientCredentialRequestHeaders(token_endpoint_auth_method);",
-													"postman.setEnvironmentVariable(\"par_accounts_auth_request_jwt\", signedToken)"
+													"pm.environment.set(\"par_accounts_auth_request_jwt\", signedToken);"
 												],
 												"type": "text/javascript",
 												"packages": {}
@@ -1165,7 +1441,7 @@
 									"response": []
 								},
 								{
-									"name": "4.1.2b.2: PSU gives consent",
+									"name": "4.1.2b.4: PSU gives consent",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -1198,7 +1474,7 @@
 									"response": []
 								},
 								{
-									"name": "4.1.2b.3: Obtain access_token with authorization_code grant",
+									"name": "4.1.2b.5: Obtain access_token with authorization_code grant",
 									"event": [
 										{
 											"listen": "test",
@@ -1206,11 +1482,12 @@
 												"exec": [
 													"var data = JSON.parse(responseBody);",
 													"",
-													"postman.setEnvironmentVariable(\"access_token_with_account_access_consent\", data.access_token);",
-													"postman.setEnvironmentVariable(\"refresh_token_with_account_access_consent\", data.refresh_token);",
-													"postman.setEnvironmentVariable(\"id_token\", data.id_token);"
+													"pm.environment.set(\"access_token_with_account_access_consent\", data.access_token);",
+													"pm.environment.set(\"refresh_token_with_account_access_consent\", data.refresh_token);",
+													"pm.environment.set(\"id_token\", data.id_token);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -1227,7 +1504,8 @@
 													"client_jws_helpers.setClientCredentialRequestHeaders(token_endpoint_auth_method);",
 													"client_jws_helpers.setPkceVerifierInRequestBody()"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1252,7 +1530,7 @@
 												},
 												{
 													"key": "code",
-													"value": "PASTE AUTH CODE HERE",
+													"value": "JIw68Sp0AnTJ0ezGc9Fw1rB1rms",
 													"type": "text"
 												},
 												{
@@ -1714,6 +1992,42 @@
 										"rs",
 										"fapi",
 										"api"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check Account Balances",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{access_token_with_account_access_consent}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{MTLS-IG-FQDN}}/rs/laboratorio/laboratorio/open-banking/v1/deposits/accounts/{{ACCT_NUMBER}}/balances",
+									"protocol": "https",
+									"host": [
+										"{{MTLS-IG-FQDN}}"
+									],
+									"path": [
+										"rs",
+										"laboratorio",
+										"laboratorio",
+										"open-banking",
+										"v1",
+										"deposits",
+										"accounts",
+										"{{ACCT_NUMBER}}",
+										"balances"
 									]
 								}
 							},

@@ -1,0 +1,138 @@
+{
+  "name": "01-create-accounts-access-consent",
+  "baseURI": "https://openam-bcolpoc.forgeblocks.com",
+  "condition": "${find(request.uri.path, '^/rs/open-banking')}",
+  "handler": "Chain-1",
+  "properties": {
+    "idmAdminAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjOWY5ODkwYy0wZDAyLTRiMTUtODcwYS0wMzJiYzM4YjMzZTIiLCJjdHMiOiJPQVVUSDJfU1RBVEVMRVNTX0dSQU5UIiwiYXVkaXRUcmFja2luZ0lkIjoiYTUzM2VlNTgtNTAyMy00ZjM3LWFjMTAtMGZiM2RkYjdjZTRiLTI0NjEyNjIiLCJzdWJuYW1lIjoiYzlmOTg5MGMtMGQwMi00YjE1LTg3MGEtMDMyYmMzOGIzM2UyIiwiaXNzIjoiaHR0cHM6Ly9vcGVuYW0tYmNvbHBvYy5mb3JnZWJsb2Nrcy5jb206NDQzL2FtL29hdXRoMi9yZWFsbXMvcm9vdC9yZWFsbXMvYWxwaGEiLCJ0b2tlbk5hbWUiOiJhY2Nlc3NfdG9rZW4iLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiYXV0aEdyYW50SWQiOiJUY20xMi0wUlVOaUlpMGR1YVJMOVFieEt3WWMiLCJhdWQiOiJjOWY5ODkwYy0wZDAyLTRiMTUtODcwYS0wMzJiYzM4YjMzZTIiLCJuYmYiOjE3MjIyNzEwMTEsImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJzY29wZSI6WyJmcjppZG06KiJdLCJhdXRoX3RpbWUiOjE3MjIyNzEwMTEsInJlYWxtIjoiL2FscGhhIiwiZXhwIjoyMDM3NjMxMDExLCJpYXQiOjE3MjIyNzEwMTEsImV4cGlyZXNfaW4iOjMxNTM2MDAwMCwianRpIjoibURSSnRHTG04QnRNeG80a1RxRkluR0tkTnBZIn0.hnMH4FcJWrMWmbXuOa7wApzJ9bORgbTBqNqDScIGYKM"
+  },
+  "heap": [
+    {
+      "name": "ReverseProxyHandler",
+      "type": "ReverseProxyHandler"
+    },
+    {
+      "type": "BaseUriDecorator",
+      "name": "baseUri"
+    },
+    {
+      "type": "TimerDecorator",
+      "name": "timer",
+      "config": {
+        "timeUnit": "ms"
+      }
+    },
+    {
+      "type": "CaptureDecorator",
+      "name": "capture",
+      "config": {
+        "captureEntity": false,
+        "captureContext": false,
+        "maxEntityLength": 524288
+      }
+    },
+    {
+      "name": "Chain-1",
+      "type": "Chain",
+      "config": {
+        "handler": "ReverseProxyHandler",
+        "filters": [
+          "RouteMetricsFilter-1",
+          "CertificateThumbprintFilter-1",
+          "OAuth2ResourceServerFilter-1",
+          "Add Client ID and Status to Payload",
+          "Rewrite to IDM Managed Object Path",
+          "Add IDM Admin Bearer Token"
+        ]
+      }
+    },
+    {
+      "name": "RouteMetricsFilter-1",
+      "type": "RouteMetricsFilter"
+    },
+    {
+      "name": "CertificateThumbprintFilter-1",
+      "type": "CertificateThumbprintFilter",
+      "config": {
+        "certificate": "${pemCertificate(urlDecode(request.headers['ssl-client-cert'][0]))}",
+        "failureHandler": {
+          "type": "ScriptableHandler",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "ReturnInvalidCnfKeyError.groovy"
+          }
+        }
+      }
+    },
+    {
+      "name": "OAuth2ResourceServerFilter-1",
+      "type": "OAuth2ResourceServerFilter",
+      "config": {
+        "scopes": [
+          "accounts"
+        ],
+        "requireHttps": false,
+        "realm": "OpenIG",
+        "accessTokenResolver": {
+          "comment": "Check certificate-bound OAuth 2.0 bearer tokens presented by clients use the same mTLS-authenticated HTTP connection",
+          "type": "ConfirmationKeyVerifierAccessTokenResolver",
+          "config": {
+            "delegate": {
+              "name": "token-resolver-1",
+              "type": "StatelessAccessTokenResolver",
+              "config": {
+                "secretsProvider": "SecretsProvider-AmJWK",
+                "issuer": "https://&{ig.fqdn}/am/oauth2/realms/root/realms/&{am.realm}",
+                "verificationSecretId": "any.value.in.regex.format"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "ScriptableFilter",
+      "name": "Add Client ID and Status to Payload",
+      "config": {
+        "type": "application/x-groovy",
+        "source": [
+          "def payload = request.getEntity().getJson()",
+          "",
+          "def clientId = contexts.oauth2.accessToken.info['aud']",
+          "",
+          "payload.put(\"clientId\", clientId)",
+          "payload.put(\"status\", \"AwaitingAuthorisation\")",
+          "",
+          "request.setEntity(payload)",
+          "",
+          "return next.handle(context, request)"
+        ]
+      }
+    },
+    {
+      "name": "Rewrite to IDM Managed Object Path",
+      "type": "UriPathRewriteFilter",
+      "config": {
+        "mappings": {
+          "/rs/open-banking/accountAccessConsent": "/openidm/managed/AccountAccessConsent",
+          "/rs/open-banking/initPaymentConsent": "/openidm/managed/InitPaymentConsent"
+        }
+      }
+    },
+    {
+      "name": "Add IDM Admin Bearer Token",
+      "type": "HeaderFilter",
+      "config": {
+        "messageType": "REQUEST",
+        "remove": [
+          "Authorization"
+        ],
+        "add": {
+          "Authorization": [
+            "Bearer ${idmAdminAccessToken}"
+          ]
+        }
+      }
+    }
+  ]
+}
