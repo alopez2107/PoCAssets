@@ -1,0 +1,424 @@
+{
+  "meta": {
+    "origin": "https://openam-jcpsupwf.forgeblocks.com/platform/?realm=alpha#/journeys/jcpSupplierPortalLogin",
+    "exportedBy": "alex.lopez@forgerock.com",
+    "exportDate": "2024-09-13T14:21:15.570Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "jcpSupplierPortalLogin"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "jcpSupplierPortalLogin": {
+      "tree": {
+        "_id": "jcpSupplierPortalLogin",
+        "_rev": "-1616179312",
+        "identityResource": "managed/alpha_user",
+        "uiConfig": {
+          "categories": "[\"JCP\",\"Login\",\"Session Management\"]"
+        },
+        "entryNodeId": "b82298e7-853d-4220-b776-c9c86933f20d",
+        "innerTreeOnly": false,
+        "nodes": {
+          "12c133b8-4eb5-4383-b358-1f5c783941bc": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "e56de164-5657-44c4-ab52-fbf587d7915f"
+            },
+            "displayName": "Data Store Decision",
+            "nodeType": "DataStoreDecisionNode",
+            "x": 528,
+            "y": 218.015625
+          },
+          "9a16fda5-178d-4468-bf7e-efcdf5f618b6": {
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Build JCP Profile Session Variable",
+            "nodeType": "ScriptedDecisionNode",
+            "x": 1248,
+            "y": 357.015625
+          },
+          "b82298e7-853d-4220-b776-c9c86933f20d": {
+            "connections": {
+              "outcome": "12c133b8-4eb5-4383-b358-1f5c783941bc"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 209,
+            "y": 202.015625
+          },
+          "e56de164-5657-44c4-ab52-fbf587d7915f": {
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "9a16fda5-178d-4468-bf7e-efcdf5f618b6"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 958,
+            "y": 357
+          }
+        },
+        "description": "JCPenney Login journey for the Supplier Portal",
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1564,
+            "y": 87
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1731,
+            "y": 238
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        },
+        "mustRun": false,
+        "enabled": true
+      },
+      "nodes": {
+        "12c133b8-4eb5-4383-b358-1f5c783941bc": {
+          "_id": "12c133b8-4eb5-4383-b358-1f5c783941bc",
+          "_rev": "611624554",
+          "_type": {
+            "_id": "DataStoreDecisionNode",
+            "name": "Data Store Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "9a16fda5-178d-4468-bf7e-efcdf5f618b6": {
+          "_id": "9a16fda5-178d-4468-bf7e-efcdf5f618b6",
+          "_rev": "-267127352",
+          "script": "c12dff84-0b84-41e8-a620-caf5e464835c",
+          "outcomes": [
+            "true",
+            "error"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            },
+            {
+              "id": "error",
+              "displayName": "error"
+            }
+          ]
+        },
+        "b82298e7-853d-4220-b776-c9c86933f20d": {
+          "_id": "b82298e7-853d-4220-b776-c9c86933f20d",
+          "_rev": "-1431850849",
+          "nodes": [
+            {
+              "_id": "05a3886a-0cb8-44cb-a1d8-c78876cd11fd",
+              "nodeType": "ValidatedUsernameNode",
+              "displayName": "Platform Username"
+            },
+            {
+              "_id": "9a50e2ff-0775-42f2-8009-85613d5ae9e4",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "e56de164-5657-44c4-ab52-fbf587d7915f": {
+          "_id": "e56de164-5657-44c4-ab52-fbf587d7915f",
+          "_rev": "1511102241",
+          "nodes": [
+            {
+              "_id": "d3c4b515-2371-4445-b968-63a65eda6b36",
+              "nodeType": "ScriptedDecisionNode",
+              "displayName": "Display Org List"
+            }
+          ],
+          "pageDescription": {},
+          "pageHeader": {},
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "05a3886a-0cb8-44cb-a1d8-c78876cd11fd": {
+          "_id": "05a3886a-0cb8-44cb-a1d8-c78876cd11fd",
+          "_rev": "-1945644096",
+          "usernameAttribute": "userName",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedUsernameNode",
+            "name": "Platform Username",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "9a50e2ff-0775-42f2-8009-85613d5ae9e4": {
+          "_id": "9a50e2ff-0775-42f2-8009-85613d5ae9e4",
+          "_rev": "2009682758",
+          "passwordAttribute": "password",
+          "validateInput": false,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "d3c4b515-2371-4445-b968-63a65eda6b36": {
+          "_id": "d3c4b515-2371-4445-b968-63a65eda6b36",
+          "_rev": "1759959955",
+          "script": "3b743964-9752-4074-a171-31dcd845f536",
+          "outcomes": [
+            "true"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "true"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "c12dff84-0b84-41e8-a620-caf5e464835c": {
+          "_id": "c12dff84-0b84-41e8-a620-caf5e464835c",
+          "name": "buildJCPProfile",
+          "description": null,
+          "script": "\"var objectAttributes = nodeState.getObject(\\\"objectAttributes\\\");\\n\\n\\nvar selectedOrg = nodeState.getObject(\\\"selectedOrg\\\");\\nvar selectedOrgObj = openidm.read(\\\"managed/alpha_organization/\\\" + selectedOrg._id, null, [\\\"*\\\"]);\\nvar selectedCompany = selectedOrg.name;\\nvar companyType = selectedOrgObj.supplierTypeID;\\n\\nlogger.error(\\\"Selected Organization from NodeState is {}\\\", JSON.stringify(selectedOrg));\\n\\n\\nvar effectiveRoles = objectAttributes.get(\\\"effectiveRoles\\\");\\nvar rolesForSession = [];\\nvar affiliateGpName = \\\"NONE\\\";\\neffectiveRoles.toArray().forEach((role) => {\\n   var roleObj = openidm.read(\\\"managed/alpha_role/\\\" + role._id, null, [\\\"*\\\"]);\\n   if (roleObj.supplierNumber && roleObj.supplierNumber === selectedOrgObj.supplierNumber || roleObj.supplierTypeID === selectedOrgObj.supplierTypeID) {\\n       if (role.name.includes('Affiliate')) {\\n           affiliateGpName = role.name;\\n       }\\n       rolesForSession.push(role.name);\\n   }   \\n});\\n\\nvar jcpProfile = {\\n    \\\"selectedCompany\\\": selectedCompany,\\n    \\\"companyType\\\": companyType,\\n    \\\"affiliate\\\": affiliateGpName,\\n    \\\"roles\\\": rolesForSession\\n}\\n\\nlogger.error(\\\"JCPProfile is {}\\\", JSON.stringify(jcpProfile));\\n\\naction.goTo(\\\"true\\\").putSessionProperty(\\\"jcpProfile\\\", JSON.stringify(jcpProfile));\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        },
+        "3b743964-9752-4074-a171-31dcd845f536": {
+          "_id": "3b743964-9752-4074-a171-31dcd845f536",
+          "name": "displayOrganizationsListForUser",
+          "description": null,
+          "script": "\"/*\\n  - Data made available by nodes that have already executed are available in the sharedState variable.\\n  - The script should set outcome to either \\\"true\\\" or \\\"false\\\".\\n */\\n\\nvar _id = nodeState.get(\\\"_id\\\");\\nvar userEndpoint = \\\"managed/alpha_user\\\";\\nvar userName = nodeState.get(\\\"username\\\");\\nlogger.error(\\\"User name retrieved is {}\\\", userName);\\nvar _queryFilter = `userName eq \\\"${userName}\\\"`;\\n\\nvar authnUser = openidm.query(userEndpoint, {\\\"_queryFilter\\\": _queryFilter}, [\\\"*\\\", \\\"*_ref\\\", \\\"custom_effectiveOrgNames\\\"]).result[0];\\nvar orgOptions = [];\\nvar effectiveOrgNames = authnUser.custom_effectiveOrgNames;\\neffectiveOrgNames.forEach((org) => {\\n    var optionText = `${org.supplierNumber} - ${org.name}`;\\n    orgOptions.push(optionText);\\n});\\n\\nif (orgOptions.length > 1) {\\n    if (callbacks.isEmpty()) {\\n        callbacksBuilder.choiceCallback(\\\"Please Select your Supplier Organization\\\", orgOptions, 0, false);\\n    }\\n    else {\\n        var selectedOrg = callbacks.getChoiceCallbacks().get(0)[0];\\n        var sessionOrg = effectiveOrgNames[selectedOrg];\\n        logger.error(\\\"Selected Org Supplier Num: {} Org Name: {}\\\", sessionOrg['supplierNumber'], sessionOrg['name']);\\n        nodeState.putShared(\\\"selectedOrg\\\", sessionOrg);\\n        nodeState.putShared(\\\"objectAttributes\\\", authnUser);\\n    } \\n}\\nelse {\\n    var sessionOrg = effectiveOrgNames[0];\\n    logger.error(\\\"Selected Org Supplier Num: {} Org Name: {}\\\", sessionOrg['supplierNumber'], sessionOrg['name']);\\n    nodeState.putShared(\\\"selectedOrg\\\", sessionOrg);\\n    nodeState.putShared(\\\"objectAttributes\\\", authnUser);\\n}\\naction.goTo(\\\"true\\\");\\n\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "null",
+          "creationDate": 0,
+          "lastModifiedBy": "null",
+          "lastModifiedDate": 0,
+          "evaluatorVersion": "2.0"
+        }
+      },
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [
+        {
+          "_id": "37118fc1-5b55-4b5f-a332-c78678770fb1",
+          "accountCardBackgroundColor": "#ffffff",
+          "accountCardHeaderColor": "#23282e",
+          "accountCardInnerBorderColor": "#e7eef4",
+          "accountCardInputBackgroundColor": "#ffffff",
+          "accountCardInputBorderColor": "#c0c9d5",
+          "accountCardInputLabelColor": "#5e6d82",
+          "accountCardInputSelectColor": "#e4f4fd",
+          "accountCardInputSelectHoverColor": "#f6f8fa",
+          "accountCardInputTextColor": "#23282e",
+          "accountCardOuterBorderColor": "#e7eef4",
+          "accountCardShadow": 3,
+          "accountCardTabActiveBorderColor": "#109cf1",
+          "accountCardTabActiveColor": "#e4f4fd",
+          "accountCardTextColor": "#5e6d82",
+          "accountFooter": "<footer class=\"w-100\">\n            <div class=\"d-flex flex-column flex-md-row justify-content-center align-items-center py-4\">\n              <div class=\"container w-100\">\n                <div class=\"mt-5 py-4 border-top border-darkened\">\n                  <div class=\"row\" style=\"color: #23282e;\">\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                      <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">Company</h5>\n                      <ul class=\"nav mb-4 flex-column\">\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">About Us</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Contact Us</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a></li>\n                      </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                      <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">Support</h5>\n                      <ul class=\"nav mb-4 flex-column\">\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Help Center</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Docs</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a></li>\n                      </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                      <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">Community</h5>\n                      <ul class=\"nav mb-4 flex-column\">\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Facebook</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Twitter</a></li>\n                        <li class=\"nav-item\"><a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Forum</a></li>\n                      </ul>\n                    </div>\n                    <div class=\"col-12 col-lg-6\" style=\"color: #5e6d82\">\n                      <div class=\"d-flex align-items-center justify-content-lg-end py-4 py-lg-0\">\n                        <span class=\"pr-1\">&copy; 2021</span>\n                        <a href=\"#\" class=\"text-decoration-none\" target=\"_self\" style=\"color: #5e6d82\">Rob Roy Markets, Inc</a>\n                      </div>\n                    </div>\n                  </div>\n                </div> \n              </div>\n            </div>\n          </footer>\n",
+          "accountFooterEnabled": false,
+          "accountFooterScriptTag": "",
+          "accountFooterScriptTagEnabled": false,
+          "accountNavigationBackgroundColor": "#ffffff",
+          "accountNavigationTextColor": "#455469",
+          "accountNavigationToggleBorderColor": "#e7eef4",
+          "accountPageSections": {
+            "accountControls": {
+              "enabled": false
+            },
+            "accountSecurity": {
+              "enabled": true,
+              "subsections": {
+                "password": {
+                  "enabled": true
+                },
+                "securityQuestions": {
+                  "enabled": false
+                },
+                "twoStepVerification": {
+                  "enabled": true
+                },
+                "username": {
+                  "enabled": true
+                }
+              }
+            },
+            "consent": {
+              "enabled": false
+            },
+            "oauthApplications": {
+              "enabled": false
+            },
+            "personalInformation": {
+              "enabled": true
+            },
+            "preferences": {
+              "enabled": false
+            },
+            "social": {
+              "enabled": false
+            },
+            "trustedDevices": {
+              "enabled": true
+            }
+          },
+          "accountTableRowHoverColor": "#f6f8fa",
+          "backgroundColor": "#FFFFFF",
+          "backgroundImage": "https://assets.apnews.com/e7/ee/0cc9de349b7f3fef7a5ac4b68e93/7df9e5f8eb104e29b0f5c9a04ff0f3a9",
+          "bodyText": "#5E6D82",
+          "boldLinks": false,
+          "buttonRounded": "12",
+          "dangerColor": "#f7685b",
+          "favicon": "",
+          "fontFamily": "Helvetica",
+          "isDefault": false,
+          "journeyCardBackgroundColor": "#ffffff",
+          "journeyCardBorderRadius": 4,
+          "journeyCardHeaderBackgroundColor": "#ffffff",
+          "journeyCardShadow": 3,
+          "journeyCardTextColor": "#5e6d82",
+          "journeyCardTitleColor": "#23282e",
+          "journeyFloatingLabels": true,
+          "journeyFocusFirstFocusableItemEnabled": false,
+          "journeyFooter": "<footer class=\"w-100\">\n    <div class=\"d-flex flex-column flex-md-row justify-content-center align-items-center py-4\">\n        <div class=\"container w-100\">\n            <div class=\"mt-5 py-4 border-top border-darkened\">\n                <div class=\"row\" style=\"color: #23282e;\">\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                        <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">\n                            Company\n                        </h5>\n                        <ul class=\"nav mb-4 flex-column\">\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">About Us</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Contact Us</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                        <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">\n                            Support\n                        </h5>\n                        <ul class=\"nav mb-4 flex-column\">\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Help Center</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Docs</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Privacy &amp; Terms</a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"col-4 col-md-3 col-lg-2\">\n                        <h5 style=\"font-weight: 600; font-size: 0.9375rem;\">\n                            Community\n                        </h5>\n                        <ul class=\"nav mb-4 flex-column\">\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Facebook</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Twitter</a>\n                            </li>\n                            <li class=\"nav-item\">\n                                <a href=\"#\" class=\"nav-link px-0 py-1\" target=\"_self\">Forum</a>\n                            </li>\n                        </ul>\n                    </div>\n                    <div class=\"col-12 col-lg-6\">\n                        <div class=\"d-flex align-items-center justify-content-lg-end py-4 py-lg-0\">\n                            <span class=\"pr-1\">&copy; 2021</span>\n                            <a href=\"#\" class=\"text-decoration-none\" target=\"_self\">Highlander, Inc.</a>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</footer>\n\n",
+          "journeyFooterEnabled": false,
+          "journeyFooterScriptTag": "",
+          "journeyFooterScriptTagEnabled": false,
+          "journeyHeader": "<header>\n  <nav class=\"navbar shadow-lg navbar-light bg-white navbar-expand-lg\">\n    <a href=\"#\" target=\"_self\" class=\"navbar-brand\">\n      <img src=\"https://pbs.twimg.com/profile_images/1697224200753119232/mSe7GfpY_400x400.jpg\" alt=\"Logo\" style=\"height:28px\" />\n    </a>\n    <div class=\"navbar-collapse d-none d-lg-flex\" id=\"navbarSupportedContent\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"https://openam-jcpsupwf.forgeblocks.com/am/XUI/?realm=alpha&amp;authIndexType=service&amp;authIndexValue=jcpSupplierPortalLogin\">Supplier Portal</a>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</header>\n",
+          "journeyHeaderEnabled": true,
+          "journeyHeaderSkipLinkEnabled": false,
+          "journeyInputBackgroundColor": "#ffffff",
+          "journeyInputBorderColor": "#c0c9d5",
+          "journeyInputLabelColor": "#5e6d82",
+          "journeyInputSelectColor": "#e4f4fd",
+          "journeyInputSelectHoverColor": "#f6f8fa",
+          "journeyInputTextColor": "#23282e",
+          "journeyJustifiedContent": "",
+          "journeyJustifiedContentEnabled": false,
+          "journeyJustifiedContentMobileViewEnabled": false,
+          "journeyLayout": "card",
+          "journeyRememberMeEnabled": false,
+          "journeyRememberMeLabel": "",
+          "journeySignInButtonPosition": "flex-column",
+          "journeyTheaterMode": false,
+          "linkActiveColor": "#C60819",
+          "linkColor": "#EB0A1E",
+          "linkedTrees": [
+            "jcpSupplierPortalLogin",
+            "jcpRegisterPush",
+            "jcpSupplierOnBoarding",
+            "createLARAccount"
+          ],
+          "logo": "https://pbs.twimg.com/profile_images/1697224200753119232/mSe7GfpY_400x400.jpg",
+          "logoAltText": "JCPenney",
+          "logoEnabled": true,
+          "logoHeight": "100",
+          "logoProfile": "https://pbs.twimg.com/profile_images/1697224200753119232/mSe7GfpY_400x400.jpg",
+          "logoProfileAltText": "JCPenney",
+          "logoProfileCollapsed": "https://pbs.twimg.com/profile_images/1697224200753119232/mSe7GfpY_400x400.jpg",
+          "logoProfileCollapsedAltText": "JCPenney",
+          "logoProfileCollapsedHeight": "28",
+          "logoProfileHeight": "40",
+          "name": "JCPenney",
+          "pageTitle": "#23282e",
+          "primaryColor": "#DF0000",
+          "primaryOffColor": "#B30000",
+          "profileBackgroundColor": "#FFCCCC",
+          "profileMenuHighlightColor": "#FFFFFF",
+          "profileMenuHoverColor": "#FFCCCC",
+          "profileMenuHoverTextColor": "#B30000",
+          "profileMenuTextHighlightColor": "#EB0A1E",
+          "secondaryColor": "#69788b",
+          "successColor": "#2ed47a",
+          "switchBackgroundColor": "#c0c9d5",
+          "textColor": "#ffffff",
+          "topBarBackgroundColor": "#ffffff",
+          "topBarBorderColor": "#e7eef4",
+          "topBarHeaderColor": "#23282e",
+          "topBarTextColor": "#69788b"
+        }
+      ],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}
